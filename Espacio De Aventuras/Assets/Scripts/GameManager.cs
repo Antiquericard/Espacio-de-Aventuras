@@ -13,6 +13,10 @@ public class GameManager : MonoBehaviour {
 
 	[SerializeField]
 	float startingVelocity = 50f;
+	[SerializeField]
+	Object astronaut;
+	[SerializeField]
+	Transform cannon;
 
 	// Use this for initialization
 	void Start () {
@@ -21,6 +25,21 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		if (Input.GetMouseButtonDown (0)) {
+			Shoot ();
+		}
+	}
+
+
+	public void Shoot(){
+		Debug.Log (mode);
+		if (mode == 1) {
+			GameObject lanzamiento = Instantiate (astronaut, cannon.position, cannon.rotation) as GameObject;
+			lanzamiento.GetComponent<Rigidbody> ().velocity = startingVelocity * -lanzamiento.transform.forward;
+
+			mode = 2;
+		} else if (mode == 0) {
+			mode = 1;
+		}
 	}
 }
