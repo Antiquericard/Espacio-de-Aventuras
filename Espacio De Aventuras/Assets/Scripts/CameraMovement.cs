@@ -17,6 +17,6 @@ public class CameraMovement : MonoBehaviour {
 	void Update () {
 
 		//En esta linea doy por hecho que el padre de la camara es el cannon
-		transform.parent.Rotate (-scaleRotationY * Input.GetAxis("Mouse Y"),-scaleRotationX * Input.GetAxis("Mouse X"), 0f);
+		transform.parent.Rotate (-scaleRotationY * Input.GetAxis("Mouse Y"),-scaleRotationX * -Input.GetAxis("Mouse X"), 0f);
 	}
 }
