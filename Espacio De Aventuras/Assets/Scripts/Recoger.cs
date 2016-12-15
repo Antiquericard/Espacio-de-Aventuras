@@ -5,7 +5,7 @@ public class Recoger : MonoBehaviour {
 
 	void OnTriggerEnter (Collider hit) {
 		if (hit.CompareTag ("Player")) {
-			Destroy (GameObject);
+			Destroy (this.gameObject);
 		}
 	}
 }
