@@ -12,15 +12,28 @@ public class GameManager : MonoBehaviour {
 	public static short mode = 0;
 
 	[SerializeField]
+	Texture2D emptyPowerBar;
+	[SerializeField]
+	Texture2D fullPowerBar;
+
+	[SerializeField]
 	float startingVelocity = 50f;
 	[SerializeField]
 	Object astronaut;
 	[SerializeField]
 	Transform cannon;
 
-	// Use this for initialization
-	void Start () {
-		
+	[SerializeField]
+	float powerIncreaseRate = 1f;
+	[SerializeField]
+	float powerValue = 0f;
+
+	void OnGUI() {
+		if (mode == 1) {
+			
+			GUI.DrawTexture(new Rect(Screen.width/4, Screen.height - 100, Screen.width/2, 50), emptyPowerBar);
+			GUI.DrawTexture(new Rect(Screen.width/4, Screen.height - 100, powerValue * Screen.width/2, 50), fullPowerBar);
+		}
 	}
 	
 	// Update is called once per frame
@@ -28,14 +41,22 @@ public class GameManager : MonoBehaviour {
 		if (Input.GetMouseButtonDown (0)) {
 			Shoot ();
 		}
+		if (mode == 1) {
+			powerValue += powerIncreaseRate * Time.deltaTime;
+			if (powerValue > 1) {
+				powerValue --;
+			}
+		}
 	}
 
 
 	public void Shoot(){
 		Debug.Log (mode);
 		if (mode == 1) {
+			powerValue = 0f;
+
 			GameObject lanzamiento = Instantiate (astronaut, cannon.position, cannon.rotation) as GameObject;
-			lanzamiento.GetComponent<Rigidbody> ().velocity = startingVelocity * -lanzamiento.transform.forward;
+			lanzamiento.GetComponent<Rigidbody> ().velocity = startingVelocity * powerValue * -lanzamiento.transform.forward;
 
 			mode = 2;
 		} else if (mode == 0) {
