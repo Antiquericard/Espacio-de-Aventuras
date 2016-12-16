@@ -11,7 +11,6 @@ public class SpaceShipMovement : MonoBehaviour {
 		StartCoroutine ("Movement");
 	}
 
-
 	// Creo un Coroutine para ejecutar el movimiento de un wayPoint a otro cada vez que alcanza el siguiente WayPoint.
 	IEnumerator Movement (){
 
@@ -24,6 +23,7 @@ public class SpaceShipMovement : MonoBehaviour {
 			}
 			transform.position = Vector3.MoveTowards (transform.position, wayPoints [index].position, speed);
 			transform.LookAt (Vector3.zero);
+
 			yield return null;
 		}
 	}

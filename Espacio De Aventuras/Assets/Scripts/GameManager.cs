@@ -53,18 +53,8 @@ public class GameManager : MonoBehaviour {
 	public void Shoot(){
 		if (mode == 1) {
 
-			//Fijamos el punto donde crearemos al astronauta
-			Vector3 spawnPoint = cannon.FindChild ("SpawnPoint").position;
-			GameObject lanzamiento = Instantiate (astronaut, spawnPoint, cannon.rotation) as GameObject;
-			float velocity = startingVelocity * powerValue;
-
-			//Esto son vectores básicos. A partir de las posiciones sacamos un vector de direccion
-			//lanzamiento.GetComponent<Rigidbody> ().velocity = cannon.GetComponent<Rigidbody> ().velocity;
-			Vector3 launchDirection = (spawnPoint - cannon.position).normalized;
-			//Y le damos velocidad
-			lanzamiento.GetComponent<Rigidbody> ().velocity += startingVelocity * powerValue * launchDirection /*lanzamiento.transform.forward*/;
-
-			//Para el proximo tiro lo dejamos a 0
+			GameObject lanzamiento = Instantiate (astronaut, Vector3.zero, Quaternion.identity) as GameObject;
+			lanzamiento.GetComponent<Astronaut> ().Init (powerValue * startingVelocity, cannon);
 			powerValue = 0f;
 
 			//Deshabilitado para probar el tiro bien
