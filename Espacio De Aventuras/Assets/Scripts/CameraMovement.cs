@@ -4,9 +4,9 @@ using System.Collections;
 public class CameraMovement : MonoBehaviour {
 
 	[SerializeField]
-	float scaleRotationX = 0.5f;
+	float scaleRotationX = 1f;
 	[SerializeField]
-	float scaleRotationY = 0.5f;
+	float scaleRotationY = 1f;
 
 	// Use this for initialization
 	void Awake () {
@@ -19,4 +19,6 @@ public class CameraMovement : MonoBehaviour {
 		//En esta linea doy por hecho que el padre de la camara es el cannon
 		transform.parent.Rotate (-scaleRotationY * Input.GetAxis("Mouse Y"),-scaleRotationX * -Input.GetAxis("Mouse X"), 0f);
 	}
+
+
 }

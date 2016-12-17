@@ -26,8 +26,8 @@ public class SpaceShipMovement : MonoBehaviour {
 			}
 
 			//Codigo nuevo para saber desde fuera la direccion en la que se esta moviendo en cada momento
-			//Esta velocidad esta en unidades/frame 
-			movement = (wayPoints[index].position - transform.position).normalized * speed/* / Time.deltaTime*/;
+			//Esta velocidad esta en unidades/frame
+			movement = (wayPoints[index].position - transform.position).normalized * speed;
 
 			transform.position = Vector3.MoveTowards (transform.position, wayPoints [index].position, speed * Time.deltaTime);
 			transform.LookAt (Vector3.zero);

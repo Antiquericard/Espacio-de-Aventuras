@@ -3,13 +3,16 @@ using System.Collections;
 
 public class GameManager : MonoBehaviour {
 
+	public static GameManager _instance;
+
 	string [] levelTexts;
 	int level = 1;
 	/*float sqrMinVelocity;
 	BoxCollider bounds;*/
 
-	//0: Modo de apuntar cámara 1: Modo de potencia 2: Modo disparado
-	public static short mode = 0;
+	bool aimingMode = true;
+
+	Vector3 CAMERA_CANNON_DISTANCE = new Vector3 (0f,1f,-1.5f);
 
 	[SerializeField]
 	Texture2D emptyPowerBar;
@@ -21,6 +24,9 @@ public class GameManager : MonoBehaviour {
 	Transform cannon;
 	[SerializeField]
 	Transform spaceShip;
+	[SerializeField]
+	Camera mainCamera;
+
 
 	[SerializeField]
 	float startingVelocity = 50f;
@@ -28,8 +34,17 @@ public class GameManager : MonoBehaviour {
 	float powerIncreaseRate = 1f;
 	float powerValue = 0f;
 
+	void Awake(){
+		if (_instance == null) {
+			_instance = this;
+			DontDestroyOnLoad (this.gameObject);
+		} else {
+			Destroy (this);
+		}
+	}
+
 	void OnGUI() {
-		if (mode == 1) {
+		if (aimingMode) {
 			
 			GUI.DrawTexture(new Rect(Screen.width/4, Screen.height - 100, Screen.width/2, 50), emptyPowerBar);
 			GUI.DrawTexture(new Rect(Screen.width/4, Screen.height - 100, powerValue * Screen.width/2, 50), fullPowerBar);
@@ -41,7 +56,7 @@ public class GameManager : MonoBehaviour {
 		if (Input.GetMouseButtonDown (0)) {
 			Shoot ();
 		}
-		if (mode == 1) {
+		if (aimingMode) {
 			powerValue += powerIncreaseRate * Time.deltaTime;
 			if (powerValue > 1) {
 				powerValue --;
@@ -51,16 +66,20 @@ public class GameManager : MonoBehaviour {
 
 
 	public void Shoot(){
-		if (mode == 1) {
 
-			GameObject lanzamiento = Instantiate (astronaut, Vector3.zero, Quaternion.identity) as GameObject;
-			lanzamiento.GetComponent<Astronaut> ().Init (powerValue * startingVelocity, cannon, spaceShip.GetComponent<SpaceShipMovement>().movement);
-			powerValue = 0f;
+		GameObject lanzamiento = Instantiate (astronaut, Vector3.zero, Quaternion.identity) as GameObject;
+		lanzamiento.GetComponent<Astronaut> ().Init (powerValue * startingVelocity, cannon, spaceShip.GetComponent<SpaceShipMovement>().movement);
+		powerValue = 0f;
 
-			//Deshabilitado para probar el tiro bien
-			//mode = 2;
-		} else if (mode == 0) {
-			mode = 1;
-		}
+		aimingMode = false;
+
+		mainCamera.transform.SetParent(lanzamiento.transform);
+	}
+
+	public void AimingMode(){
+		aimingMode = true;
+		mainCamera.transform.SetParent (cannon);
+		mainCamera.transform.localPosition = CAMERA_CANNON_DISTANCE;
+		mainCamera.transform.localRotation = Quaternion.identity;
 	}
 }
