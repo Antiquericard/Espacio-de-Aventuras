@@ -5,5 +5,6 @@ public class LevelLimits : MonoBehaviour {
 
 	void OnTriggerExit(Collider other){
 		GameManager._instance.AimingMode ();
+		Destroy (other.gameObject);
 	}
 }
