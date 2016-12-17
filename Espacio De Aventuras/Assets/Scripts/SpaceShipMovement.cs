@@ -5,12 +5,14 @@ public class SpaceShipMovement : MonoBehaviour {
 
 	[Tooltip ("Lista de WayPoints a añadir para establecer la ruta de la spaceShip.")] [SerializeField] Transform[] wayPoints;
 
-	[Tooltip("Velocidad a la cual la spaceShip recorrerá la ruta.")] [SerializeField] float speed = 0.2f;
+	[Tooltip("Velocidad a la cual la spaceShip recorrerá la ruta.")] [SerializeField] float speed = 5f;
+
+
+	public Vector3 movement = new Vector3();
 
 	void Start () {
 		StartCoroutine ("Movement");
 	}
-
 
 	// Creo un Coroutine para ejecutar el movimiento de un wayPoint a otro cada vez que alcanza el siguiente WayPoint.
 	IEnumerator Movement (){
@@ -22,8 +24,14 @@ public class SpaceShipMovement : MonoBehaviour {
 				index++;
 				index = index % wayPoints.Length;
 			}
-			transform.position = Vector3.MoveTowards (transform.position, wayPoints [index].position, speed);
+
+			//Codigo nuevo para saber desde fuera la direccion en la que se esta moviendo en cada momento
+			//Esta velocidad esta en unidades/frame
+			movement = (wayPoints[index].position - transform.position).normalized * speed;
+
+			transform.position = Vector3.MoveTowards (transform.position, wayPoints [index].position, speed * Time.deltaTime);
 			transform.LookAt (Vector3.zero);
+
 			yield return null;
 		}
 	}

@@ -3,33 +3,48 @@ using System.Collections;
 
 public class GameManager : MonoBehaviour {
 
+	public static GameManager _instance;
+
 	string [] levelTexts;
 	int level = 1;
-	float sqrMinVelocity;
-	BoxCollider bounds;
+	/*float sqrMinVelocity;
+	BoxCollider bounds;*/
 
-	//0: Modo de apuntar cámara 1: Modo de potencia 2: Modo disparado
-	public static short mode = 0;
+	bool aimingMode = true;
+
+	Vector3 CAMERA_CANNON_DISTANCE = new Vector3 (0f,1f,-1.5f);
 
 	[SerializeField]
 	Texture2D emptyPowerBar;
 	[SerializeField]
 	Texture2D fullPowerBar;
-
-	[SerializeField]
-	float startingVelocity = 50f;
 	[SerializeField]
 	Object astronaut;
 	[SerializeField]
 	Transform cannon;
+	[SerializeField]
+	Transform spaceShip;
+	[SerializeField]
+	Camera mainCamera;
 
+
+	[SerializeField]
+	float startingVelocity = 50f;
 	[SerializeField]
 	float powerIncreaseRate = 1f;
-	[SerializeField]
 	float powerValue = 0f;
 
+	void Awake(){
+		if (_instance == null) {
+			_instance = this;
+			DontDestroyOnLoad (this.gameObject);
+		} else {
+			Destroy (this);
+		}
+	}
+
 	void OnGUI() {
-		if (mode == 1) {
+		if (aimingMode) {
 			
 			GUI.DrawTexture(new Rect(Screen.width/4, Screen.height - 100, Screen.width/2, 50), emptyPowerBar);
 			GUI.DrawTexture(new Rect(Screen.width/4, Screen.height - 100, powerValue * Screen.width/2, 50), fullPowerBar);
@@ -41,7 +56,7 @@ public class GameManager : MonoBehaviour {
 		if (Input.GetMouseButtonDown (0)) {
 			Shoot ();
 		}
-		if (mode == 1) {
+		if (aimingMode) {
 			powerValue += powerIncreaseRate * Time.deltaTime;
 			if (powerValue > 1) {
 				powerValue --;
@@ -51,26 +66,20 @@ public class GameManager : MonoBehaviour {
 
 
 	public void Shoot(){
-		if (mode == 1) {
 
-			//Fijamos el punto donde crearemos al astronauta
-			Vector3 spawnPoint = cannon.FindChild ("SpawnPoint").position;
-			GameObject lanzamiento = Instantiate (astronaut, spawnPoint, cannon.rotation) as GameObject;
-			float velocity = startingVelocity * powerValue;
+		GameObject lanzamiento = Instantiate (astronaut, Vector3.zero, Quaternion.identity) as GameObject;
+		lanzamiento.GetComponent<Astronaut> ().Init (powerValue * startingVelocity, cannon, spaceShip.GetComponent<SpaceShipMovement>().movement);
+		powerValue = 0f;
 
-			//Esto son vectores básicos. A partir de las posiciones sacamos un vector de direccion
-			//lanzamiento.GetComponent<Rigidbody> ().velocity = cannon.GetComponent<Rigidbody> ().velocity;
-			Vector3 launchDirection = (spawnPoint - cannon.position).normalized;
-			//Y le damos velocidad
-			lanzamiento.GetComponent<Rigidbody> ().velocity += startingVelocity * powerValue * launchDirection /*lanzamiento.transform.forward*/;
+		aimingMode = false;
 
-			//Para el proximo tiro lo dejamos a 0
-			powerValue = 0f;
+		mainCamera.transform.SetParent(lanzamiento.transform);
+	}
 
-			//Deshabilitado para probar el tiro bien
-			//mode = 2;
-		} else if (mode == 0) {
-			mode = 1;
-		}
+	public void AimingMode(){
+		aimingMode = true;
+		mainCamera.transform.SetParent (cannon);
+		mainCamera.transform.localPosition = CAMERA_CANNON_DISTANCE;
+		mainCamera.transform.localRotation = Quaternion.identity;
 	}
 }
