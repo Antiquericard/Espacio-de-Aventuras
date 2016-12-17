@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class Recoger : MonoBehaviour {
 
 	void OnTriggerEnter (Collider hit) {
 		if (hit.CompareTag ("Player")) {
-			Destroy (this.gameObject);
+			SceneManager.LoadScene ("Main menu");
+			//Destroy (this.gameObject);
 		}
 	}
 }
