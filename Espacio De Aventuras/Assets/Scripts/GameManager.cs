@@ -10,16 +10,19 @@ public class GameManager : MonoBehaviour {
 	/*float sqrMinVelocity;
 	BoxCollider bounds;*/
 
-	bool aimingMode = true;
+	public bool aimingMode = true;
 
 	Vector3 CAMERA_CANNON_DISTANCE = new Vector3 (0f,1f,-1.5f);
+	Vector3 CAMERA_ASTRONAUT_DISTANCE = new Vector3 (0f,1f,-2.5f);
+
+	//PREFABS
 
 	[SerializeField]
 	Texture2D emptyPowerBar;
 	[SerializeField]
 	Texture2D fullPowerBar;
 	[SerializeField]
-	Object astronaut;
+	Object astronautPrefab;
 	[SerializeField]
 	Transform cannon;
 	[SerializeField]
@@ -27,12 +30,18 @@ public class GameManager : MonoBehaviour {
 	[SerializeField]
 	Camera mainCamera;
 
+	//PARAMETROS
 
 	[SerializeField]
-	float startingVelocity = 50f;
+	float startingVelocity = 100f;
 	[SerializeField]
 	float powerIncreaseRate = 1f;
+
+
+	//VARIABLES
+	GameObject astronaut;
 	float powerValue = 0f;
+	Vector3 astronautTrueDistance;
 
 	void Awake(){
 		if (_instance == null) {
@@ -45,7 +54,6 @@ public class GameManager : MonoBehaviour {
 
 	void OnGUI() {
 		if (aimingMode) {
-			
 			GUI.DrawTexture(new Rect(Screen.width/4, Screen.height - 100, Screen.width/2, 50), emptyPowerBar);
 			GUI.DrawTexture(new Rect(Screen.width/4, Screen.height - 100, powerValue * Screen.width/2, 50), fullPowerBar);
 		}
@@ -59,21 +67,32 @@ public class GameManager : MonoBehaviour {
 		if (aimingMode) {
 			powerValue += powerIncreaseRate * Time.deltaTime;
 			if (powerValue > 1) {
-				powerValue --;
+				powerValue--;
 			}
+		} else {
+			mainCamera.GetComponent<CameraMovement> ().wantedPosition = astronaut.transform.position + astronautTrueDistance;
+			mainCamera.GetComponent<CameraMovement> ().wantedRotation = astronaut.transform.rotation;
 		}
 	}
 
 
 	public void Shoot(){
 
-		GameObject lanzamiento = Instantiate (astronaut, Vector3.zero, Quaternion.identity) as GameObject;
-		lanzamiento.GetComponent<Astronaut> ().Init (powerValue * startingVelocity, cannon, spaceShip.GetComponent<SpaceShipMovement>().movement);
+		//Ajustamos la potencia: Un disparo completamente cargado tiene 4 veces más potencia que uno sin cargar
+		//Convertimos esta progresión 1-100 a una 25-100
+
+		float adjustedPowerValue = ((powerValue - .01f) * .75f / .99f) + .25f;
+
+		astronaut = Instantiate (astronautPrefab, Vector3.zero, Quaternion.identity) as GameObject;
+		astronaut.GetComponent<Astronaut> ().Init (adjustedPowerValue * startingVelocity, cannon, spaceShip.GetComponent<SpaceShipMovement>().movement);
 		powerValue = 0f;
+
+		//Esto rota la distancia. Es importante que el Quaternion tiene que estar en el LADO IZQUIERDO
+		astronautTrueDistance =  astronaut.transform.rotation * CAMERA_ASTRONAUT_DISTANCE;
 
 		aimingMode = false;
 
-		mainCamera.transform.SetParent(lanzamiento.transform);
+		mainCamera.transform.SetParent(null);
 	}
 
 	public void AimingMode(){
