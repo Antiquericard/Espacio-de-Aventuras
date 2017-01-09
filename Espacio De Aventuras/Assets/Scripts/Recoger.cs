@@ -6,7 +6,7 @@ public class Recoger : MonoBehaviour {
 
 	void OnTriggerEnter (Collider hit) {
 		if (hit.CompareTag ("Player")) {
-			SceneManager.LoadScene ("Main menu");
+			SceneManager.LoadScene ("Victory");
 			//Destroy (this.gameObject);
 		}
 	}
