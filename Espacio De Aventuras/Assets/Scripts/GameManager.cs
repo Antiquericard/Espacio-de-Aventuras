@@ -84,7 +84,7 @@ public class GameManager : MonoBehaviour {
 		float adjustedPowerValue = ((powerValue - .01f) * .75f / .99f) + .25f;
 
 		astronaut = Instantiate (astronautPrefab, Vector3.zero, Quaternion.identity) as GameObject;
-		astronaut.GetComponent<Astronaut> ().Init (adjustedPowerValue * startingVelocity, cannon, spaceShip.GetComponent<SpaceShipMovement>().movement);
+		astronaut.GetComponent<Astronaut> ().Init (adjustedPowerValue * startingVelocity, spaceShip.GetComponent<SpaceShipMovement>().movement);
 		powerValue = 0f;
 
 		//Esto rota la distancia. Es importante que el Quaternion tiene que estar en el LADO IZQUIERDO
@@ -101,4 +101,6 @@ public class GameManager : MonoBehaviour {
 		mainCamera.transform.localPosition = CAMERA_CANNON_DISTANCE;
 		mainCamera.transform.localRotation = Quaternion.identity;
 	}
+
+
 }
