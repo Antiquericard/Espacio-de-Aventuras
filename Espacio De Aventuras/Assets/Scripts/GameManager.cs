@@ -93,6 +93,8 @@ public class GameManager : MonoBehaviour {
 		aimingMode = false;
 
 		mainCamera.transform.SetParent(null);
+
+		cannon.GetComponentInChildren<ParticleSystem> ().Stop ();
 	}
 
 	public void AimingMode(){
@@ -100,5 +102,6 @@ public class GameManager : MonoBehaviour {
 		mainCamera.transform.SetParent (cannon);
 		mainCamera.transform.localPosition = CAMERA_CANNON_DISTANCE;
 		mainCamera.transform.localRotation = Quaternion.identity;
+		cannon.GetComponentInChildren<ParticleSystem> ().Play ();
 	}
 }
