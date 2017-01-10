@@ -3,7 +3,9 @@ using System.Collections;
 
 public class Astronaut : GameManager {
 
-	[SerializeField] Transform cannon;
+	[Tooltip("Colocar el transform del cañón.")] [SerializeField] Transform cannon;
+
+	[Tooltip("Velocidad a la que retorna el personaje a la nave.")] [SerializeField] float MoveSpeed = 0.1f;
 
 	public void Init(float speed, Vector3 shipSpeed){
 		transform.parent = cannon;
@@ -15,18 +17,11 @@ public class Astronaut : GameManager {
 		GetComponent<Rigidbody> ().AddForce (transform.forward * speed, ForceMode.Impulse);
 	}
 
-	public void returnToSpaceShip (){
-		if(  distancia >= MinDist && distancia <= MaxDist  ){
-			var targetPos = new Vector3( cannon.x, cannon.position.y, cannon.z);
-			transform.LookAt(cannon);
-			transform.position += transform.forward*MoveSpeed*Time.deltaTime;
-	}
-
-	IEnumerator DieCorutine(){
-		yield return new WaitForSeconds (.5f);
-		GetComponent<Rigidbody2D> ().isKinematic = true;
-		particles.Play ();
-		if (life > 0)
-			returnToSpaceShip ();
+	public override void returnToSpaceShip (){
+		if (transform.localPosition.x == 0f && transform.localPosition.y == 0f && transform.localPosition.z == 1.5f) {
+			var targetPos = new Vector3 (cannon.position.x, cannon.position.y, cannon.position.z);
+			transform.LookAt (cannon);
+			transform.position += transform.forward * MoveSpeed * Time.deltaTime;
+		}
 	}
 }

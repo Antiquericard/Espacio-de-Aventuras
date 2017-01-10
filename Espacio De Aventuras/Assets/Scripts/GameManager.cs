@@ -5,6 +5,8 @@ public class GameManager : MonoBehaviour {
 
 	public static GameManager _instance;
 
+	[SerializeField] public int lifes = 3;
+
 	string [] levelTexts;
 	int level = 1;
 	/*float sqrMinVelocity;
@@ -93,6 +95,8 @@ public class GameManager : MonoBehaviour {
 		aimingMode = false;
 
 		mainCamera.transform.SetParent(null);
+
+		cannon.GetComponentInChildren<ParticleSystem> ().Stop ();
 	}
 
 	public void AimingMode(){
@@ -100,7 +104,19 @@ public class GameManager : MonoBehaviour {
 		mainCamera.transform.SetParent (cannon);
 		mainCamera.transform.localPosition = CAMERA_CANNON_DISTANCE;
 		mainCamera.transform.localRotation = Quaternion.identity;
+		cannon.GetComponentInChildren<ParticleSystem> ().Play ();
 	}
 
+	//Inicialización de métodos hijos.
 
+	public virtual void returnToSpaceShip (){
+	}
+
+	IEnumerator DieCorutine(){
+		yield return new WaitForSeconds (.5f);
+		GetComponent<Rigidbody2D> ().isKinematic = true;
+		//particles.Play ();
+		if (GameManager._instance.lifes > 0)
+			GameManager._instance.returnToSpaceShip ();
+	}
 }

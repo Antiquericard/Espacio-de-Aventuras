@@ -5,8 +5,8 @@ using UnityEngine.SceneManagement;
 public class LevelLimits : GameManager {
 
 	void OnTriggerExit(Collider other){
-		SceneManager.LoadScene ("Lose");
-		//GameManager._instance.AimingMode ();
+		//SceneManager.LoadScene ("Lose");
+		GameManager._instance.StartCoroutine ("DieCorutine");
 		//Destroy (other.gameObject);
 	}
 }
