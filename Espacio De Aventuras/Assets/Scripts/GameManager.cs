@@ -112,6 +112,10 @@ public class GameManager : MonoBehaviour {
 	public virtual void returnToSpaceShip (){
 	}
 
+	public virtual void Attract () {
+	}
+
+
 	IEnumerator DieCorutine(){
 		yield return new WaitForSeconds (.5f);
 		GetComponent<Rigidbody2D> ().isKinematic = true;

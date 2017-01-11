@@ -11,7 +11,7 @@ public class Astronaut : GameManager {
 		transform.parent = cannon;
 		transform.localPosition = new Vector3 (0f, 0f, 1.5f);
 		transform.localEulerAngles = Vector2.zero;
-		transform.parent = null;
+		//transform.parent = null;
 
 		GetComponent<Rigidbody> ().AddForce (shipSpeed, ForceMode.VelocityChange);
 		GetComponent<Rigidbody> ().AddForce (transform.forward * speed, ForceMode.Impulse);
@@ -19,9 +19,11 @@ public class Astronaut : GameManager {
 
 	public override void returnToSpaceShip (){
 		if (transform.localPosition.x == 0f && transform.localPosition.y == 0f && transform.localPosition.z == 1.5f) {
-			var targetPos = new Vector3 (cannon.position.x, cannon.position.y, cannon.position.z);
+			//var targetPos = new Vector3 (cannon.position.x, cannon.position.y, cannon.position.z);
 			transform.LookAt (cannon);
 			transform.position += transform.forward * MoveSpeed * Time.deltaTime;
 		}
+
+
 	}
 }
