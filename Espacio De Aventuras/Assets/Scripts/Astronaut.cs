@@ -16,7 +16,6 @@ public class Astronaut : MonoBehaviour {
 		GetComponent<Rigidbody> ().AddForce (shipSpeed, ForceMode.VelocityChange);
 		GetComponent<Rigidbody> ().AddForce (transform.forward * speed, ForceMode.Impulse);
 	}
-
 	public IEnumerator ReturnToSpaceShip (){
 		transform.LookAt (cannon);
 		Vector3 targetPos = cannon.position + GameManager._instance.ASTRONAUT_CANNON_DISTANCE;
