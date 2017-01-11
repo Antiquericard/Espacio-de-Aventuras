@@ -86,6 +86,7 @@ public class GameManager : MonoBehaviour {
 		float adjustedPowerValue = ((powerValue - .01f) * .75f / .99f) + .25f;
 
 		astronaut = Instantiate (astronautPrefab, Vector3.zero, Quaternion.identity) as GameObject;
+		astronaut.GetComponent<Astronaut>().cannon = cannon;
 		astronaut.GetComponent<Astronaut> ().Init (adjustedPowerValue * startingVelocity, spaceShip.GetComponent<SpaceShipMovement>().movement);
 		powerValue = 0f;
 
@@ -96,7 +97,10 @@ public class GameManager : MonoBehaviour {
 
 		mainCamera.transform.SetParent(null);
 
+		Debug.Log (cannon.GetComponentInChildren<ParticleSystem> ());
+		cannon.GetComponentInChildren<ParticleSystem> ().Clear ();
 		cannon.GetComponentInChildren<ParticleSystem> ().Stop ();
+
 	}
 
 	public void AimingMode(){
@@ -110,6 +114,7 @@ public class GameManager : MonoBehaviour {
 	//Inicialización de métodos hijos.
 
 	public virtual void returnToSpaceShip (){
+		
 	}
 
 	public virtual void Attract () {

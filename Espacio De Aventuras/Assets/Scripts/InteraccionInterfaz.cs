@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class InteraccionInterfaz : GameManager {
+public class InteraccionInterfaz : MonoBehaviour {
 
 	void Awake () {
 

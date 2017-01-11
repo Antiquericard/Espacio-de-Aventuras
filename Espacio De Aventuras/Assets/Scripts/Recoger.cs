@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 
-public class Recoger : GameManager {
+public class Recoger : MonoBehaviour {
 
 	void OnTriggerEnter (Collider hit) {
 		if (hit.CompareTag ("Player")) {
