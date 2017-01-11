@@ -15,7 +15,7 @@ public class FauxGravityAttractor : MonoBehaviour {
 		set { forceMode = value; }
 	}
 
-	public override void Attract (Transform body) {
+	public void Attract (Transform body) {
 
 		//Guardamos estas variables para coger las normales.
 		Vector3 gravityUp = (body.position - transform.position);

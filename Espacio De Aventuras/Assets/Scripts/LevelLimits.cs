@@ -5,6 +5,10 @@ using UnityEngine.SceneManagement;
 public class LevelLimits : MonoBehaviour {
 
 	void OnTriggerExit(Collider other){
-		GameManager._instance.StartCoroutine ("DieCoroutine");
+		if (GameManager._instance.mode != GameManager.ShootingMode.Returning) {
+			GameManager._instance.mode = GameManager.ShootingMode.Returning;
+			GameManager._instance.StartCoroutine ("DieCoroutine");
+		}
+
 	}
 }

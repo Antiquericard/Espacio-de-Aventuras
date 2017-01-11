@@ -27,7 +27,8 @@ public class Astronaut : MonoBehaviour {
 		}
 		//transform.GetComponent<Rigidbody> ().isKinematic = false;
 		GameManager._instance.AimingMode();
-		Destroy (this.gameObject);
+		transform.GetComponent<Rigidbody> ().isKinematic = false;
+		gameObject.SetActive (false);
 		//TODO Preparar una pool!
 
 	}

@@ -13,10 +13,8 @@ public class GameManager : MonoBehaviour {
 	/*float sqrMinVelocity;
 	BoxCollider bounds;*/
 
-	//0 = apuntando
-	//1 = disparando
-	//2 = volviendo
-	public int mode = 0;
+	public enum ShootingMode : byte {Aiming, Shooting, Returning};
+	public ShootingMode mode;
 
 	public Vector3 CAMERA_CANNON_DISTANCE = new Vector3 (0f,1f,-1.5f);
 	public Vector3 CAMERA_ASTRONAUT_DISTANCE = new Vector3 (0f,1f,-2.5f);
@@ -59,8 +57,16 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
+	void Start(){
+		//Creamos un astronauta, solo usaremos ese no tenemos que crear mas
+		astronaut = Instantiate (astronautPrefab, Vector3.zero, Quaternion.identity) as GameObject;
+		astronaut.GetComponent<Astronaut>().cannon = cannon;
+		astronaut.SetActive (false);
+
+	}
+
 	void OnGUI() {
-		if (mode == 0) {
+		if (mode == ShootingMode.Aiming) {
 			GUI.DrawTexture(new Rect(Screen.width/4, Screen.height - 100, Screen.width/2, 50), emptyPowerBar);
 			GUI.DrawTexture(new Rect(Screen.width/4, Screen.height - 100, powerValue * Screen.width/2, 50), fullPowerBar);
 		}
@@ -69,7 +75,7 @@ public class GameManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		switch (mode) {
-		case 0:
+		case ShootingMode.Aiming:
 			//Apuntando
 			if (Input.GetMouseButton (0)) {
 				Shoot ();
@@ -80,12 +86,12 @@ public class GameManager : MonoBehaviour {
 				}
 			}
 			break;
-		case 1:
+		case ShootingMode.Shooting:
 			//Disparando
 			mainCamera.GetComponent<CameraMovement> ().wantedPosition = astronaut.transform.position + astronautTrueDistance;
 			mainCamera.GetComponent<CameraMovement> ().wantedRotation = astronaut.transform.rotation;
 			break;
-		case 2:
+		case ShootingMode.Returning:
 			//Volviendo
 			mainCamera.GetComponent<CameraMovement> ().wantedPosition = astronaut.transform.position + astronautTrueDistance;
 			mainCamera.GetComponent<CameraMovement> ().wantedRotation = astronaut.transform.rotation;
@@ -101,15 +107,14 @@ public class GameManager : MonoBehaviour {
 
 		float adjustedPowerValue = ((powerValue - .01f) * .75f / .99f) + .25f;
 
-		astronaut = Instantiate (astronautPrefab, Vector3.zero, Quaternion.identity) as GameObject;
-		astronaut.GetComponent<Astronaut>().cannon = cannon;
+		astronaut.SetActive (true);
 		astronaut.GetComponent<Astronaut> ().Init (adjustedPowerValue * startingVelocity, spaceShip.GetComponent<SpaceShipMovement>().movement);
 		powerValue = 0f;
 
 		//Esto rota la distancia. Es importante que el Quaternion tiene que estar en el LADO IZQUIERDO
 		astronautTrueDistance =  astronaut.transform.rotation * CAMERA_ASTRONAUT_DISTANCE;
 
-		mode = 1;
+		mode = ShootingMode.Shooting;
 
 		mainCamera.transform.SetParent(null);
 
@@ -119,7 +124,7 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void AimingMode(){
-		mode = 0;
+		mode = ShootingMode.Aiming;
 		mainCamera.transform.SetParent (cannon);
 		mainCamera.transform.localPosition = CAMERA_CANNON_DISTANCE;
 		mainCamera.transform.localRotation = Quaternion.identity;
