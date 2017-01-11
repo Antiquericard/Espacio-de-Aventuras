@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
@@ -12,10 +13,14 @@ public class GameManager : MonoBehaviour {
 	/*float sqrMinVelocity;
 	BoxCollider bounds;*/
 
-	public bool aimingMode = true;
+	//0 = apuntando
+	//1 = disparando
+	//2 = volviendo
+	public int mode = 0;
 
-	Vector3 CAMERA_CANNON_DISTANCE = new Vector3 (0f,1f,-1.5f);
-	Vector3 CAMERA_ASTRONAUT_DISTANCE = new Vector3 (0f,1f,-2.5f);
+	public Vector3 CAMERA_CANNON_DISTANCE = new Vector3 (0f,1f,-1.5f);
+	public Vector3 CAMERA_ASTRONAUT_DISTANCE = new Vector3 (0f,1f,-2.5f);
+	public Vector3 ASTRONAUT_CANNON_DISTANCE = new Vector3 (0f, 0f, 1.5f);
 
 	//PREFABS
 
@@ -55,7 +60,7 @@ public class GameManager : MonoBehaviour {
 	}
 
 	void OnGUI() {
-		if (aimingMode) {
+		if (mode == 0) {
 			GUI.DrawTexture(new Rect(Screen.width/4, Screen.height - 100, Screen.width/2, 50), emptyPowerBar);
 			GUI.DrawTexture(new Rect(Screen.width/4, Screen.height - 100, powerValue * Screen.width/2, 50), fullPowerBar);
 		}
@@ -63,17 +68,28 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetMouseButtonDown (0) && aimingMode) {
-			Shoot ();
-		}
-		if (aimingMode) {
-			powerValue += powerIncreaseRate * Time.deltaTime;
-			if (powerValue > 1) {
-				powerValue--;
+		switch (mode) {
+		case 0:
+			//Apuntando
+			if (Input.GetMouseButton (0)) {
+				Shoot ();
+			} else {
+				powerValue += powerIncreaseRate * Time.deltaTime;
+				if (powerValue > 1) {
+					powerValue--;
+				}
 			}
-		} else {
+			break;
+		case 1:
+			//Disparando
 			mainCamera.GetComponent<CameraMovement> ().wantedPosition = astronaut.transform.position + astronautTrueDistance;
 			mainCamera.GetComponent<CameraMovement> ().wantedRotation = astronaut.transform.rotation;
+			break;
+		case 2:
+			//Volviendo
+			mainCamera.GetComponent<CameraMovement> ().wantedPosition = astronaut.transform.position + astronautTrueDistance;
+			mainCamera.GetComponent<CameraMovement> ().wantedRotation = astronaut.transform.rotation;
+			break;
 		}
 	}
 
@@ -93,35 +109,35 @@ public class GameManager : MonoBehaviour {
 		//Esto rota la distancia. Es importante que el Quaternion tiene que estar en el LADO IZQUIERDO
 		astronautTrueDistance =  astronaut.transform.rotation * CAMERA_ASTRONAUT_DISTANCE;
 
-		aimingMode = false;
+		mode = 1;
 
 		mainCamera.transform.SetParent(null);
 
-		Debug.Log (cannon.GetComponentInChildren<ParticleSystem> ());
 		cannon.GetComponentInChildren<ParticleSystem> ().Clear ();
 		cannon.GetComponentInChildren<ParticleSystem> ().Stop ();
 
 	}
 
 	public void AimingMode(){
-		aimingMode = true;
+		mode = 0;
 		mainCamera.transform.SetParent (cannon);
 		mainCamera.transform.localPosition = CAMERA_CANNON_DISTANCE;
 		mainCamera.transform.localRotation = Quaternion.identity;
 		cannon.GetComponentInChildren<ParticleSystem> ().Play ();
 	}
 
-	//Inicialización de métodos hijos.
-
-	public virtual void returnToSpaceShip (){
-		
-	}
-
-	IEnumerator DieCorutine(){
+	IEnumerator DieCoroutine(){
 		yield return new WaitForSeconds (.5f);
-		GetComponent<Rigidbody2D> ().isKinematic = true;
+		astronaut.GetComponent<Rigidbody> ().velocity = new Vector3 ();
 		//particles.Play ();
-		if (GameManager._instance.lifes > 0)
-			GameManager._instance.returnToSpaceShip ();
+		if (--GameManager._instance.lifes > 0) {
+			astronaut.GetComponent<Astronaut> ().StartCoroutine ("ReturnToSpaceShip");
+			astronautTrueDistance =  astronaut.transform.rotation * CAMERA_ASTRONAUT_DISTANCE;
+		} else {
+			//TODO crear una escena apropiada para la derrota!
+			Debug.LogWarning("La derrota todavía no está implementada");
+			SceneManager.LoadScene (0);
+		}
+			
 	}
 }

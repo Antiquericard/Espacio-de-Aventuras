@@ -5,11 +5,11 @@ public class Astronaut : MonoBehaviour {
 
 	[Tooltip("Colocar el transform del cañón.")] [SerializeField] public Transform cannon;
 
-	[Tooltip("Velocidad a la que retorna el personaje a la nave.")] [SerializeField] float moveSpeed = 0.1f;
+	[Tooltip("Velocidad a la que retorna el personaje a la nave.")] [SerializeField] float moveSpeed = 10f;
 
 	public void Init(float speed, Vector3 shipSpeed){
 		transform.parent = cannon;
-		transform.localPosition = new Vector3 (0f, 0f, 1.5f);
+		transform.localPosition = GameManager._instance.ASTRONAUT_CANNON_DISTANCE;
 		transform.localEulerAngles = Vector2.zero;
 		transform.parent = null;
 
@@ -17,11 +17,19 @@ public class Astronaut : MonoBehaviour {
 		GetComponent<Rigidbody> ().AddForce (transform.forward * speed, ForceMode.Impulse);
 	}
 
-	public void returnToSpaceShip (){
-		if (transform.localPosition.x == 0f && transform.localPosition.y == 0f && transform.localPosition.z == 1.5f) {
-			var targetPos = new Vector3 (cannon.position.x, cannon.position.y, cannon.position.z);
-			transform.LookAt (cannon);
+	public IEnumerator ReturnToSpaceShip (){
+		transform.LookAt (cannon);
+		Vector3 targetPos = cannon.position + GameManager._instance.ASTRONAUT_CANNON_DISTANCE;
+		transform.GetComponent<Rigidbody> ().isKinematic = true;
+
+		while (Vector3.Distance(targetPos, transform.position) > 2.5f) {
 			transform.position += transform.forward * moveSpeed * Time.deltaTime;
+			yield return null;
 		}
+		//transform.GetComponent<Rigidbody> ().isKinematic = false;
+		GameManager._instance.AimingMode();
+		Destroy (this.gameObject);
+		//TODO Preparar una pool!
+
 	}
 }

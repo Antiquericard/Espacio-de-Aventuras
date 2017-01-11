@@ -30,7 +30,7 @@ public class CameraMovement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (!GameManager._instance.aimingMode) {
+		if (GameManager._instance.mode == 1 || GameManager._instance.mode == 2) {
 			//Si llega hasta aqui es que ha disparado
 			transform.position = Vector3.MoveTowards(transform.position, wantedPosition, Time.deltaTime * positionDamping);
 			transform.rotation = Quaternion.Slerp (transform.rotation, wantedRotation, Time.deltaTime * rotationDamping);

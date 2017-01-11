@@ -5,8 +5,6 @@ using UnityEngine.SceneManagement;
 public class LevelLimits : MonoBehaviour {
 
 	void OnTriggerExit(Collider other){
-		//SceneManager.LoadScene ("Lose");
-		GameManager._instance.StartCoroutine ("DieCorutine");
-		//Destroy (other.gameObject);
+		GameManager._instance.StartCoroutine ("DieCoroutine");
 	}
 }
