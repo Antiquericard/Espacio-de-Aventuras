@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class FauxGravityAtmosphere : GameManager {
+public class FauxGravityAtmosphere : MonoBehaviour {
 
 	[Tooltip("Introducir el componente del attractor.")] public FauxGravityAttractor attractor;
 

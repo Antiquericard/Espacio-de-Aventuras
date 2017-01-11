@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class FauxGravityAttractor : GameManager {
+public class FauxGravityAttractor : MonoBehaviour {
 
 	[Tooltip("Gravedad con la cual el planeta atraerá a los objetos.")] [SerializeField] float gravity = -10f;
 
