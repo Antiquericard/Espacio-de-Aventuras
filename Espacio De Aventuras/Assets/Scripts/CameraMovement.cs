@@ -36,7 +36,7 @@ public class CameraMovement : MonoBehaviour {
 			transform.rotation = Quaternion.Slerp (transform.rotation, wantedRotation, Time.deltaTime * rotationDamping);
 		} else {
 			//En esta linea doy por hecho que el padre de la camara es el cannon
-			transform.parent.Rotate (-scaleRotationY * Input.GetAxis("Mouse Y"),-scaleRotationX * -Input.GetAxis("Mouse X"), 0f);
+			transform.parent.parent.Rotate (-scaleRotationY * Input.GetAxis("Mouse Y"),-scaleRotationX * -Input.GetAxis("Mouse X"), 0f);
 		}
 
 	}

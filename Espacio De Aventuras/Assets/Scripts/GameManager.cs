@@ -8,16 +8,16 @@ public class GameManager : MonoBehaviour {
 
 	[SerializeField] public int lifes = 3;
 
+    int level;
 	string [] levelTexts;
-	/*float sqrMinVelocity;
-	BoxCollider bounds;*/
 
 	public enum ShootingMode : byte {Aiming, Shooting, Returning};
 	public ShootingMode mode;
 
 	public Vector3 CAMERA_CANNON_DISTANCE = new Vector3 (0f,1f,-1.5f);
 	public Vector3 CAMERA_ASTRONAUT_DISTANCE = new Vector3 (0f,1f,-2.5f);
-	public Vector3 ASTRONAUT_CANNON_DISTANCE = new Vector3 (0f, 0f, 1.5f);
+	public Vector3 ASTRONAUT_CANNON_DISTANCE = new Vector3 (0f, 0f, 0f);
+
 
 	//PREFABS
 

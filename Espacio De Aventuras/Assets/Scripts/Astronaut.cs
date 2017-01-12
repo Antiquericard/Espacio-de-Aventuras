@@ -10,7 +10,9 @@ public class Astronaut : MonoBehaviour {
 	public void Init(float speed, Vector3 shipSpeed){
 		transform.parent = cannon;
 		transform.localPosition = GameManager._instance.ASTRONAUT_CANNON_DISTANCE;
-		transform.localEulerAngles = Vector2.zero;
+        Debug.Log(transform.localPosition);
+        transform.localRotation = Quaternion.Euler(90f, 0f, 0f);
+		//transform.localEulerAngles = Vector2.zero;
 		transform.parent = null;
 
 		GetComponent<Rigidbody> ().AddForce (shipSpeed, ForceMode.VelocityChange);
