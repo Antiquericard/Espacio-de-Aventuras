@@ -20,22 +20,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class LifesUI : MonoBehaviour{
+public class UILevelText : MonoBehaviour{
 
 	//--------------------------------------
 	// Setting Attributes
 	//--------------------------------------
 
-	[SerializeField] int life;
+
 
 	//--------------------------------------
 	// Unity Methods
 	//--------------------------------------
-
-	protected virtual void Update () {
-		if (GameManager._instance.lifes < life) {
-			gameObject.SetActive (false);
-		}
+	
+	protected virtual void Start () {
+		this.GetComponent<Text>().text = UnityEngine.SceneManagement.SceneManager.GetActiveScene ().name;
 	}
 }

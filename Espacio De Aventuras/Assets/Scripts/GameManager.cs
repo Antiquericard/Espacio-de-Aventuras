@@ -118,8 +118,8 @@ public class GameManager : MonoBehaviour {
 
 		mainCamera.transform.SetParent(null);
 
-		cannon.GetComponentInChildren<ParticleSystem> ().Clear ();
-		cannon.GetComponentInChildren<ParticleSystem> ().Stop ();
+		cannon.GetChild(1).GetComponentInChildren<ParticleSystem> ().Clear ();
+		cannon.GetChild(1).GetComponentInChildren<ParticleSystem> ().Stop ();
 
 	}
 
@@ -132,7 +132,7 @@ public class GameManager : MonoBehaviour {
 	}
 
     public void CompleteLevel() {
-        SaveGameManager.Save(++level);
+        //SaveGameManager.Save(++level);
         SceneManager.LoadScene("Main Menu");
     }
 
