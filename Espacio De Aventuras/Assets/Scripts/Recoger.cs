@@ -6,7 +6,8 @@ public class Recoger : MonoBehaviour {
 
 	void OnTriggerEnter (Collider hit) {
 		if (hit.CompareTag ("Player")) {
-			SceneManager.LoadScene ("Victory");
+            GameManager._instance.CompleteLevel();
+			//SceneManager.LoadScene ("Victory");
 		}
 	}
 }

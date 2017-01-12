@@ -55,6 +55,7 @@ public class GameManager : MonoBehaviour {
 		} else {
 			Destroy (this);
 		}
+
 	}
 
 	void Start(){
@@ -130,6 +131,11 @@ public class GameManager : MonoBehaviour {
 		mainCamera.transform.localRotation = Quaternion.identity;
 		cannon.GetComponentInChildren<ParticleSystem> ().Play ();
 	}
+
+    public void CompleteLevel() {
+        SaveGameManager.Save(++level);
+        SceneManager.LoadScene("Main Menu");
+    }
 
 	IEnumerator DieCoroutine(){
 		yield return new WaitForSeconds (.5f);
