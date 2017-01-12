@@ -9,7 +9,6 @@ public class GameManager : MonoBehaviour {
 	[SerializeField] public int lifes = 3;
 
 	string [] levelTexts;
-	int level = 1;
 	/*float sqrMinVelocity;
 	BoxCollider bounds;*/
 

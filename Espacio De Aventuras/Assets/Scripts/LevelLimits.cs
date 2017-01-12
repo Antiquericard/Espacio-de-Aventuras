@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEditor;
 
 public class LevelLimits : MonoBehaviour {
 
@@ -11,4 +12,5 @@ public class LevelLimits : MonoBehaviour {
 		}
 
 	}
+
 }

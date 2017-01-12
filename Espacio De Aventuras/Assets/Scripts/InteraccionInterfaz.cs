@@ -8,7 +8,7 @@ public class InteraccionInterfaz : MonoBehaviour {
 	}
 
 	void Start () {
-	
+		
 	}
 	
 	void Update () {
