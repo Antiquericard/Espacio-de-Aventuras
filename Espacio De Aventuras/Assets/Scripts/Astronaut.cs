@@ -10,9 +10,7 @@ public class Astronaut : MonoBehaviour {
 	public void Init(float speed, Vector3 shipSpeed){
 		transform.parent = cannon;
 		transform.localPosition = GameManager._instance.ASTRONAUT_CANNON_DISTANCE;
-        Debug.Log(transform.localPosition);
-        transform.localRotation = Quaternion.Euler(90f, 0f, 0f);
-		//transform.localEulerAngles = Vector2.zero;
+        transform.rotation = Quaternion.Euler(cannon.localRotation.eulerAngles + new Vector3(90f, 0f,0f));
 		transform.parent = null;
 
 		GetComponent<Rigidbody> ().AddForce (shipSpeed, ForceMode.VelocityChange);
@@ -27,11 +25,9 @@ public class Astronaut : MonoBehaviour {
 			transform.position += transform.forward * moveSpeed * Time.deltaTime;
 			yield return null;
 		}
-		//transform.GetComponent<Rigidbody> ().isKinematic = false;
 		GameManager._instance.AimingMode();
 		transform.GetComponent<Rigidbody> ().isKinematic = false;
 		gameObject.SetActive (false);
-		//TODO Preparar una pool!
 
 	}
 }
