@@ -20,6 +20,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIPlayManager : MonoBehaviour{
 
@@ -59,6 +60,9 @@ public class UIPlayManager : MonoBehaviour{
 		this.GetComponent<GameManager> ().enabled = (!this.GetComponent<GameManager> ().isActiveAndEnabled);
 	}
 
-
+	public void ResetLevel () {
+		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+		CancelInvoke ();
+	}
 
 }

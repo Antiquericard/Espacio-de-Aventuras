@@ -7,6 +7,13 @@ public class Astronaut : MonoBehaviour {
 
 	[Tooltip("Velocidad a la que retorna el personaje a la nave.")] [SerializeField] float moveSpeed = 10f;
 
+	void Update () {
+		if (GameManager._instance.mode != GameManager.ShootingMode.Returning && Input.GetKeyDown (KeyCode.R)) {
+			GameManager._instance.mode = GameManager.ShootingMode.Returning;
+			GameManager._instance.StartCoroutine ("DieCoroutine");
+		}
+	}
+
 	public void Init(float speed, Vector3 shipSpeed){
 		transform.parent = cannon;
 		transform.localPosition = GameManager._instance.ASTRONAUT_CANNON_DISTANCE;
