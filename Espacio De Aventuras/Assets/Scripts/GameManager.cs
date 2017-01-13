@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
@@ -8,8 +9,10 @@ public class GameManager : MonoBehaviour {
 
 	[SerializeField] public int lifes = 3;
 
-    int level;
+    public int level;
 	string [] levelTexts;
+	public bool vic;
+	float lerp;
 
 	public enum ShootingMode : byte {Aiming, Shooting, Returning};
 	public ShootingMode mode;
@@ -22,7 +25,7 @@ public class GameManager : MonoBehaviour {
 	public Vector3 ASTRONAUT_CANNON_DISTANCE = new Vector3 (0f, 1f, 0f);
 
 
-	//PREFABS
+	//OBJECTS
 
 	[SerializeField]
 	Texture2D emptyPowerBar;
@@ -36,6 +39,10 @@ public class GameManager : MonoBehaviour {
 	Transform spaceShip;
 	[SerializeField]
 	Camera mainCamera;
+	[SerializeField]
+	GameObject Victory;
+	[SerializeField]
+	GameObject Lose;
 
 	//PARAMETROS
 
@@ -61,6 +68,7 @@ public class GameManager : MonoBehaviour {
 	}
 
 	void Start(){
+		level = SceneManager.GetActiveScene ().buildIndex;
 		//Creamos un astronauta, solo usaremos ese no tenemos que crear mas
 		astronaut = Instantiate (astronautPrefab, Vector3.zero, Quaternion.identity) as GameObject;
 		astronaut.GetComponent<Astronaut>().cannon = cannon;
@@ -135,9 +143,29 @@ public class GameManager : MonoBehaviour {
 	}
 
     public void CompleteLevel() {
-        //SaveGameManager.Save(++level);
-        SceneManager.LoadScene("Main Menu");
+		if (vic) {
+			Victory.SetActive(true);
+			StartCoroutine(LevelCompleted(Victory));
+		} else {
+			Lose.SetActive(true);
+			StartCoroutine(LevelCompleted(Lose));
+		}
     }
+
+	public void NextLevel (){
+		SceneManager.LoadScene ("Level " + (level + 1).ToString ());
+	}
+
+	IEnumerator LevelCompleted (GameObject can){
+		Color tmp = can.GetComponent<Image>().color;
+		while(!(tmp.a == 0.75f && can.GetComponentInChildren<Text>().fontSize == 100)){
+			lerp += Time.deltaTime / 2f;
+			tmp.a = Mathf.Lerp (0f, 0.75f, lerp);
+			can.GetComponent<Image> ().color = tmp;
+			can.GetComponentInChildren<Text> ().fontSize = (int) Mathf.Lerp (10f,100f,lerp);
+			yield return null;
+		}
+	}
 
 	IEnumerator DieCoroutine(){
 		yield return new WaitForSeconds (.5f);
@@ -147,9 +175,8 @@ public class GameManager : MonoBehaviour {
 			astronaut.GetComponent<Astronaut> ().StartCoroutine ("ReturnToSpaceShip");
 			astronautTrueDistance =  astronaut.transform.rotation * CAMERA_ASTRONAUT_DISTANCE;
 		} else {
-			//TODO crear una escena apropiada para la derrota!
-			Debug.LogWarning("La derrota todavía no está implementada");
-			SceneManager.LoadScene (0);
+			vic = false;
+			CompleteLevel ();
 		}
 			
 	}
