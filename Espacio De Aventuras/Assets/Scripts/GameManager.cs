@@ -14,9 +14,12 @@ public class GameManager : MonoBehaviour {
 	public enum ShootingMode : byte {Aiming, Shooting, Returning};
 	public ShootingMode mode;
 
+    [SerializeField]
 	public Vector3 CAMERA_CANNON_DISTANCE = new Vector3 (0f,1f,-1.5f);
+    [SerializeField]
 	public Vector3 CAMERA_ASTRONAUT_DISTANCE = new Vector3 (0f,1f,-2.5f);
-	public Vector3 ASTRONAUT_CANNON_DISTANCE = new Vector3 (0f, 0f, 0f);
+    [SerializeField]
+	public Vector3 ASTRONAUT_CANNON_DISTANCE = new Vector3 (0f, 1f, 0f);
 
 
 	//PREFABS
@@ -118,8 +121,8 @@ public class GameManager : MonoBehaviour {
 
 		mainCamera.transform.SetParent(null);
 
-		cannon.GetChild(1).GetComponentInChildren<ParticleSystem> ().Clear ();
-		cannon.GetChild(1).GetComponentInChildren<ParticleSystem> ().Stop ();
+		cannon.GetChild(0).GetComponentInChildren<ParticleSystem> ().Clear ();
+		cannon.GetChild(0).GetComponentInChildren<ParticleSystem> ().Stop ();
 
 	}
 
