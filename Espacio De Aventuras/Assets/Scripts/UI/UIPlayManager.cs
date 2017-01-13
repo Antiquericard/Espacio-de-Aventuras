@@ -29,6 +29,8 @@ public class UIPlayManager : MonoBehaviour{
 
 	[SerializeField] GameObject canvas;
 
+	[SerializeField] GameObject cam;
+
 	//--------------------------------------
 	// Unity Methods
 	//--------------------------------------
@@ -39,21 +41,8 @@ public class UIPlayManager : MonoBehaviour{
 	
 	protected virtual void Update () {
 		if (Input.GetButtonDown("Cancel")){
-			Time.timeScale = 0;
-			canvas.SetActive (true);
+			PauseOrResume ();
 		}
-	}
-
-	protected virtual void OnEnable (){
-		
-	}
-
-	protected virtual void OnDisable (){
-		
-	}
-
-	protected virtual void OnDestroy (){
-		
 	}
 
 	//--------------------------------------
@@ -63,8 +52,13 @@ public class UIPlayManager : MonoBehaviour{
 	/// 
 	/// </summary>
 
-	public void Resume () {
-		Time.timeScale = 1;
+	public void PauseOrResume () {
+		Time.timeScale = (Time.timeScale == 1) ? 0 : 1;
+		canvas.SetActive (!canvas.activeSelf);
+		cam.GetComponent<CameraMovement>().enabled = (!cam.GetComponent<CameraMovement>().isActiveAndEnabled);
+		this.GetComponent<GameManager> ().enabled = (!this.GetComponent<GameManager> ().isActiveAndEnabled);
 	}
+
+
 
 }

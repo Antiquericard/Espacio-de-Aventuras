@@ -21,6 +21,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UILevelText : MonoBehaviour{
 
@@ -35,6 +36,6 @@ public class UILevelText : MonoBehaviour{
 	//--------------------------------------
 	
 	protected virtual void Start () {
-		this.GetComponent<Text>().text = UnityEngine.SceneManagement.SceneManager.GetActiveScene ().name;
+		this.GetComponent<Text>().text = SceneManager.GetActiveScene ().name;
 	}
 }
