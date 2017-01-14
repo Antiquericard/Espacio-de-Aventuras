@@ -6,8 +6,11 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Rigidbody))]
 public class Propellers : MonoBehaviour {
 
+	[SerializeField]
 	float fuelAmount = 50f;
+	[SerializeField]
 	float power = 10f;
+	[SerializeField]
 	float decreaseRate = 1f;
 
 	Rigidbody rigid;
