@@ -9,9 +9,9 @@ public class Propellers : MonoBehaviour {
 	[SerializeField]
 	float fuelAmount = 50f;
 	[SerializeField]
-	float power = 10f;
+	float power = 2f;
 	[SerializeField]
-	float decreaseRate = 1f;
+	float decreaseRate = 10f;
 
 	Rigidbody rigid;
 
