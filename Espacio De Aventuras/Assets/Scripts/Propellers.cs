@@ -32,7 +32,8 @@ public class Propellers : MonoBehaviour {
 	void Update(){
 		float horizontal = Input.GetAxis ("Horizontal");
 		if (horizontal != 0 && fuelAmount > 0f) {
-			rigid.AddForce (transform.right * horizontal * power, ForceMode.Impulse);
+			Vector3 localRight = transform.worldToLocalMatrix.MultiplyVector (transform.right);
+			rigid.AddForce (localRight * horizontal * power, ForceMode.Impulse);
 			fuelAmount -= decreaseRate * Time.deltaTime;
 			fuelBar.value = fuelAmount / 5;
 			if (horizontal < 0) {
@@ -46,7 +47,8 @@ public class Propellers : MonoBehaviour {
 
 		float vertical = Input.GetAxis ("Vertical");
 		if (vertical > 0 && fuelAmount > 0f) {
-			rigid.AddForce (transform.up * horizontal * power, ForceMode.Impulse);
+			Vector3 localUp = transform.worldToLocalMatrix.MultiplyVector (transform.up);
+			rigid.AddForce (localUp * horizontal * power, ForceMode.Impulse);
 			fuelAmount -= decreaseRate * Time.deltaTime;
 			fuelBar.value = fuelAmount / 5;
 			up.Play ();
