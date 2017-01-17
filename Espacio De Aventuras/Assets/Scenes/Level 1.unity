@@ -262,7 +262,7 @@ GameObject:
   m_Component:
   - component: {fileID: 31634286}
   m_Layer: 0
-  m_Name: Orbita
+  m_Name: Orbita2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -275,7 +275,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 31634285}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 179892500}
@@ -294,8 +294,8 @@ Transform:
   - {fileID: 1891898391}
   - {fileID: 1609250689}
   - {fileID: 825898853}
-  m_Father: {fileID: 1106194894}
-  m_RootOrder: 1
+  m_Father: {fileID: 689836865}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &66294199 stripped
 Transform:
@@ -962,6 +962,8 @@ Transform:
   m_Children:
   - {fileID: 1671343247}
   - {fileID: 1106194894}
+  - {fileID: 1174393168}
+  - {fileID: 31634286}
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1291,7 +1293,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1914061817
+  randomSeed: 963235783
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -3981,7 +3983,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1292499}
-  - {fileID: 31634286}
   m_Father: {fileID: 689836865}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3996,7 +3997,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc91db24808184585b2830ba4e72d509, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravity: -3
+  gravity: -9
   speedRotation: 0.1
   forceMode: 5
 --- !u!23 &1106194896
@@ -4097,7 +4098,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1174393168}
   m_Layer: 0
-  m_Name: Orbita
+  m_Name: Orbita1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4109,8 +4110,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1174393167}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1681313010}
@@ -4129,8 +4130,8 @@ Transform:
   - {fileID: 2090144643}
   - {fileID: 837311686}
   - {fileID: 1307213976}
-  m_Father: {fileID: 1671343247}
-  m_RootOrder: 1
+  m_Father: {fileID: 689836865}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1238805761
 GameObject:
@@ -4444,7 +4445,7 @@ Prefab:
     - target: {fileID: 114000011688607148, guid: f5c921bd3441e7a49904793e014bb2e6,
         type: 2}
       propertyPath: powerIncreaseRate
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114000011688607148, guid: f5c921bd3441e7a49904793e014bb2e6,
         type: 2}
@@ -4459,13 +4460,13 @@ Prefab:
     - target: {fileID: 114000011688607148, guid: f5c921bd3441e7a49904793e014bb2e6,
         type: 2}
       propertyPath: startingVelocity
-      value: 300
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 114000011688607148, guid: f5c921bd3441e7a49904793e014bb2e6,
         type: 2}
       propertyPath: astronautPrefab
       value: 
-      objectReference: {fileID: 1146810008381458, guid: 305162f50130c4817b5a4327aa679949,
+      objectReference: {fileID: 1650743389499112, guid: c79e651723db24be293c3aef9c3cc955,
         type: 2}
     - target: {fileID: 114000011688607148, guid: f5c921bd3441e7a49904793e014bb2e6,
         type: 2}
@@ -4686,7 +4687,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 298430132}
-  - {fileID: 1174393168}
   m_Father: {fileID: 689836865}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4751,7 +4751,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc91db24808184585b2830ba4e72d509, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravity: -3
+  gravity: -9
   speedRotation: 0.1
   forceMode: 5
 --- !u!114 &1671343252

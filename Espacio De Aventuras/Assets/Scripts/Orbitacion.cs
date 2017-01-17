@@ -36,13 +36,14 @@ public class Orbitacion : MonoBehaviour{
 
 		int index = 0;
 		while (true) {
-			Vector3 distancia = transform.position - wayPoints [index].position;
+			Vector3 distancia = transform.localPosition - wayPoints [index].position;
 			if (distancia.sqrMagnitude == 0) {
 				index++;
 				index = index % wayPoints.Length;
 			}
 
-			transform.position = Vector3.MoveTowards (transform.position, wayPoints [index].position, Time.deltaTime);
+			transform.position = Vector3.MoveTowards (transform.localPosition, wayPoints [index].position, speed * Time.deltaTime);
+			transform.LookAt (Vector3.zero);
 
 			yield return null;
 		}
