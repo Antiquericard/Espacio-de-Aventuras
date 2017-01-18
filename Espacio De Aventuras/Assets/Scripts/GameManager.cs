@@ -18,7 +18,8 @@ public class GameManager : MonoBehaviour {
 	public ShootingMode mode;
 
     [SerializeField]
-	public Vector3 CAMERA_CANNON_DISTANCE = new Vector3 (0f,1f,-1.5f);
+	public Vector3 CAMERA_CANNON_DISTANCE = new Vector3 (0f, -0.8f,0.47f);
+	//public Vector3 CAMERA_CANNON_DISTANCE = new Vector3 (0f,1f,-1.5f);
     [SerializeField]
 	public Vector3 CAMERA_ASTRONAUT_DISTANCE = new Vector3 (0f,1f,-2.5f);
     [SerializeField]
@@ -136,9 +137,10 @@ public class GameManager : MonoBehaviour {
 
 	public void AimingMode(){
 		mode = ShootingMode.Aiming;
-		mainCamera.transform.SetParent (cannon);
+		mainCamera.transform.SetParent (cannon.GetChild(0));
 		mainCamera.transform.localPosition = CAMERA_CANNON_DISTANCE;
-		mainCamera.transform.localRotation = Quaternion.identity;
+		//mainCamera.transform.localRotation = Quaternion.identity;
+		mainCamera.transform.localRotation = Quaternion.Euler(new Vector3(180f, 0f,0f));
 		cannon.GetComponentInChildren<ParticleSystem> ().Play ();
 	}
 
