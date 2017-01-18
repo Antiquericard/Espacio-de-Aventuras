@@ -48,7 +48,25 @@ public class CameraMovement : MonoBehaviour {
 				transform.rotation = Quaternion.Slerp (transform.rotation, wantedRotation, Time.deltaTime * rotationDamping);
 		} else {
 			//En esta linea doy por hecho que el padre de la camara es el cannon
-			transform.parent.parent.Rotate (-scaleRotationY * Input.GetAxis("Mouse Y"),-scaleRotationX * -Input.GetAxis("Mouse X"), 0f);
+
+			float xValue = 0f;
+			float yValue = 0f;
+
+			#if UNITY_STANDALONE
+			xValue = -scaleRotationX * -Input.GetAxis("Mouse X");
+			yValue = -scaleRotationY * Input.GetAxis("Mouse Y");
+			#endif
+
+			#if UNITY_ANDROID
+			if(Input.touchCount > 0){
+				Vector2 delta = Input.GetTouch(0).deltaPosition;
+				xValue = scaleRotationX * delta.x;
+				yValue = -scaleRotationY * delta.y;
+			}
+
+			#endif
+
+			transform.parent.parent.Rotate (yValue, xValue, 0f);
 		}
 
 	}

@@ -22,7 +22,7 @@ public class Astronaut : MonoBehaviour {
 			control = Input.GetKeyDown(KeyCode.R);
 		#endif
 		#if UNITY_IOS || UNITY_ANDROID
-		if (Input.GetTouch (0).deltaTime > 500f) {
+		if (Input.touches.Length > 0 && Input.GetTouch (0).deltaTime > 500f) {
 			control = true;
 		} else {
 			control = false;
