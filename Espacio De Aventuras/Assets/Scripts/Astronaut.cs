@@ -1,11 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
+[RequireComponent(typeof(Propellers))]
 public class Astronaut : MonoBehaviour {
 
 	[Tooltip("Colocar el transform del cañón.")] [SerializeField] public Transform cannon;
 
 	[Tooltip("Velocidad a la que retorna el personaje a la nave.")] [SerializeField] float moveSpeed = 10f;
+
+	Propellers propellers{
+		get {
+			return GetComponent<Propellers> ();
+		}
+	}
 
 	void Update () {
 		if (GameManager._instance.mode != GameManager.ShootingMode.Returning && Input.GetKeyDown (KeyCode.R)) {
@@ -32,6 +40,7 @@ public class Astronaut : MonoBehaviour {
 			transform.position += transform.forward * moveSpeed * Time.deltaTime;
 			yield return null;
 		}
+		propellers.Refuel ();
 		GameManager._instance.AimingMode();
 		transform.GetComponent<Rigidbody> ().isKinematic = false;
 		gameObject.SetActive (false);
