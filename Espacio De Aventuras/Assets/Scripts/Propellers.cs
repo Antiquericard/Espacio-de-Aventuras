@@ -79,7 +79,7 @@ public class Propellers : MonoBehaviour {
 
 		float vertical;
 		#if UNITY_STANDALONE
-		horizontal = Input.GetAxis ("Vertical");
+		vertical = Input.GetAxis ("Vertical");
 		#endif
 
 		#if UNITY_ANDROID || UNITY_IOS

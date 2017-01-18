@@ -68,4 +68,8 @@ public class UIPlayManager : MonoBehaviour{
 		CancelInvoke ();
 	}
 
+	public void ToMainMenu () {
+		SceneManager.LoadScene ("Main Menu");
+	}
+
 }
