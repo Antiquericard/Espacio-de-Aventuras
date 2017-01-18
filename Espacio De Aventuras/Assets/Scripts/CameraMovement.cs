@@ -38,6 +38,7 @@ public class CameraMovement : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
+	//AQUI ESTÁN LOS INPUTS PARA MOBILE
 	void LateUpdate () {
 
 		if (GameManager._instance.mode == GameManager.ShootingMode.Shooting || GameManager._instance.mode == GameManager.ShootingMode.Returning) {

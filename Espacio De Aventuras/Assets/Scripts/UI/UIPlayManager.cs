@@ -61,6 +61,9 @@ public class UIPlayManager : MonoBehaviour{
 	}
 
 	public void ResetLevel () {
+		if (Time.timeScale == 0){
+			Time.timeScale = 1;
+		}
 		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 		CancelInvoke ();
 	}
