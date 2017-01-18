@@ -8,10 +8,11 @@ public class Propellers : MonoBehaviour {
 
 	[SerializeField]
 	float maxFuel = 50f;
-	[SerializeField]
 	float fuelAmount;
 	[SerializeField]
-	float power = 2f;
+	float frontPower = 5f;
+	[SerializeField]
+	float sidePower = 2f;
 	[SerializeField]
 	float decreaseRate = 10f;
 
@@ -23,20 +24,44 @@ public class Propellers : MonoBehaviour {
 
 	Slider fuelBar;
 
+	float moveFront = 0f;
+	float moveSide = 0f;
+
 	void Awake(){
 		rigid = GetComponent<Rigidbody> ();
-		left = transform.FindChild ("leftPropeller").GetComponent<ParticleSystem> ();
-		right = transform.FindChild ("rightPropeller").GetComponent<ParticleSystem> ();
-		up = transform.FindChild ("upPropeller").GetComponent<ParticleSystem> ();
+		left = transform.GetChild(0).FindChild ("leftPropeller").GetComponent<ParticleSystem> ();
+		right = transform.GetChild(0).FindChild ("rightPropeller").GetComponent<ParticleSystem> ();
+		up = transform.GetChild(0).FindChild ("upPropeller").GetComponent<ParticleSystem> ();
 		fuelBar = GameObject.Find ("Fuel").GetComponent<Slider> ();
 		fuelAmount = maxFuel;
 	}
 
-	void Update(){
-		float horizontal = Input.GetAxis ("Horizontal");
-		if (horizontal != 0 && fuelAmount > 0f && GameManager._instance.mode == GameManager.ShootingMode.Shooting) {
+	void FixedUpdate(){
+		if (moveSide != 0) {
 			Vector3 localRight = transform.worldToLocalMatrix.MultiplyVector (transform.right);
-			rigid.AddForce (localRight * horizontal * power, ForceMode.Impulse);
+			rigid.AddForce (localRight * moveSide * sidePower, ForceMode.Impulse);
+		}
+
+		if (moveFront != 0) {
+			Vector3 localForward = transform.worldToLocalMatrix.MultiplyVector (transform.forward);
+			rigid.AddForce (localForward * moveFront * frontPower, ForceMode.Impulse);
+		}
+	}
+
+	void Update(){
+
+		float horizontal;
+		#if UNITY_STANDALONE
+		horizontal = Input.GetAxis ("Horizontal");
+		#endif
+
+		#if UNITY_ANDROID || UNITY_IOS
+		horizontal = Input.acceleration.x;
+		#endif
+
+
+		if (horizontal != 0 && fuelAmount > 0f && GameManager._instance.mode == GameManager.ShootingMode.Shooting) {
+			moveSide = horizontal;
 			fuelAmount -= decreaseRate * Time.deltaTime;
 			fuelBar.value = fuelAmount / 5;
 			if (horizontal < 0) {
@@ -47,24 +72,32 @@ public class Propellers : MonoBehaviour {
 				StopParticleSystem (right);
 
 			}
+		} else {
+			StopParticleSystem (left);
+			StopParticleSystem (right);
 		}
 
-		float vertical = Input.GetAxis ("Vertical");
+		float vertical;
+		#if UNITY_STANDALONE
+		horizontal = Input.GetAxis ("Vertical");
+		#endif
+
+		#if UNITY_ANDROID || UNITY_IOS
+		vertical = Input.acceleration.y;
+		if(vertical < 0){
+			vertical = 0;
+		}
+		#endif
+
 		if (vertical > 0 && fuelAmount > 0f && GameManager._instance.mode == GameManager.ShootingMode.Shooting) {
-			Vector3 localUp = transform.worldToLocalMatrix.MultiplyVector (transform.up);
-			rigid.AddForce (localUp * horizontal * power, ForceMode.Impulse);
-			fuelAmount -= decreaseRate * Time.deltaTime;
+			moveFront = vertical;
+			fuelAmount -= decreaseRate * 2 * Time.deltaTime;
 			fuelBar.value = fuelAmount / 5;
 			PlayParticleSystem (up);
 		} else {
 			StopParticleSystem (up);
 		}
 
-		if (vertical <= 0 && horizontal == 0) {
-			StopParticleSystem (up);
-			StopParticleSystem (left);
-			StopParticleSystem (right);
-		}
 	}
 
 	void PlayParticleSystem(ParticleSystem parts){

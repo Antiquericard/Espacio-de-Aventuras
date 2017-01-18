@@ -16,7 +16,20 @@ public class Astronaut : MonoBehaviour {
 	}
 
 	void Update () {
-		if (GameManager._instance.mode != GameManager.ShootingMode.Returning && Input.GetKeyDown (KeyCode.R)) {
+		bool control;
+
+		#if UNITY_STANDALONE
+			control = Input.GetKeyDown(KeyCode.R);
+		#endif
+		#if UNITY_IOS || UNITY_ANDROID
+		if (Input.GetTouch (0).deltaTime > 500f) {
+			control = true;
+		} else {
+			control = false;
+		}
+		#endif
+
+		if (GameManager._instance.mode != GameManager.ShootingMode.Returning && control) {
 			GameManager._instance.mode = GameManager.ShootingMode.Returning;
 			GameManager._instance.StartCoroutine ("DieCoroutine");
 		}
@@ -41,7 +54,7 @@ public class Astronaut : MonoBehaviour {
 			yield return null;
 		}
 		propellers.Refuel ();
-		GameManager._instance.AimingMode();
+		GameManager._instance.ReturnToIdleMode();
 		transform.GetComponent<Rigidbody> ().isKinematic = false;
 		gameObject.SetActive (false);
 
