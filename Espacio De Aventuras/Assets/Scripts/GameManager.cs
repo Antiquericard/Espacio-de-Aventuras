@@ -100,6 +100,7 @@ public class GameManager : MonoBehaviour {
 			break;
 		case ShootingMode.Shooting:
 			//Disparando
+
 			mainCamera.GetComponent<CameraMovement> ().wantedPosition = astronaut.transform.position + astronautTrueDistance;
 			mainCamera.GetComponent<CameraMovement> ().wantedRotation = astronaut.transform.rotation;
 			break;
