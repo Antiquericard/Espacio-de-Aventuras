@@ -7,7 +7,9 @@ using UnityEngine.UI;
 public class Propellers : MonoBehaviour {
 
 	[SerializeField]
-	float fuelAmount = 50f;
+	float maxFuel = 50f;
+	[SerializeField]
+	float fuelAmount;
 	[SerializeField]
 	float power = 2f;
 	[SerializeField]
@@ -27,11 +29,12 @@ public class Propellers : MonoBehaviour {
 		right = transform.FindChild ("rightPropeller").GetComponent<ParticleSystem> ();
 		up = transform.FindChild ("upPropeller").GetComponent<ParticleSystem> ();
 		fuelBar = GameObject.Find ("Fuel").GetComponent<Slider> ();
+		fuelAmount = maxFuel;
 	}
 
 	void Update(){
 		float horizontal = Input.GetAxis ("Horizontal");
-		if (horizontal != 0 && fuelAmount > 0f) {
+		if (horizontal != 0 && fuelAmount > 0f && GameManager._instance.mode == GameManager.ShootingMode.Shooting) {
 			Vector3 localRight = transform.worldToLocalMatrix.MultiplyVector (transform.right);
 			rigid.AddForce (localRight * horizontal * power, ForceMode.Impulse);
 			fuelAmount -= decreaseRate * Time.deltaTime;
@@ -46,7 +49,7 @@ public class Propellers : MonoBehaviour {
 		}
 
 		float vertical = Input.GetAxis ("Vertical");
-		if (vertical > 0 && fuelAmount > 0f) {
+		if (vertical > 0 && fuelAmount > 0f && GameManager._instance.mode == GameManager.ShootingMode.Shooting) {
 			Vector3 localUp = transform.worldToLocalMatrix.MultiplyVector (transform.up);
 			rigid.AddForce (localUp * horizontal * power, ForceMode.Impulse);
 			fuelAmount -= decreaseRate * Time.deltaTime;
@@ -57,5 +60,9 @@ public class Propellers : MonoBehaviour {
 		}
 	}
 
+	public void Refuel(){
+		fuelAmount = maxFuel;
+		fuelBar.value = 100;
+	}
 
 }
