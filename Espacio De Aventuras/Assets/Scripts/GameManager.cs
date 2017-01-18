@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour {
 	public bool vic;
 	float lerp;
 
-	public enum ShootingMode : byte {Aiming, Shooting, Returning};
+	public enum ShootingMode : byte {Idle, Aiming, Shooting, Returning};
 	public ShootingMode mode;
 
     [SerializeField]
@@ -87,9 +87,14 @@ public class GameManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		switch (mode) {
+		case ShootingMode.Idle:
+			if (Input.GetMouseButtonDown (0)) {
+				mode = ShootingMode.Aiming;
+			}
+			break;
 		case ShootingMode.Aiming:
 			//Apuntando
-			if (Input.GetMouseButton (0)) {
+			if (Input.GetMouseButtonUp (0)) {
 				Shoot ();
 			} else {
 				powerValue += powerIncreaseRate * Time.deltaTime;
@@ -136,11 +141,10 @@ public class GameManager : MonoBehaviour {
 
 	}
 
-	public void AimingMode(){
-		mode = ShootingMode.Aiming;
+	public void ReturnToIdleMode(){
+		mode = ShootingMode.Idle;
 		mainCamera.transform.SetParent (cannon.GetChild(0));
 		mainCamera.transform.localPosition = CAMERA_CANNON_DISTANCE;
-		//mainCamera.transform.localRotation = Quaternion.identity;
 		mainCamera.transform.localRotation = Quaternion.Euler(new Vector3(180f, 0f,0f));
 		cannon.GetComponentInChildren<ParticleSystem> ().Play ();
 	}

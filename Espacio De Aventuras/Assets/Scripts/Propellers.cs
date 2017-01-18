@@ -49,7 +49,17 @@ public class Propellers : MonoBehaviour {
 	}
 
 	void Update(){
-		float horizontal = Input.GetAxis ("Horizontal");
+
+		float horizontal;
+		#if UNITY_STANDALONE
+		horizontal = Input.GetAxis ("Horizontal");
+		#endif
+
+		#if UNITY_ANDROID || UNITY_IOS
+		horizontal = Input.acceleration.x;
+		#endif
+
+
 		if (horizontal != 0 && fuelAmount > 0f && GameManager._instance.mode == GameManager.ShootingMode.Shooting) {
 			moveSide = horizontal;
 			fuelAmount -= decreaseRate * Time.deltaTime;
@@ -67,7 +77,18 @@ public class Propellers : MonoBehaviour {
 			StopParticleSystem (right);
 		}
 
-		float vertical = Input.GetAxis ("Vertical");
+		float vertical;
+		#if UNITY_STANDALONE
+		horizontal = Input.GetAxis ("Vertical");
+		#endif
+
+		#if UNITY_ANDROID || UNITY_IOS
+		vertical = Input.acceleration.y;
+		if(vertical < 0){
+			vertical = 0;
+		}
+		#endif
+
 		if (vertical > 0 && fuelAmount > 0f && GameManager._instance.mode == GameManager.ShootingMode.Shooting) {
 			moveFront = vertical;
 			fuelAmount -= decreaseRate * 2 * Time.deltaTime;
