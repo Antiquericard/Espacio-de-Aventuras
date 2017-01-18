@@ -40,11 +40,12 @@ public class Propellers : MonoBehaviour {
 			fuelAmount -= decreaseRate * Time.deltaTime;
 			fuelBar.value = fuelAmount / 5;
 			if (horizontal < 0) {
-				left.Play ();
-				right.Stop ();
+				PlayParticleSystem (right);
+				StopParticleSystem (left);
 			} else {
-				right.Play ();
-				left.Stop ();
+				PlayParticleSystem (left);
+				StopParticleSystem (right);
+
 			}
 		}
 
@@ -54,9 +55,27 @@ public class Propellers : MonoBehaviour {
 			rigid.AddForce (localUp * horizontal * power, ForceMode.Impulse);
 			fuelAmount -= decreaseRate * Time.deltaTime;
 			fuelBar.value = fuelAmount / 5;
-			up.Play ();
+			PlayParticleSystem (up);
 		} else {
-			up.Stop ();
+			StopParticleSystem (up);
+		}
+
+		if (vertical <= 0 && horizontal == 0) {
+			StopParticleSystem (up);
+			StopParticleSystem (left);
+			StopParticleSystem (right);
+		}
+	}
+
+	void PlayParticleSystem(ParticleSystem parts){
+		if (!parts.isPlaying) {
+			parts.Play ();
+		}
+	}
+
+	void StopParticleSystem(ParticleSystem parts){
+		if (parts.isPlaying) {
+			parts.Stop ();
 		}
 	}
 
