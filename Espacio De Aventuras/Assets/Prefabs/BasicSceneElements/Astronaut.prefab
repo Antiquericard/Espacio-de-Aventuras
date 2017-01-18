@@ -893,9 +893,10 @@ GameObject:
   - component: {fileID: 114002161271665890}
   - component: {fileID: 114428009260200390}
   - component: {fileID: 136383902507441360}
+  - component: {fileID: 95145258138192400}
   m_Layer: 0
   m_Name: Astronaut
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2020,6 +2021,23 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!95 &95145258138192400
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1859090067623148}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: aacff455a64a24895b5c1ec174a5215f, type: 3}
+  m_Controller: {fileID: 9100000, guid: a67f56102388c4d93a76d15811ca154a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!95 &95511389793252458
 Animator:
   serializedVersion: 3

@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 2085d2d2f0fc646ffbe02c06bf7347b3
-timeCreated: 1484742097
+timeCreated: 1484745305
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -16,6 +16,7 @@ TextureImporter:
     21300018: uipackSpace_sheet_0
     21300020: BordeBlanco
     21300022: BordeBlancoIzq
+    21300024: buttonnn
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -248,6 +249,19 @@ TextureImporter:
         y: 10
         width: 8
         height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: buttonnn
+      rect:
+        serializedVersion: 2
+        x: 362
+        y: 166
+        width: 24
+        height: 24
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
