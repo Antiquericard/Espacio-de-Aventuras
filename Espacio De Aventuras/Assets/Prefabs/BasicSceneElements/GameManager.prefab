@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000012679607058}
   - component: {fileID: 114000011688607148}
+  - component: {fileID: 114612918928515712}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -55,12 +56,12 @@ MonoBehaviour:
   level: 0
   vic: 0
   mode: 0
-  CAMERA_CANNON_DISTANCE: {x: 0, y: 1, z: -1.5}
+  CAMERA_CANNON_DISTANCE: {x: 0, y: -0.8, z: 0.47}
   CAMERA_ASTRONAUT_DISTANCE: {x: 0, y: 1, z: -2.5}
   ASTRONAUT_CANNON_DISTANCE: {x: 0, y: 0, z: 0}
   emptyPowerBar: {fileID: 2800000, guid: 47664d36896b52c45b738e067e6d7e2b, type: 3}
   fullPowerBar: {fileID: 2800000, guid: 3cd06f8caf01856418f0dc6460daf2cb, type: 3}
-  astronautPrefab: {fileID: 1146810008381458, guid: 305162f50130c4817b5a4327aa679949,
+  astronautPrefab: {fileID: 1650743389499112, guid: c79e651723db24be293c3aef9c3cc955,
     type: 2}
   cannon: {fileID: 0}
   spaceShip: {fileID: 0}
@@ -69,3 +70,16 @@ MonoBehaviour:
   Lose: {fileID: 0}
   startingVelocity: 100
   powerIncreaseRate: 1
+--- !u!114 &114612918928515712
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010831304722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d8c1e42e5b2f4a22896513192cc61a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvas: {fileID: 0}
+  cam: {fileID: 0}
