@@ -61,14 +61,13 @@ public class UIPlayManager : MonoBehaviour{
 	}
 
 	public void ResetLevel () {
-		if (Time.timeScale == 0){
-			Time.timeScale = 1;
-		}
+		Time.timeScale = 1f;
 		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 		CancelInvoke ();
 	}
 
 	public void ToMainMenu () {
+		Time.timeScale = 1f;
 		SceneManager.LoadScene ("Main Menu");
 	}
 
