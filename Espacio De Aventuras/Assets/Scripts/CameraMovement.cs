@@ -7,6 +7,12 @@ public class CameraMovement : MonoBehaviour {
 	float scaleRotationX = 1f;
 	[SerializeField]
 	float scaleRotationY = 1f;
+
+	[SerializeField]
+	float scaleRotationPhoneX = 1f;
+	[SerializeField]
+	float scaleRotationPhoneY = 1f;
+
 	[SerializeField]
 	float positionDamping = 25f;
 	[SerializeField]
@@ -53,15 +59,29 @@ public class CameraMovement : MonoBehaviour {
 			float yValue = 0f;
 
 			#if UNITY_STANDALONE
-			xValue = -scaleRotationX * -Input.GetAxis("Mouse X");
+			Debug.Log(Input.GetAxis("Mouse X"));
+			xValue = scaleRotationX * Input.GetAxis("Mouse X");
 			yValue = -scaleRotationY * Input.GetAxis("Mouse Y");
 			#endif
 
 			#if UNITY_ANDROID
 			if(Input.touchCount > 0){
 				Vector2 delta = Input.GetTouch(0).deltaPosition;
-				xValue = scaleRotationX * delta.x;
-				yValue = -scaleRotationY * delta.y;
+				if(delta.x > 1f){
+					delta.x = 1f;
+				}
+				if(delta.y > 1f){
+					delta.y = 1f;
+				}
+				if(delta.x < -1f){
+					delta.x = -1f;
+				}
+				if(delta.y < -1f){
+					delta.y = -1f;
+				}
+
+				xValue = scaleRotationPhoneX * delta.x;
+				yValue = -scaleRotationPhoneY * delta.y;
 			}
 
 			#endif

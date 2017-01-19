@@ -9,6 +9,8 @@ public class Astronaut : MonoBehaviour {
 
 	[Tooltip("Velocidad a la que retorna el personaje a la nave.")] [SerializeField] float moveSpeed = 10f;
 
+	float touchTime = 0f;
+
 	Propellers propellers{
 		get {
 			return GetComponent<Propellers> ();
@@ -22,14 +24,24 @@ public class Astronaut : MonoBehaviour {
 			control = Input.GetKeyDown(KeyCode.R);
 		#endif
 		#if UNITY_IOS || UNITY_ANDROID
-		if (Input.touches.Length > 0 && Input.GetTouch (0).deltaTime > 500f) {
+
+
+		if(Input.GetMouseButton(0)){
+			touchTime += Input.GetTouch(0).deltaTime;
+		} else {
+			touchTime = 0;
+		}
+
+		if (touchTime > 1f) {
+			touchTime = 0;
 			control = true;
 		} else {
 			control = false;
 		}
 		#endif
 
-		if (GameManager._instance.mode != GameManager.ShootingMode.Returning && control) {
+		if (GameManager._instance.mode == GameManager.ShootingMode.Shooting && control) {
+			control = false;
 			GameManager._instance.mode = GameManager.ShootingMode.Returning;
 			GameManager._instance.StartCoroutine ("DieCoroutine");
 		}

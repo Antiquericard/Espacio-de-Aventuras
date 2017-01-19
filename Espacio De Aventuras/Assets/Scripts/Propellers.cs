@@ -57,6 +57,9 @@ public class Propellers : MonoBehaviour {
 
 		#if UNITY_ANDROID || UNITY_IOS
 		horizontal = Input.acceleration.x;
+		if(horizontal > -0.2f && horizontal < 0.2f){
+			horizontal = 0;
+		}
 		#endif
 
 

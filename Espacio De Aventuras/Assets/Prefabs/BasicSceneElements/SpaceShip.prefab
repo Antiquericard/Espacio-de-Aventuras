@@ -442,6 +442,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scaleRotationX: 1
   scaleRotationY: 1
+  scaleRotationPhoneX: 1
+  scaleRotationPhoneY: 1
   positionDamping: 50
   rotationDamping: 10
 --- !u!114 &114549568313708388
