@@ -15,6 +15,8 @@ public class SeleccionadorNiveles : MonoBehaviour {
 
 	[SerializeField] GameObject[] buttons;
 
+	[SerializeField] byte escenasNoLevel;
+
 	void Start () {
 
 		totalLevels = UnityEngine.SceneManagement.SceneManager.sceneCountInBuildSettings - 1;
@@ -25,9 +27,9 @@ public class SeleccionadorNiveles : MonoBehaviour {
 			
 			GameObject but = (GameObject) Instantiate(boton, parent);
 			but.transform.localPosition = new Vector3(startposition.x,startposition.y - 50 * i, startposition.z);
-			but.GetComponentInChildren<Text> ().text = (i+1).ToString ();
-			string scene = "Level " + (i+1).ToString ();
-			but.GetComponent<Button> ().onClick.AddListener( () => SceneManager.LoadScene(scene) );
+			but.GetComponentInChildren<Text> ().text = (i+escenasNoLevel).ToString ();
+			string scene = "Level " + (i+escenasNoLevel).ToString ();
+			but.GetComponent<Button> ().onClick.AddListener( () => SwitchScene._instance.loadAScene(scene));
 			buttons [i] = but;
 
 		}

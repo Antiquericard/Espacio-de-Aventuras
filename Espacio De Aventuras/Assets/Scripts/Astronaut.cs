@@ -21,10 +21,12 @@ public class Astronaut : MonoBehaviour {
 		bool control;
 
 		#if UNITY_STANDALONE
-			control = Input.GetKeyDown(KeyCode.R);
-		#endif
-		#if UNITY_IOS || UNITY_ANDROID
 
+			control = Input.GetKeyDown(KeyCode.R);
+
+		#endif
+
+		#if UNITY_ANDROID
 
 		if(Input.GetMouseButton(0)){
 			touchTime += Input.GetTouch(0).deltaTime;
@@ -38,6 +40,24 @@ public class Astronaut : MonoBehaviour {
 		} else {
 			control = false;
 		}
+
+		#endif
+
+		#if UNITY_IOS
+
+		if(Input.GetMouseButton(0)){
+		touchTime += Input.GetTouch(0).deltaTime;
+		} else {
+		touchTime = 0;
+		}
+
+		if (touchTime > 1f) {
+		touchTime = 0;
+		control = true;
+		} else {
+		control = false;
+		}
+
 		#endif
 
 		if (GameManager._instance.mode == GameManager.ShootingMode.Shooting && control) {

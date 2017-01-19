@@ -913,6 +913,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Asteroiditos: {fileID: 1359373982707374, guid: c2f2a9e60eb5940089321907f6ce2d90,
     type: 2}
+--- !u!136 &513107842
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 513107838}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 1.3103027
+  m_Height: 2.3132122
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &527293860 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000013927475748, guid: 7694778e967cc401d8cd8a39a4ace6e0,
@@ -5552,6 +5565,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Asteroiditos: {fileID: 1359373982707374, guid: c2f2a9e60eb5940089321907f6ce2d90,
     type: 2}
+--- !u!136 &2083762573
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2083762569}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.37963548
+  m_Height: 0.716082
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2090144642
 GameObject:
   m_ObjectHideFlags: 0
