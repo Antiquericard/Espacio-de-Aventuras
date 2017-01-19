@@ -160,13 +160,15 @@ public class GameManager : MonoBehaviour {
     }
 
 	public void NextLevel (){
+		Time.timeScale = 1f;
 		SceneManager.LoadScene ("Level " + (level + 1).ToString ());
 	}
 
 	IEnumerator LevelCompleted (GameObject can){
 		Color tmp = can.GetComponent<Image>().color;
+		Time.timeScale = 0.2f;
 		while(!(tmp.a == 0.75f && can.GetComponentInChildren<Text>().fontSize == 100)){
-			lerp += Time.deltaTime / 2f;
+			lerp += Time.unscaledDeltaTime / 2f;
 			tmp.a = Mathf.Lerp (0f, 0.75f, lerp);
 			can.GetComponent<Image> ().color = tmp;
 			can.GetComponentInChildren<Text> ().fontSize = (int) Mathf.Lerp (10f,100f,lerp);

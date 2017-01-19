@@ -82,10 +82,17 @@ public class Propellers : MonoBehaviour {
 		vertical = Input.GetAxis ("Vertical");
 		#endif
 
-		#if UNITY_ANDROID || UNITY_IOS
+		#if UNITY_ANDROID
 		vertical = Input.acceleration.y;
 		if(vertical < 0){
 			vertical = 0;
+		}
+		#endif
+
+		#if UNITY_IOS
+		vertical = Input.acceleration.y;
+		if(vertical < 0){
+		vertical = 0;
 		}
 		#endif
 

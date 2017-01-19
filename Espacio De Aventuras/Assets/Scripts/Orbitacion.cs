@@ -25,7 +25,7 @@ public class Orbitacion : MonoBehaviour{
 
 	[Tooltip ("Lista de WayPoints a añadir para establecer la órbita del GameObject.")] [SerializeField] Transform[] wayPoints;
 
-	[Tooltip("Velocidad a la cual el GameObject se desplazará por la órbita.")] [SerializeField] float speed = 5f;
+	[Tooltip("Velocidad a la cual el GameObject se desplazará por la órbita.")] [SerializeField] public float speed = 5f;
 
 	void Start () {
 		StartCoroutine ("Movement");
