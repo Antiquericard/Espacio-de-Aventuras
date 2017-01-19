@@ -22,7 +22,14 @@ public static class SaveGameManager {
             file.Close();
             return level;
         }
-        return 1;
+        return 0;
 
+	}
+
+	[ContextMenu("Delete saved data")]
+	public static void DeleteSavedData(){
+		if (File.Exists (Application.persistentDataPath + "/levelSave.dat")) {
+			File.Delete (Application.persistentDataPath + "/levelSave.dat");
+		}
 	}
 }

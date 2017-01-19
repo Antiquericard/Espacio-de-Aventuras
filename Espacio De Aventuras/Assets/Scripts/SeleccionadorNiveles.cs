@@ -17,6 +17,13 @@ public class SeleccionadorNiveles : MonoBehaviour {
 
 	[SerializeField] byte escenasNoLevel;
 
+	int levelsCompleted;
+
+	//Aqui cargamos la partida
+	void Awake(){
+		levelsCompleted = SaveGameManager.Load ();
+	}
+
 	void Start () {
 
 		totalLevels = UnityEngine.SceneManagement.SceneManager.sceneCountInBuildSettings - 1;
@@ -28,10 +35,23 @@ public class SeleccionadorNiveles : MonoBehaviour {
 			GameObject but = (GameObject) Instantiate(boton, parent);
 			but.transform.localPosition = new Vector3(startposition.x,startposition.y - 50 * i, startposition.z);
 			but.GetComponentInChildren<Text> ().text = (i+escenasNoLevel).ToString ();
-			string scene = "Level " + (i+escenasNoLevel).ToString ();
-			but.GetComponent<Button> ().onClick.AddListener( () => SwitchScene._instance.loadAScene(scene));
 			buttons [i] = but;
 
+
+			if (levelsCompleted >= i) {
+				//Si es asi, el nivel fue completado
+				string scene = "Level " + (i+escenasNoLevel).ToString ();
+				but.GetComponent<Button> ().onClick.AddListener( () => SwitchScene._instance.loadAScene(scene));
+				but.GetComponent<Button>().interactable = true; //En principio no es necesaria esta línea, pero por si acaso..
+			} else {
+				//Si no, el nivel está bloqueado todavía
+				but.GetComponent<Button>().interactable = false;
+			}
+
+
+
+
+			//
 		}
 
 	}

@@ -165,6 +165,9 @@ public class GameManager : MonoBehaviour {
 	}
 
 	IEnumerator LevelCompleted (GameObject can){
+		//Guardamos la partida antes que nada
+		SaveGameManager.Save(level);
+
 		Color tmp = can.GetComponent<Image>().color;
 		Time.timeScale = 0.2f;
 		while(!(tmp.a == 0.75f && can.GetComponentInChildren<Text>().fontSize == 100)){
