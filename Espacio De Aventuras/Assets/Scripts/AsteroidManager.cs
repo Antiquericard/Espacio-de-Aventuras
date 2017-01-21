@@ -12,6 +12,7 @@ public class AsteroidManager: MonoBehaviour {
 			ast.transform.localPosition = this.transform.localPosition;
 			ast.AddComponent<Orbitacion> ();
 			ast.GetComponent<Orbitacion> ().speed = this.GetComponent<Orbitacion> ().speed;
+			ast.GetComponent<Orbitacion> ().StopCoroutine ("Movement");
 			Destroy (this.gameObject);
 		}
 	}
