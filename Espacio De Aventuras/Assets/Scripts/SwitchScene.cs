@@ -5,13 +5,9 @@ using UnityEngine.UI;
 
 public class SwitchScene: MonoBehaviour {
 
-	//Con los parametros que esto tiene, hacerlo estatico no me parece una opción, esto depende de cada instancia. Puessss prueba con esto!
-
-
 	public static SwitchScene _instance;
 
 	[SerializeField] Image im;
-	[SerializeField] GameObject del;
 	[SerializeField] Text percentageText;
 	[SerializeField] GameObject loadImage;
 	string name;
@@ -19,7 +15,6 @@ public class SwitchScene: MonoBehaviour {
 	void Awake(){
 		if (_instance == null) {
 			_instance = this;
-			//DontDestroyOnLoad (this.gameObject);
 		} else {
 			Destroy (this.gameObject);
 		}
@@ -57,7 +52,6 @@ public class SwitchScene: MonoBehaviour {
 	}
 
 	public void loadAScene (string nameScene) {
-		del.SetActive (false);
 		loadImage.SetActive(true);
 		name = nameScene;
 		StartCoroutine ("Load");

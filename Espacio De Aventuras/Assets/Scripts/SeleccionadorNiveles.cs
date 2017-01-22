@@ -41,6 +41,7 @@ public class SeleccionadorNiveles : MonoBehaviour {
 			if (levelsCompleted >= i) {
 				//Si es asi, el nivel fue completado
 				string scene = "Level " + (i+escenasNoLevel).ToString ();
+				but.GetComponent<Button> ().onClick.AddListener( () => this.gameObject.SetActive(false));
 				but.GetComponent<Button> ().onClick.AddListener( () => SwitchScene._instance.loadAScene(scene));
 				but.GetComponent<Button>().interactable = true; //En principio no es necesaria esta línea, pero por si acaso..
 			} else {

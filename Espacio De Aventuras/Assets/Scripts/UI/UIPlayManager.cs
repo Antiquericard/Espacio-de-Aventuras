@@ -62,13 +62,21 @@ public class UIPlayManager : MonoBehaviour{
 
 	public void ResetLevel () {
 		Time.timeScale = 1f;
-		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+		SwitchScene._instance.loadAScene (SceneManager.GetActiveScene ().name);
+		//SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 		CancelInvoke ();
 	}
 
 	public void ToMainMenu () {
 		Time.timeScale = 1f;
-		SceneManager.LoadScene ("Main Menu");
+		SwitchScene._instance.loadAScene ("Main Menu");
+		//SceneManager.LoadScene ("Main Menu");
+	}
+
+	public void NextLevel (){
+		Time.timeScale = 1f;
+		SwitchScene._instance.loadAScene ("Level " + (GameManager._instance.level + 1).ToString ());
+		//SceneManager.LoadScene ("Level " + (GameManager._instance.level + 1).ToString ());
 	}
 
 }
