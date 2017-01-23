@@ -1,4 +1,23 @@
-﻿using UnityEngine;
+﻿
+/* 
+ * Resume of this project.
+ * Copyright (C) Ricardo Ruiz Anaya & Nicolás Robayo Moreno 2017
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -7,10 +26,20 @@ public class SwitchScene: MonoBehaviour {
 
 	public static SwitchScene _instance;
 
-	[SerializeField] Image im;
-	[SerializeField] Text percentageText;
-	[SerializeField] GameObject loadImage;
+	#region Setting Attributes
+
+	[Tooltip("Fondo de carga.")] [SerializeField] Image im;
+
+	[Tooltip("Porcentage cargado.")] [SerializeField] Text percentageText;
+
+	[Tooltip("Slider de carga.")] [SerializeField] GameObject loadImage;
+
+	// Nombre de la escena a la que ir.
 	string name;
+
+	#endregion
+
+	#region Unity Methods
 
 	void Awake(){
 		if (_instance == null) {
@@ -21,11 +50,21 @@ public class SwitchScene: MonoBehaviour {
 
 	}
 
+	#endregion
+
+	#region Private Methods
+
+	// Regresco de la interfaz de usuario.
 	void RefreshUI (float percentage) {
 		percentageText.text = percentage.ToString ("##0 %");
 		im.fillAmount = percentage;
 	}
 
+	#endregion
+
+	#region Coroutines
+
+	// Coroutine para cargar la siguiente escena.
 	IEnumerator Load () {
 
 		AsyncOperation loadProcess = SceneManager.LoadSceneAsync( name);
@@ -51,10 +90,18 @@ public class SwitchScene: MonoBehaviour {
 		loadProcess.allowSceneActivation = true;
 	}
 
+	#endregion
+
+	#region Public Methods
+
+	// Método para cargar la escena nameScene.
 	public void loadAScene (string nameScene) {
 		loadImage.SetActive(true);
 		name = nameScene;
 		StartCoroutine ("Load");
 		//SceneManager.LoadScene (nameScene);
 	}
+
+	#endregion
+
 }

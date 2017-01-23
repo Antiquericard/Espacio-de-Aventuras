@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.16468379, g: 0.10836672, b: 0.22398072, a: 1}
+  m_IndirectSpecularColor: {r: 0.16469821, g: 0.108395465, b: 0.2239674, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -864,7 +864,8 @@ Prefab:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1719176432}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114795850479782610, guid: d55d2882d119b42bb8b0d2e1fe09256a, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: d55d2882d119b42bb8b0d2e1fe09256a, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &317088209
@@ -4610,11 +4611,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 785e87f7df07d439cbe3e3eed32dc432, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WorldObject: {fileID: 0}
-  UI_Element: {fileID: 0}
-  cam: {fileID: 0}
+  target: {fileID: 0}
+  UIElement: {fileID: 0}
+  camera: {fileID: 0}
   canvas: {fileID: 0}
-  offset: 0
+  offsetY: 0
 --- !u!1 &1238805761
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,4 +1,23 @@
-﻿using System.Collections;
+﻿
+/* 
+ * Resume of this project.
+ * Copyright (C) Ricardo Ruiz Anaya & Nicolás Robayo Moreno 2017
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,28 +25,48 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Rigidbody))]
 public class Propellers : MonoBehaviour {
 
-	[SerializeField]
-	float maxFuel = 50f;
+	#region Setting Attributes
+
+	[Tooltip("Fuel máximo para este nivel.")] [SerializeField] float maxFuel = 50f;
+
+	[Tooltip("Potencia máxima.")] [SerializeField] float frontPower = 5f;
+
+	[Tooltip("Potencia mínima.")] [SerializeField] float sidePower = 2f;
+
+	[Tooltip("Ratio de decremento.")] [SerializeField] float decreaseRate = 10f;
+
+	[Tooltip("Máxima velocidad.")] [SerializeField] float maxSpeed = 45f;
+
+	// Cantidad de fuel.
 	float fuelAmount;
-	[SerializeField]
-	float frontPower = 5f;
-	[SerializeField]
-	float sidePower = 2f;
-	[SerializeField]
-	float decreaseRate = 10f;
-	[SerializeField]
-	float maxSpeed = 45f;
+
+	// Módulo de la velocidad máxima.
 	float sqrMaxSpeed;
+
+	// Rigidbody del astronauta.
 	Rigidbody rigid;
 
+	// Sistema de particulas izquierdo.
 	ParticleSystem left;
+
+	// Sistema de partículas derecho.
 	ParticleSystem right;
+
+	// Sistema de partículas frente.
 	ParticleSystem up;
 
+	// Slider del fuel.
 	Slider fuelBar;
 
+	// Movimiento frontal.
 	float moveFront = 0f;
+
+	// Movimiento lateral.
 	float moveSide = 0f;
+
+	#endregion
+
+	#region Unity Methods
 
 	void Awake(){
 		rigid = GetComponent<Rigidbody> ();
@@ -88,6 +127,7 @@ public class Propellers : MonoBehaviour {
 		}
 
 		float vertical;
+
 		#if UNITY_STANDALONE
 		vertical = Input.GetAxis ("Vertical");
 		#endif
@@ -117,21 +157,30 @@ public class Propellers : MonoBehaviour {
 
 	}
 
+	#endregion
+
+	#region Private Methods
+
+	// Activa el sistema de partículas.
 	void PlayParticleSystem(ParticleSystem parts){
 		if (!parts.isPlaying) {
 			parts.Play ();
 		}
 	}
 
+	// Para el sistema de partículas.
 	void StopParticleSystem(ParticleSystem parts){
 		if (parts.isPlaying) {
 			parts.Stop ();
 		}
 	}
 
+	// Recarga el fuel.
 	public void Refuel(){
 		fuelAmount = maxFuel;
 		fuelBar.value = 100;
 	}
+
+	#endregion
 
 }

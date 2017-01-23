@@ -1,15 +1,40 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿
+/* 
+ * Resume of this project.
+ * Copyright (C) Ricardo Ruiz Anaya & Nicolás Robayo Moreno 2017
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
+using UnityEngine;
+using System.Collections;
 
 [RequireComponent(typeof(Propellers))]
 public class Astronaut : MonoBehaviour {
+
+	#region Setting Attributes
 
 	[Tooltip("Colocar el transform del cañón.")] [SerializeField] public Transform cannon;
 
 	[Tooltip("Velocidad a la que retorna el personaje a la nave.")] [SerializeField] float moveSpeed = 10f;
 
+	// Tiempo en el cual se mantiene pulsada la pantalla.
 	float touchTime = 0f;
+
+	#endregion
+
+	#region Setters & Getters
 
 	Propellers propellers{
 		get {
@@ -17,6 +42,11 @@ public class Astronaut : MonoBehaviour {
 		}
 	}
 
+	#endregion
+
+	#region Unity Methods
+
+	// Cuando se mantiene pulsada la pantalla mas de touchTime se activa el retorno a la nave.
 	void Update () {
 		bool control;
 		#if UNITY_STANDALONE
@@ -66,6 +96,11 @@ public class Astronaut : MonoBehaviour {
 		}
 	}
 
+	#endregion
+
+	#region Public Methods
+
+	// Método para comenzar el primer disparo.
 	public void Init(float speed, Vector3 shipSpeed){
 		transform.parent = cannon;
 		transform.localPosition = GameManager._instance.ASTRONAUT_CANNON_DISTANCE;
@@ -75,6 +110,12 @@ public class Astronaut : MonoBehaviour {
 		GetComponent<Rigidbody> ().AddForce (shipSpeed, ForceMode.VelocityChange);
 		GetComponent<Rigidbody> ().AddForce (transform.forward * speed, ForceMode.Impulse);
 	}
+
+	#endregion
+
+	#region Coroutines
+
+	// Coroutine para volver a la nave.
 	public IEnumerator ReturnToSpaceShip (){
 		this.GetComponent<AudioSource> ().Play ();
 		transform.LookAt (cannon);
@@ -90,6 +131,8 @@ public class Astronaut : MonoBehaviour {
 		GameManager._instance.ReturnToIdleMode();
 		transform.GetComponent<Rigidbody> ().isKinematic = false;
 		gameObject.SetActive (false);
-
 	}
+
+	#endregion
+
 }

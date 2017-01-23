@@ -1,7 +1,7 @@
 ﻿
 /* 
  * Resume of this project.
- * Copyright (C) Ricardo Ruiz Anaya 2017
+ * Copyright (C) Ricardo Ruiz Anaya & Nicolás Robayo Moreno 2017
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,15 +23,25 @@ using UnityEngine;
 
 public class Orbitacion : MonoBehaviour{
 
+	#region Setting Attributes
+
 	[Tooltip ("Lista de WayPoints a añadir para establecer la órbita del GameObject.")] [SerializeField] Transform[] wayPoints;
 
 	[Tooltip("Velocidad a la cual el GameObject se desplazará por la órbita.")] [SerializeField] public float speed = 5f;
+
+	#endregion
+
+	#region Unity Methods
 
 	void Start () {
 		StartCoroutine ("Movement");
 	}
 
-	// Creo un Coroutine para ejecutar el movimiento de un wayPoint a otro cada vez que alcanza el siguiente WayPoint.
+	#endregion
+
+	#region Coroutines
+
+	// Se crea una Coroutine para ejecutar el movimiento de un wayPoint a otro cada vez que alcanza el siguiente WayPoint.
 	IEnumerator Movement (){
 
 		int index = 0;
@@ -49,4 +59,6 @@ public class Orbitacion : MonoBehaviour{
 			yield return new WaitForSeconds(0.02f);
 		}
 	}
+
+	#endregion
 }

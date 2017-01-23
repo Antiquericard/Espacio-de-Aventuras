@@ -50,13 +50,17 @@ public class CanvasConvert: MonoBehaviour {
 
 	// Se actualiza le ubicación en la interfaz del objetivo.
 	void LateUpdate(){
-		
-		Vector2 ViewportPosition = camera.WorldToViewportPoint (target.transform.position);
-		Vector2 TargetScreenPosition = new Vector2 (
-			                                   ((ViewportPosition.x * CanvasRect.sizeDelta.x) - (CanvasRect.sizeDelta.x * 0.5f)),
-			                                   ((ViewportPosition.y * CanvasRect.sizeDelta.y) - (CanvasRect.sizeDelta.y * 0.5f)) + offsetY);
 
-		UIElement.anchoredPosition = TargetScreenPosition;
+		Vector2 ViewportPosition = camera.WorldToViewportPoint (target.transform.position);
+
+		if (target.GetComponent<Renderer> ().isVisible) {
+
+			Vector2 TargetScreenPosition = new Vector2 (
+				((ViewportPosition.x * CanvasRect.sizeDelta.x) - (CanvasRect.sizeDelta.x * 0.5f)),
+				((ViewportPosition.y * CanvasRect.sizeDelta.y) - (CanvasRect.sizeDelta.y * 0.5f)) + offsetY);
+
+			UIElement.anchoredPosition = TargetScreenPosition;
+		}
 	}
 
 	#endregion
