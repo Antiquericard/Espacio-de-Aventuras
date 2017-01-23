@@ -77,6 +77,7 @@ public class Astronaut : MonoBehaviour {
 		GetComponent<Rigidbody> ().AddForce (transform.forward * speed, ForceMode.Impulse);
 	}
 	public IEnumerator ReturnToSpaceShip (){
+		this.GetComponent<AudioSource> ().Play ();
 		transform.LookAt (cannon);
 		Vector3 targetPos = cannon.position + GameManager._instance.ASTRONAUT_CANNON_DISTANCE;
 		transform.GetComponent<Rigidbody> ().isKinematic = true;

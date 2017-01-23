@@ -95,6 +95,7 @@ public class GameManager : MonoBehaviour {
 		case ShootingMode.Aiming:
 			//Apuntando
 			if (Input.GetMouseButtonUp (0)) {
+				cannon.GetComponent<AudioSource> ().Play ();
 				Shoot ();
 			} else {
 				powerValue += powerIncreaseRate * Time.deltaTime;

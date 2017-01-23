@@ -8,6 +8,7 @@ public class Recoger : MonoBehaviour {
 		if (hit.CompareTag ("Player")) {
 			hit.GetComponent<Animator> ().SetBool ("Recoge", true);
 			hit.GetComponent<Animator> ().SetBool ("Recoge", false);
+			this.GetComponent<AudioSource> ().Play ();
 			GameManager._instance.vic = true;
             GameManager._instance.CompleteLevel();
 		}
