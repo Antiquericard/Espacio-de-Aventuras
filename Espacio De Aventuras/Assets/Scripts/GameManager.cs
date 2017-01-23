@@ -1,4 +1,22 @@
-﻿using UnityEngine;
+﻿/* 
+ * Resume of this project.
+ * Copyright (C) Ricardo Ruiz Anaya & Nicolás Robayo Moreno 2017
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -7,57 +25,72 @@ public class GameManager : MonoBehaviour {
 
 	public static GameManager _instance;
 
-	[SerializeField] public int lifes = 3;
+	#region Setting Attributes
 
+	// GameObject astronauta.
+	GameObject astronaut;
+
+	// Valor de potencia.
+	float powerValue = 0f;
+
+	// Distancia real del astronauta.
+	Vector3 astronautTrueDistance;
+
+	// Nivel de la escena.
     public int level;
+
+	// 
 	string [] levelTexts;
+
+	// ¿Victoria?
 	public bool vic;
+
+	//Variable de suavizado.
 	float lerp;
 
+	// Enumerado de los modos de disparo.
 	public enum ShootingMode : byte {Idle, Aiming, Shooting, Returning};
+
+	// Modo de disparo.
 	public ShootingMode mode;
 
-    [SerializeField]
-	public Vector3 CAMERA_CANNON_DISTANCE = new Vector3 (0f, -0.8f,0.47f);
-	//public Vector3 CAMERA_CANNON_DISTANCE = new Vector3 (0f,1f,-1.5f);
-    [SerializeField]
-	public Vector3 CAMERA_ASTRONAUT_DISTANCE = new Vector3 (0f,1f,-2.5f);
-    [SerializeField]
-	public Vector3 ASTRONAUT_CANNON_DISTANCE = new Vector3 (0f, 1f, 0f);
+	[Tooltip("")] [SerializeField] public Vector3 CAMERA_CANNON_DISTANCE = new Vector3 (0f, -0.8f,0.47f);
 
+	[Tooltip("")] [SerializeField] public Vector3 CAMERA_ASTRONAUT_DISTANCE = new Vector3 (0f,1f,-2.5f);
+
+	[Tooltip("")] [SerializeField] public Vector3 ASTRONAUT_CANNON_DISTANCE = new Vector3 (0f, 1f, 0f);
 
 	//OBJECTS
 
-	[SerializeField]
-	Texture2D emptyPowerBar;
-	[SerializeField]
-	Texture2D fullPowerBar;
-	[SerializeField]
-	Object astronautPrefab;
-	[SerializeField]
-	Transform cannon;
-	[SerializeField]
-	Transform spaceShip;
-	[SerializeField]
-	Camera mainCamera;
-	[SerializeField]
-	GameObject Victory;
-	[SerializeField]
-	GameObject Lose;
+	[Tooltip("Barra vacía.")] [SerializeField] Texture2D emptyPowerBar;
+
+	[Tooltip("Barra llena.")] [SerializeField] Texture2D fullPowerBar;
+
+	[Tooltip("Prefab del astronauta.")] [SerializeField] Object astronautPrefab;
+
+	[Tooltip("BaseCannon de la escena.")] [SerializeField] Transform cannon;
+
+	[Tooltip("Nave espacial de la escena.")] [SerializeField] Transform spaceShip;
+
+	[Tooltip("MainCamera de la escena.")] [SerializeField] Camera mainCamera;
+
+	[Tooltip("Interfaz de victoria.")] [SerializeField] GameObject Victory;
+
+	[Tooltip("Interfaz de derrota.")] [SerializeField] GameObject Lose;
 
 	//PARAMETROS
 
-	[SerializeField]
-	float startingVelocity = 100f;
-	[SerializeField]
-	float powerIncreaseRate = 1f;
+	[Tooltip("Vidas totales para el nivel.")] [SerializeField] public int lifes = 3;
 
+	[Tooltip("Velocidad inicial del astronauta al dispararse.")] [SerializeField] float startingVelocity = 100f;
 
-	//VARIABLES
-	GameObject astronaut;
-	float powerValue = 0f;
-	Vector3 astronautTrueDistance;
+	[Tooltip("Potencia inicial del astronauta al dispararse.")] [SerializeField] float powerIncreaseRate = 1f;
 
+	#endregion
+
+	#region Unity Methods
+
+	//
 	void Awake(){
 		if (_instance == null) {
 			_instance = this;
@@ -68,6 +101,7 @@ public class GameManager : MonoBehaviour {
 
 	}
 
+	//
 	void Start(){
 		level = SceneManager.GetActiveScene ().buildIndex;
 		//Creamos un astronauta, solo usaremos ese no tenemos que crear mas
@@ -77,14 +111,7 @@ public class GameManager : MonoBehaviour {
 
 	}
 
-	void OnGUI() {
-		if (mode == ShootingMode.Aiming) {
-			GUI.DrawTexture(new Rect(Screen.width/4, Screen.height - 100, Screen.width/2, 50), emptyPowerBar);
-			GUI.DrawTexture(new Rect(Screen.width/4, Screen.height - 100, powerValue * Screen.width/2, 50), fullPowerBar);
-		}
-	}
-	
-	// Update is called once per frame
+	//
 	void Update () {
 		switch (mode) {
 		case ShootingMode.Idle:
@@ -106,7 +133,6 @@ public class GameManager : MonoBehaviour {
 			break;
 		case ShootingMode.Shooting:
 			//Disparando
-
 			mainCamera.GetComponent<CameraMovement> ().wantedPosition = astronaut.transform.position + astronautTrueDistance;
 			mainCamera.GetComponent<CameraMovement> ().wantedRotation = astronaut.transform.rotation;
 			break;
@@ -118,7 +144,19 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
+	// Representación gráfica de la potencia.
+	void OnGUI() {
+		if (mode == ShootingMode.Aiming) {
+			GUI.DrawTexture(new Rect(Screen.width/4, Screen.height - 100, Screen.width/2, 50), emptyPowerBar);
+			GUI.DrawTexture(new Rect(Screen.width/4, Screen.height - 100, powerValue * Screen.width/2, 50), fullPowerBar);
+		}
+	}
 
+	#endregion
+
+	#region Public Methods
+
+	// Método para realizar el disparo.
 	public void Shoot(){
 
 		//Ajustamos la potencia: Un disparo completamente cargado tiene 4 veces más potencia que uno sin cargar
@@ -142,6 +180,7 @@ public class GameManager : MonoBehaviour {
 
 	}
 
+	// Método para volver al estado inicial de disparo.
 	public void ReturnToIdleMode(){
 		mode = ShootingMode.Idle;
 		mainCamera.transform.SetParent (cannon.GetChild(0));
@@ -150,6 +189,7 @@ public class GameManager : MonoBehaviour {
 		cannon.GetComponentInChildren<ParticleSystem> ().Play ();
 	}
 
+	// Método para completar el nivel.
     public void CompleteLevel() {
 		if (vic) {
 			Victory.SetActive(true);
@@ -159,12 +199,18 @@ public class GameManager : MonoBehaviour {
 			StartCoroutine(LevelCompleted(Lose));
 		}
     }
-
+		
+	// Método para comenzar el siguiente nivel.
 	public void NextLevel (){
 		Time.timeScale = 1f;
 		SceneManager.LoadScene ("Level " + (level + 1).ToString ());
 	}
 
+	#endregion
+
+	#region Coroutines
+
+	// Coroutine para completar el nivel.
 	IEnumerator LevelCompleted (GameObject can){
 		//Guardamos la partida antes que nada
 		SaveGameManager.Save(level);
@@ -180,6 +226,7 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
+	// Coroutine al perder una vida, si se pierden todas comienza pantalla de derrota.
 	IEnumerator DieCoroutine(){
 		yield return new WaitForSeconds (.5f);
 		astronaut.GetComponent<Rigidbody> ().velocity = new Vector3 ();
@@ -191,6 +238,8 @@ public class GameManager : MonoBehaviour {
 			vic = false;
 			CompleteLevel ();
 		}
-			
 	}
+
+	#endregion
+
 }

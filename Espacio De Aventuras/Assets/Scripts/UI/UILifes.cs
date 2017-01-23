@@ -1,7 +1,7 @@
 ﻿
 /* 
  * Resume of this project.
- * Copyright (C) Ricardo Ruiz Anaya 2017
+ * Copyright (C) Ricardo Ruiz Anaya & Nicolás Robayo Moreno 2017
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,19 +23,21 @@ using UnityEngine;
 
 public class UILifes : MonoBehaviour{
 
-	//--------------------------------------
-	// Setting Attributes
-	//--------------------------------------
+	#region Setting Attributes
 
-	[SerializeField] int life;
+	[Tooltip("Número de la vida.")] [SerializeField] int life;
 
-	//--------------------------------------
-	// Unity Methods
-	//--------------------------------------
+	#endregion
 
+	#region Unity Methods
+
+	// Cada vez que perdamos una vida, se eliminará esta vida.
 	protected virtual void Update () {
 		if (GameManager._instance.lifes < life) {
 			gameObject.SetActive (false);
 		}
 	}
+
+	#endregion
+
 }

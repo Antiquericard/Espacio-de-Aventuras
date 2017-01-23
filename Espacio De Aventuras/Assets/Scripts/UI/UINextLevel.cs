@@ -1,7 +1,7 @@
 ﻿
 /* 
  * Resume of this project.
- * Copyright (C) Ricardo Ruiz Anaya 2017
+ * Copyright (C) Ricardo Ruiz Anaya & Nicolás Robayo Moreno 2017
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,37 +24,13 @@ using UnityEngine.UI;
 
 public class UINextLevel : MonoBehaviour{
 
-	//--------------------------------------
-	// Setting Attributes
-	//--------------------------------------
+	#region Unity Methods
 
-
-
-	//--------------------------------------
-	// Dispatch Events
-	//--------------------------------------
-
-
-
-	//--------------------------------------
-	// Private Attributes
-	//--------------------------------------
-	/// <summary>
-	/// 
-	/// </summary>
-
-
-
-	//--------------------------------------
-	// Getters & Setters
-	//--------------------------------------
-
-
-	//--------------------------------------
-	// Unity Methods
-	//--------------------------------------
-	
+	// Indicamos el nivel siguiente.
 	protected virtual void Start () {
 		this.GetComponent<Text>().text = "To Level " + (GameManager._instance.level+1).ToString();
 	}
+
+	#endregion
+
 }

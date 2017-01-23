@@ -1,7 +1,7 @@
 ﻿
 /* 
  * Resume of this project.
- * Copyright (C) Ricardo Ruiz Anaya 2017
+ * Copyright (C) Ricardo Ruiz Anaya & Nicolás Robayo Moreno 2017
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,17 +25,12 @@ using UnityEngine.SceneManagement;
 
 public class UILevelText : MonoBehaviour{
 
-	//--------------------------------------
-	// Setting Attributes
-	//--------------------------------------
+	#region Unity Methods
 
-
-
-	//--------------------------------------
-	// Unity Methods
-	//--------------------------------------
-	
+	// Indica el nombre del nivel en el cual se encuentra la escena actual.
 	protected virtual void Start () {
 		this.GetComponent<Text>().text = SceneManager.GetActiveScene ().name;
 	}
+
+	#endregion
 }

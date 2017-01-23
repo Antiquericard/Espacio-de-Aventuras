@@ -1,7 +1,7 @@
 ﻿
 /* 
  * Resume of this project.
- * Copyright (C) Ricardo Ruiz Anaya 2017
+ * Copyright (C) Ricardo Ruiz Anaya & Nicolás Robayo Moreno 2017
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,37 +24,30 @@ using UnityEngine.SceneManagement;
 
 public class UIPlayManager : MonoBehaviour{
 
-	//--------------------------------------
-	// Setting Attributes
-	//--------------------------------------
+	#region Setting Attributes
 
-	[SerializeField] GameObject canvas;
+	[Tooltip("Canvas de la escena")] [SerializeField] GameObject canvas;
 
-	[SerializeField] GameObject cam;
+	[Tooltip("MainCamera de la escena")] [SerializeField] GameObject cam;
 
-	[SerializeField] GameObject deuterio;
+	[Tooltip("GameObject a recoger en la escena")] [SerializeField] GameObject deuterio;
 
-	//--------------------------------------
-	// Unity Methods
-	//--------------------------------------
-	
-	protected virtual void Start () {
-		
-	}
-	
+	#endregion
+
+	#region Unity Methods
+
+	//Si pulsamos la tecla Esc, entraremos en el menú de pausa.
 	protected virtual void Update () {
 		if (Input.GetButtonDown("Cancel")){
 			PauseOrResume ();
 		}
 	}
 
-	//--------------------------------------
-	// Private Methods
-	//--------------------------------------
-	/// <summary>
-	/// 
-	/// </summary>
+           	#endregion
 
+	#region Private Methods
+
+	// Método para entrar en el menú de pausa.
 	public void PauseOrResume () {
 		Time.timeScale = (Time.timeScale == 1) ? 0 : 1;
 		canvas.SetActive (!canvas.activeSelf);
@@ -62,23 +55,24 @@ public class UIPlayManager : MonoBehaviour{
 		this.GetComponent<GameManager> ().enabled = (!this.GetComponent<GameManager> ().isActiveAndEnabled);
 	}
 
+	// Método para reiniciar el nivel.
 	public void ResetLevel () {
 		Time.timeScale = 1f;
 		SwitchScene._instance.loadAScene (SceneManager.GetActiveScene ().name);
-		//SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 		CancelInvoke ();
 	}
 
+	// Método para volver al menú de inicio.
 	public void ToMainMenu () {
 		Time.timeScale = 1f;
 		SwitchScene._instance.loadAScene ("Main Menu");
-		//SceneManager.LoadScene ("Main Menu");
 	}
 
+	// Método para pasar al siguiente nivel.
 	public void NextLevel (){
 		Time.timeScale = 1f;
 		SwitchScene._instance.loadAScene ("Level " + (GameManager._instance.level + 1).ToString ());
-		//SceneManager.LoadScene ("Level " + (GameManager._instance.level + 1).ToString ());
 	}
 
+	#endregion
 }

@@ -1,13 +1,38 @@
-﻿using UnityEngine;
+﻿
+/* 
+ * Resume of this project.
+ * Copyright (C) Ricardo Ruiz Anaya & Nicolás Robayo Moreno 2017
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+using UnityEngine;
 using System.Collections;
 
 public class FauxGravityAttractor : MonoBehaviour {
+
+	#region Setting Attributes
 
 	[Tooltip("Gravedad con la cual el planeta atraerá a los objetos.")] [SerializeField] float gravity = -10f;
 
 	[Tooltip("Velocidad a la que el objeto rota para posicionarse de pie al caer en un planeta.")] [SerializeField] float speedRotation = 50f;
 
-	[SerializeField] ForceMode forceMode = ForceMode.Force;
+	[Tooltip("Modo de fuerza a aplicar.")] [SerializeField] ForceMode forceMode = ForceMode.Force;
+
+	#endregion
+
+	#region Setters & Getters
 
 	public ForceMode _forceMode
 	{
@@ -15,6 +40,11 @@ public class FauxGravityAttractor : MonoBehaviour {
 		set { forceMode = value; }
 	}
 
+	#endregion
+
+	#region Public Methods
+
+	// Método de atracción de un objeto.
 	public void Attract (Transform body) {
 
 		//Guardamos estas variables para coger las normales.
@@ -32,4 +62,7 @@ public class FauxGravityAttractor : MonoBehaviour {
 		body.rotation = Quaternion.Slerp (body.rotation, targetRotation, speedRotation * Time.deltaTime);
 
 	}
+
+	#endregion
+
 }

@@ -1,39 +1,64 @@
-﻿using System.Collections;
+﻿
+/* 
+ * Resume of this project.
+ * Copyright (C) Ricardo Ruiz Anaya & Nicolás Robayo Moreno 2017
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CanvasConvert: MonoBehaviour {
 
-	//this is your object that you want to have the UI element hovering over
-	[SerializeField] GameObject WorldObject;
+	#region Setting Attributes
 
-	//this is the ui element
-	[SerializeField] RectTransform UI_Element;
+	[Tooltip("GameObjet objetivo.")] [SerializeField] GameObject target;
 
-	[SerializeField] Camera cam;
+	[Tooltip("Elemento gráfico a mostrar.")] [SerializeField] RectTransform UIElement;
 
-	[SerializeField] Canvas canvas;
+	[Tooltip("MainCamera de la escena.")] [SerializeField] Camera camera;
 
-	[SerializeField] float offset;
+	[Tooltip("Canvas de la escena.")] [SerializeField] Canvas canvas;
 
+	[Tooltip("Elevación extra para el elemento gráfico.")] [SerializeField] float offsetY;
+
+	// RectTransform base.
 	RectTransform CanvasRect;
 
+	#endregion
+
+	#region Unity Methods
+
+	// Inicializamos el RectTransform.
 	void Awake() {
 		//first you need the RectTransform component of your canvas
 		CanvasRect = canvas.GetComponent<RectTransform> ();
 	}
 
-	void FixedUpdate(){
-
-		// then you calculate the position of the UI element
-		// 0,0 for the canvas is at the center of the screen, whereas WorldToViewPortPoint treats the lower left corner as 0,0. 
-		// Because of this, you need to subtract the height / width of the canvas * 0.5 to get the correct position.
-		Vector2 ViewportPosition = cam.WorldToViewportPoint (WorldObject.transform.position);
-		Vector2 WorldObject_ScreenPosition = new Vector2 (
+	// Se actualiza le ubicación en la interfaz del objetivo.
+	void LateUpdate(){
+		
+		Vector2 ViewportPosition = camera.WorldToViewportPoint (target.transform.position);
+		Vector2 TargetScreenPosition = new Vector2 (
 			                                   ((ViewportPosition.x * CanvasRect.sizeDelta.x) - (CanvasRect.sizeDelta.x * 0.5f)),
-			                                   ((ViewportPosition.y * CanvasRect.sizeDelta.y) - (CanvasRect.sizeDelta.y * 0.5f)) + offset);
+			                                   ((ViewportPosition.y * CanvasRect.sizeDelta.y) - (CanvasRect.sizeDelta.y * 0.5f)) + offsetY);
 
-		//now you can set the position of the ui element
-		UI_Element.anchoredPosition = WorldObject_ScreenPosition;
+		UIElement.anchoredPosition = TargetScreenPosition;
 	}
+
+	#endregion
+
 }
