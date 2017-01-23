@@ -59,7 +59,6 @@ public class CameraMovement : MonoBehaviour {
 			float yValue = 0f;
 
 			#if UNITY_STANDALONE
-			Debug.Log(Input.GetAxis("Mouse X"));
 			xValue = scaleRotationX * Input.GetAxis("Mouse X");
 			yValue = -scaleRotationY * Input.GetAxis("Mouse Y");
 			#endif

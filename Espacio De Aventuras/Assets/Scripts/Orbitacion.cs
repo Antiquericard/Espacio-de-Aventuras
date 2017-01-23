@@ -45,7 +45,8 @@ public class Orbitacion : MonoBehaviour{
 			transform.position = Vector3.MoveTowards (transform.localPosition, wayPoints [index].position, speed * Time.deltaTime);
 			transform.LookAt (Vector3.zero);
 
-			yield return null;
+			//yield return null;
+			yield return new WaitForSeconds(0.02f);
 		}
 	}
 }

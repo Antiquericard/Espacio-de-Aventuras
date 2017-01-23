@@ -19,7 +19,7 @@ public class Astronaut : MonoBehaviour {
 
 	void Update () {
 		bool control;
-
+		Debug.Log (this.GetComponent<Rigidbody> ().velocity.magnitude);
 		#if UNITY_STANDALONE
 
 			control = Input.GetKeyDown(KeyCode.R);

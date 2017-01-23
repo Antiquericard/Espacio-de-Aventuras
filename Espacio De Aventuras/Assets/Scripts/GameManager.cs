@@ -127,7 +127,7 @@ public class GameManager : MonoBehaviour {
 		float adjustedPowerValue = ((powerValue - .01f) * .75f / .99f) + .25f;
 
 		astronaut.SetActive (true);
-		astronaut.GetComponent<Astronaut> ().Init (adjustedPowerValue * startingVelocity, spaceShip.GetComponent<SpaceShipMovement>().movement);
+		astronaut.GetComponent<Astronaut> ().Init (adjustedPowerValue * startingVelocity, /*spaceShip.GetComponent<SpaceShipMovement>().movement*/ Vector3.zero);
 		powerValue = 0f;
 
 		//Esto rota la distancia. Es importante que el Quaternion tiene que estar en el LADO IZQUIERDO

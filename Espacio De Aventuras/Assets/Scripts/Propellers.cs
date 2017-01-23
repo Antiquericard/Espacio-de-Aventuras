@@ -15,7 +15,9 @@ public class Propellers : MonoBehaviour {
 	float sidePower = 2f;
 	[SerializeField]
 	float decreaseRate = 10f;
-
+	[SerializeField]
+	float maxSpeed = 45f;
+	float sqrMaxSpeed;
 	Rigidbody rigid;
 
 	ParticleSystem left;
@@ -34,6 +36,7 @@ public class Propellers : MonoBehaviour {
 		up = transform.GetChild(0).FindChild ("upPropeller").GetComponent<ParticleSystem> ();
 		fuelBar = GameObject.Find ("Fuel").GetComponent<Slider> ();
 		fuelAmount = maxFuel;
+		sqrMaxSpeed = maxSpeed * maxSpeed;
 	}
 
 	void FixedUpdate(){
@@ -78,6 +81,10 @@ public class Propellers : MonoBehaviour {
 		} else {
 			StopParticleSystem (left);
 			StopParticleSystem (right);
+		}
+
+		if (rigid.velocity.sqrMagnitude > sqrMaxSpeed) {
+			rigid.velocity = rigid.velocity / rigid.velocity.magnitude * maxSpeed;
 		}
 
 		float vertical;
