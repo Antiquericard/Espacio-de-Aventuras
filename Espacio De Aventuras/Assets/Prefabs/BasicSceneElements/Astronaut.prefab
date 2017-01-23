@@ -2119,7 +2119,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -2181,6 +2181,7 @@ MonoBehaviour:
   frontPower: 3
   sidePower: 1
   decreaseRate: 5
+  maxSpeed: 45
 --- !u!114 &114428009260200390
 MonoBehaviour:
   m_ObjectHideFlags: 1

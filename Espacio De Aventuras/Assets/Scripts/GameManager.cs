@@ -165,6 +165,8 @@ public class GameManager : MonoBehaviour {
 		float adjustedPowerValue = ((powerValue - .01f) * .75f / .99f) + .25f;
 
 		astronaut.SetActive (true);
+		astronaut.gameObject.tag = "Player"; //El tag se lo quitamos en el tiro anterior para evitar a los planetas
+		astronaut.gameObject.layer = 0; //Asi podra chocar con los planetas de nuevo
 		astronaut.GetComponent<Astronaut> ().Init (adjustedPowerValue * startingVelocity, /*spaceShip.GetComponent<SpaceShipMovement>().movement*/ Vector3.zero);
 		powerValue = 0f;
 
