@@ -19,7 +19,6 @@ public class Astronaut : MonoBehaviour {
 
 	void Update () {
 		bool control;
-		Debug.Log (this.GetComponent<Rigidbody> ().velocity.magnitude);
 		#if UNITY_STANDALONE
 
 			control = Input.GetKeyDown(KeyCode.R);
@@ -83,6 +82,7 @@ public class Astronaut : MonoBehaviour {
 		transform.GetComponent<Rigidbody> ().isKinematic = true;
 
 		while (Vector3.Distance(targetPos, transform.position) > 2.5f) {
+			transform.LookAt (cannon); //por si acaso hay algun problema con los planetas
 			transform.position += transform.forward * moveSpeed * Time.deltaTime;
 			yield return null;
 		}

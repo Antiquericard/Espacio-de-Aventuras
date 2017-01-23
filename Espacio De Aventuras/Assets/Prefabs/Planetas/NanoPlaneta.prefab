@@ -23,7 +23,9 @@ GameObject:
   - component: {fileID: 135000010352631688}
   - component: {fileID: 23000012372231252}
   - component: {fileID: 114000012437648208}
-  m_Layer: 0
+  - component: {fileID: 114439119921101332}
+  - component: {fileID: 114888755381097740}
+  m_Layer: 9
   m_Name: NanoPlaneta
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +44,7 @@ GameObject:
   - component: {fileID: 135000013345029396}
   - component: {fileID: 23000013192999128}
   - component: {fileID: 114000010236671818}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Atmosphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,7 +58,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010883684164}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4000014014470406}
@@ -178,6 +180,46 @@ MonoBehaviour:
   gravity: -10
   speedRotation: 1
   forceMode: 5
+--- !u!114 &114439119921101332
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010883684164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce0cee02965c0974db5c25d8b41ff873, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114888755381097740
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010883684164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49734c0730f96434aad78c319e51af2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wayPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  speed: 5
 --- !u!135 &135000010352631688
 SphereCollider:
   m_ObjectHideFlags: 1
