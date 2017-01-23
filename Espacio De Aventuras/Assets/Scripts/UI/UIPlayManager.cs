@@ -32,6 +32,8 @@ public class UIPlayManager : MonoBehaviour{
 
 	[SerializeField] GameObject cam;
 
+	[SerializeField] GameObject deuterio;
+
 	//--------------------------------------
 	// Unity Methods
 	//--------------------------------------
