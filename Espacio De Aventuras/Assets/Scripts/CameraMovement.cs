@@ -28,9 +28,9 @@ public class CameraMovement : MonoBehaviour {
 
 	[Tooltip("")] [SerializeField] float scaleRotationY = 1f;
 
-	[Tooltip("")] [SerializeField] float scaleRotationPhoneX = 1f;
+	//[Tooltip("")] [SerializeField] float scaleRotationPhoneX = 1f;
 
-	[Tooltip("")] [SerializeField] float scaleRotationPhoneY = 1f;
+	//[Tooltip("")] [SerializeField] float scaleRotationPhoneY = 1f;
 
 	[Tooltip("")] [SerializeField] float positionDamping = 25f;
 

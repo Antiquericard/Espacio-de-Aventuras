@@ -30,7 +30,7 @@ public class Astronaut : MonoBehaviour {
 	[Tooltip("Velocidad a la que retorna el personaje a la nave.")] [SerializeField] float moveSpeed = 10f;
 
 	// Tiempo en el cual se mantiene pulsada la pantalla.
-	float touchTime = 0f;
+	//float touchTime = 0f;
 
 	#endregion
 

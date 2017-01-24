@@ -864,6 +864,26 @@ Prefab:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1719176432}
+    - target: {fileID: 114034241803053544, guid: d55d2882d119b42bb8b0d2e1fe09256a,
+        type: 2}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 1440481887}
+    - target: {fileID: 114034241803053544, guid: d55d2882d119b42bb8b0d2e1fe09256a,
+        type: 2}
+      propertyPath: UIElement
+      value: 
+      objectReference: {fileID: 586698950}
+    - target: {fileID: 114034241803053544, guid: d55d2882d119b42bb8b0d2e1fe09256a,
+        type: 2}
+      propertyPath: camera
+      value: 
+      objectReference: {fileID: 1719176432}
+    - target: {fileID: 114034241803053544, guid: d55d2882d119b42bb8b0d2e1fe09256a,
+        type: 2}
+      propertyPath: offsetY
+      value: 40
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114795850479782610, guid: d55d2882d119b42bb8b0d2e1fe09256a, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: d55d2882d119b42bb8b0d2e1fe09256a, type: 2}
@@ -1000,7 +1020,7 @@ GameObject:
   m_Component:
   - component: {fileID: 391108005}
   - component: {fileID: 391108006}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: PlanetMiniMap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1172,6 +1192,11 @@ Transform:
   m_PrefabParentObject: {fileID: 4560099042164456, guid: ae4b037b41b364e809ae7b2189174b65,
     type: 2}
   m_PrefabInternal: {fileID: 256749876}
+--- !u!224 &586698950 stripped
+RectTransform:
+  m_PrefabParentObject: {fileID: 224104353545900820, guid: d55d2882d119b42bb8b0d2e1fe09256a,
+    type: 2}
+  m_PrefabInternal: {fileID: 314583803}
 --- !u!1 &652012601
 GameObject:
   m_ObjectHideFlags: 0
@@ -4595,27 +4620,6 @@ Transform:
   m_Father: {fileID: 689836865}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1200200520 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1540919735467306, guid: d55d2882d119b42bb8b0d2e1fe09256a,
-    type: 2}
-  m_PrefabInternal: {fileID: 314583803}
---- !u!114 &1200200521
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1200200520}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 785e87f7df07d439cbe3e3eed32dc432, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  UIElement: {fileID: 0}
-  camera: {fileID: 0}
-  canvas: {fileID: 0}
-  offsetY: 0
 --- !u!1 &1238805761
 GameObject:
   m_ObjectHideFlags: 0
@@ -5462,7 +5466,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1654686264}
   - component: {fileID: 1654686265}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: PlanetMiniMap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
