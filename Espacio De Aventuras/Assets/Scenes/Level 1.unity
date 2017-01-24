@@ -1156,6 +1156,7 @@ MonoBehaviour:
   - {fileID: 663663971}
   - {fileID: 1752739495}
   speed: 5
+  allow: 1
 --- !u!114 &513107841
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4550,6 +4551,7 @@ MonoBehaviour:
   - {fileID: 1739529069}
   - {fileID: 714480408}
   speed: 5
+  allow: 1
 --- !u!114 &1106194900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5762,6 +5764,7 @@ MonoBehaviour:
   - {fileID: 837311686}
   - {fileID: 1307213976}
   speed: 5
+  allow: 1
 --- !u!114 &1671343253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6083,7 +6086,7 @@ Prefab:
     - target: {fileID: 114549568313708388, guid: 89d0fb17fb485416d81b21d1abf260af,
         type: 2}
       propertyPath: speed
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 20021024659583778, guid: 89d0fb17fb485416d81b21d1abf260af,
         type: 2}
@@ -6244,6 +6247,7 @@ MonoBehaviour:
   - {fileID: 145919348}
   - {fileID: 2080452956}
   speed: 5
+  allow: 1
 --- !u!114 &2083762572
 MonoBehaviour:
   m_ObjectHideFlags: 0
