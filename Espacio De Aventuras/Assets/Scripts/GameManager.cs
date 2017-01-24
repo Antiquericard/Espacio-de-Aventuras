@@ -99,8 +99,7 @@ public class GameManager : MonoBehaviour {
 	void Awake(){
 		if (instance == null) {
 			instance = this;
-			//Hay que plantearse volver a descomentar esta linea
-			//DontDestroyOnLoad (this.gameObject);
+			DontDestroyOnLoad (this.gameObject);
 		} else {
 			Destroy (this.gameObject);
 		}
