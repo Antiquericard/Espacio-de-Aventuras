@@ -31,7 +31,7 @@ public class Recoger : MonoBehaviour {
 			hit.GetComponent<Animator> ().SetBool ("Recoge", true);
 			hit.GetComponent<Animator> ().SetBool ("Recoge", false);
 			this.GetComponent<AudioSource> ().Play ();
-            GameManager.instance.CompleteLevel(true);
+            GameManager.Instance.CompleteLevel(true);
 		}
 	}
 

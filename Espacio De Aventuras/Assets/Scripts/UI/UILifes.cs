@@ -33,7 +33,7 @@ public class UILifes : MonoBehaviour{
 
 	// Cada vez que perdamos una vida, se eliminará esta vida.
 	protected virtual void Update () {
-		if (GameManager.instance.lifes < life) {
+		if (GameManager.Instance.lifes < life) {
 			gameObject.SetActive (false);
 		}
 	}

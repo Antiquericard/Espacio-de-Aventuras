@@ -21,14 +21,7 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class GameManager : MonoBehaviour {
-
-	private static GameManager _instance;
-	public static GameManager instance{
-		get{
-			return _instance;
-		}
-	}
+public class GameManager : Singleton<GameManager> {
 
 	#region Setting Attributes
 
@@ -94,17 +87,6 @@ public class GameManager : MonoBehaviour {
 	#endregion
 
 	#region Unity Methods
-
-	//
-	void Awake(){
-		if (instance == null) {
-			instance = this;
-			DontDestroyOnLoad (this.gameObject);
-		} else {
-			Destroy (this.gameObject);
-		}
-
-	}
 
 	//
 	void Start(){
@@ -274,7 +256,7 @@ public class GameManager : MonoBehaviour {
 		yield return new WaitForSeconds (.5f);
 		astronaut.GetComponent<Rigidbody> ().velocity = new Vector3 ();
 		//particles.Play ();
-		if (--GameManager.instance.lifes > 0) {
+		if (--GameManager.Instance.lifes > 0) {
 			astronaut.GetComponent<Astronaut> ().StartCoroutine ("ReturnToSpaceShip");
 			astronautTrueDistance =  astronaut.transform.rotation * CAMERA_ASTRONAUT_DISTANCE;
 		} else {

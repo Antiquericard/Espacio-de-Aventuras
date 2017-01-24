@@ -75,7 +75,7 @@ public class CameraMovement : MonoBehaviour {
 	// Seguimiento de la cámará cuando se encuentra fuera de la nave y el sistema de disparo cuando se encuentre dentro.
 	void LateUpdate () {
 
-		if (GameManager.instance.mode == GameManager.ShootingMode.Shooting || GameManager.instance.mode == GameManager.ShootingMode.Returning) {
+		if (GameManager.Instance.mode == GameManager.ShootingMode.Shooting || GameManager.Instance.mode == GameManager.ShootingMode.Returning) {
 			//Si llega hasta aqui es que ha disparado
 			transform.position = Vector3.MoveTowards(transform.position, wantedPosition, Time.deltaTime * positionDamping);
 			if (allowedRotation)

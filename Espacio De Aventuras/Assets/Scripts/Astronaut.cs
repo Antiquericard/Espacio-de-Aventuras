@@ -93,9 +93,9 @@ public class Astronaut : MonoBehaviour {
 
 		#endif
 
-		if (GameManager.instance.mode == GameManager.ShootingMode.Shooting && control) {
+		if (GameManager.Instance.mode == GameManager.ShootingMode.Shooting && control) {
 			control = false;
-			GameManager.instance.LaunchFail ();
+			GameManager.Instance.LaunchFail ();
 		}
 	}
 
@@ -107,7 +107,7 @@ public class Astronaut : MonoBehaviour {
 	public void Init(float speed, Vector3 shipSpeed){
 		returned = false;
 		transform.parent = cannon;
-		transform.localPosition = GameManager.instance.ASTRONAUT_CANNON_DISTANCE;
+		transform.localPosition = GameManager.Instance.ASTRONAUT_CANNON_DISTANCE;
 		transform.rotation = Quaternion.Euler(cannon.GetChild(0).eulerAngles + new Vector3(180f, 0f,0f));
 		transform.parent = null;
 
@@ -123,7 +123,7 @@ public class Astronaut : MonoBehaviour {
 	public IEnumerator ReturnToSpaceShip (){
 		this.GetComponent<AudioSource> ().Play ();
 		transform.LookAt (cannon);
-		Vector3 targetPos = cannon.position + GameManager.instance.ASTRONAUT_CANNON_DISTANCE;
+		Vector3 targetPos = cannon.position + GameManager.Instance.ASTRONAUT_CANNON_DISTANCE;
 		transform.GetComponent<Rigidbody> ().isKinematic = true;
 
 		while (!returned) {
@@ -132,7 +132,7 @@ public class Astronaut : MonoBehaviour {
 			yield return null;
 		}
 		propellers.Refuel ();
-		GameManager.instance.ReturnToIdleMode();
+		GameManager.Instance.ReturnToIdleMode();
 		transform.GetComponent<Rigidbody> ().isKinematic = false;
 		gameObject.SetActive (false);
 	}
