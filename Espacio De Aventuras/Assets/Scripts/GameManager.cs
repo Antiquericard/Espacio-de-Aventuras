@@ -23,7 +23,12 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
-	public static GameManager _instance;
+	private static GameManager _instance;
+	public static GameManager instance{
+		get{
+			return _instance;
+		}
+	}
 
 	#region Setting Attributes
 
@@ -92,8 +97,9 @@ public class GameManager : MonoBehaviour {
 
 	//
 	void Awake(){
-		if (_instance == null) {
-			_instance = this;
+		if (instance == null) {
+			instance = this;
+			//Hay que plantearse volver a descomentar esta linea
 			//DontDestroyOnLoad (this.gameObject);
 		} else {
 			Destroy (this.gameObject);
@@ -269,7 +275,7 @@ public class GameManager : MonoBehaviour {
 		yield return new WaitForSeconds (.5f);
 		astronaut.GetComponent<Rigidbody> ().velocity = new Vector3 ();
 		//particles.Play ();
-		if (--GameManager._instance.lifes > 0) {
+		if (--GameManager.instance.lifes > 0) {
 			astronaut.GetComponent<Astronaut> ().StartCoroutine ("ReturnToSpaceShip");
 			astronautTrueDistance =  astronaut.transform.rotation * CAMERA_ASTRONAUT_DISTANCE;
 		} else {
