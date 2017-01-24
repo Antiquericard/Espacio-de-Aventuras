@@ -29,6 +29,8 @@ public class Orbitacion : MonoBehaviour{
 
 	[Tooltip("Velocidad a la cual el GameObject se desplazará por la órbita.")] [SerializeField] public float speed = 5f;
 
+	public bool allow = true;
+
 	#endregion
 
 	#region Unity Methods
@@ -43,9 +45,8 @@ public class Orbitacion : MonoBehaviour{
 
 	// Se crea una Coroutine para ejecutar el movimiento de un wayPoint a otro cada vez que alcanza el siguiente WayPoint.
 	IEnumerator Movement (){
-
 		int index = 0;
-		while (true) {
+		while (allow) {
 			Vector3 distancia = transform.localPosition - wayPoints [index].position;
 			if (distancia.sqrMagnitude == 0) {
 				index++;
@@ -55,8 +56,7 @@ public class Orbitacion : MonoBehaviour{
 			transform.position = Vector3.MoveTowards (transform.localPosition, wayPoints [index].position, speed * Time.deltaTime);
 			transform.LookAt (Vector3.zero);
 
-			//yield return null;
-			yield return new WaitForSeconds(0.02f);
+			yield return new WaitForSeconds (0.02f);
 		}
 	}
 
