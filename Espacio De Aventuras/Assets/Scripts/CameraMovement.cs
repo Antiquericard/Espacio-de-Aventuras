@@ -20,30 +20,33 @@
 using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// Este script mueve la cámara selectivamente dependiendo del modo de disparo.
+/// </summary>
 public class CameraMovement : MonoBehaviour {
 
 	#region Setting Attributes
 
+	#pragma warning disable 0108
+
 	[Tooltip("")] [SerializeField] float scaleRotationX = 1f;
-
 	[Tooltip("")] [SerializeField] float scaleRotationY = 1f;
+	[Tooltip("")] [SerializeField] float scaleRotationPhoneX = 1f;
+	[Tooltip("")] [SerializeField] float scaleRotationPhoneY = 1f;
 
-	//[Tooltip("")] [SerializeField] float scaleRotationPhoneX = 1f;
-
-	//[Tooltip("")] [SerializeField] float scaleRotationPhoneY = 1f;
+	#pragma warning restore 0108
 
 	[Tooltip("")] [SerializeField] float positionDamping = 25f;
 
 	[Tooltip("")] [SerializeField] float rotationDamping = 10f;
 
-	// XXX
 	bool _allowedRotation = true;
 
 	#endregion
 
 	#region Getters & Setters
 
-	// XXX
+	// Variable que permite habilitar o deshabilitar la rotación de la cámara
 	public bool allowedRotation {
 		get{
 			return _allowedRotation;
@@ -67,9 +70,6 @@ public class CameraMovement : MonoBehaviour {
 
 	#endregion
 
-	// Update is called once per frame
-	//AQUI ESTÁN LOS INPUTS PARA MOBILE
-
 	#region Unity Methods
 
 	// Seguimiento de la cámará cuando se encuentra fuera de la nave y el sistema de disparo cuando se encuentre dentro.
@@ -82,16 +82,16 @@ public class CameraMovement : MonoBehaviour {
 				transform.rotation = Quaternion.Slerp (transform.rotation, wantedRotation, Time.deltaTime * rotationDamping);
 		} else {
 
-			//En esta linea se dá por hecho que el padre de la camara es el cannon.
-
 			float xValue = 0f;
 			float yValue = 0f;
 
+			// Para la versión de escritorio simplemente cogemos la entrada de ratón
 			#if UNITY_STANDALONE
 			xValue = scaleRotationX * Input.GetAxis("Mouse X");
 			yValue = -scaleRotationY * Input.GetAxis("Mouse Y");
 			#endif
 
+			// Para la versión de móvil cogemos el movimiento táctil, pero lo capeamos un poco para que la velocidad alta no importe tanto
 			#if UNITY_ANDROID
 
 			if(Input.touchCount > 0){
@@ -115,6 +115,7 @@ public class CameraMovement : MonoBehaviour {
 
 			#endif
 
+			//Igual que para android
 			#if UNITY_IOS
 
 			if(Input.touchCount > 0){
@@ -138,6 +139,7 @@ public class CameraMovement : MonoBehaviour {
 
 			#endif
 
+			//Aquí aplicamos el movimiento. Como se puede ver, se da por hecho que el cañon es el abuelo de la camaraa
 			transform.parent.parent.Rotate (yValue, xValue, 0f);
 		}
 

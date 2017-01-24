@@ -22,6 +22,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Ofrece funcionalidad de poder controlar propulsores con combustible al jugador
+/// </summary>
 [RequireComponent(typeof(Rigidbody))]
 public class Propellers : MonoBehaviour {
 
@@ -69,6 +72,7 @@ public class Propellers : MonoBehaviour {
 	#region Unity Methods
 
 	void Awake(){
+		//Inicializamos todos los objetos
 		rigid = GetComponent<Rigidbody> ();
 		left = transform.GetChild(0).FindChild ("leftPropeller").GetComponent<ParticleSystem> ();
 		right = transform.GetChild(0).FindChild ("rightPropeller").GetComponent<ParticleSystem> ();
@@ -79,6 +83,8 @@ public class Propellers : MonoBehaviour {
 	}
 
 	void FixedUpdate(){
+		//En este código recogemos para dónde se quiere mover el jugador, convertimos el movimiento a los ejes locales
+		//Y entonces lo impulsamos en la dirección deseada
 		if (moveSide != 0) {
 			Vector3 localRight = transform.worldToLocalMatrix.MultiplyVector (transform.right);
 			rigid.AddForce (localRight * moveSide * sidePower, ForceMode.Impulse);
@@ -91,13 +97,15 @@ public class Propellers : MonoBehaviour {
 	}
 
 	void Update(){
-
+		
 		float horizontal;
+		//En escritorio simplemente son los ejes
 		#if UNITY_STANDALONE
 		horizontal = Input.GetAxis ("Horizontal");
 		#endif
 
 		#if UNITY_ANDROID || UNITY_IOS
+		//Utilizamos el acelerómetro, pero capamos los valores muy pequeños a 0, para que se pueda quedar sin mover los propulsores fácil
 		horizontal = Input.acceleration.x;
 		if(horizontal > -0.2f && horizontal < 0.2f){
 			horizontal = 0;
@@ -105,6 +113,8 @@ public class Propellers : MonoBehaviour {
 		#endif
 
 
+		//Todo este código define el combustible que tenemos y cómo queda, y además los sistemas
+		//de partículas de los propulsores
 		if (horizontal != 0 && fuelAmount > 0f && GameManager._instance.mode == GameManager.ShootingMode.Shooting) {
 			moveSide = horizontal;
 			fuelAmount -= decreaseRate * Time.deltaTime;
@@ -122,12 +132,14 @@ public class Propellers : MonoBehaviour {
 			StopParticleSystem (right);
 		}
 
+		//Capamos la velocidad máxima del astronauta por motivos de seguridad (y por jugabilidad)
 		if (rigid.velocity.sqrMagnitude > sqrMaxSpeed) {
 			rigid.velocity = rigid.velocity / rigid.velocity.magnitude * maxSpeed;
 		}
 
 		float vertical;
 
+		//Ver controles horizontales
 		#if UNITY_STANDALONE
 		vertical = Input.GetAxis ("Vertical");
 		#endif
@@ -146,6 +158,7 @@ public class Propellers : MonoBehaviour {
 		}
 		#endif
 
+		//Ver manejo horizontal, pero esta simplificado porque no hay atrás
 		if (vertical > 0 && fuelAmount > 0f && GameManager._instance.mode == GameManager.ShootingMode.Shooting) {
 			moveFront = vertical;
 			fuelAmount -= decreaseRate * 2 * Time.deltaTime;
@@ -161,21 +174,29 @@ public class Propellers : MonoBehaviour {
 
 	#region Private Methods
 
-	// Activa el sistema de partículas.
+	/// <summary>
+	/// Activa el sistema de partículas, pero sólo si no estaba ya activo.
+	/// </summary>
+	/// <param name="parts">El sistema de partículas</param>
 	void PlayParticleSystem(ParticleSystem parts){
 		if (!parts.isPlaying) {
 			parts.Play ();
 		}
 	}
 
-	// Para el sistema de partículas.
+	/// <summary>
+	/// Detiende el sistema de partículas, pero sólo si no estaba ya detenido.
+	/// </summary>
+	/// <param name="parts">El sistema de partículas</param>
 	void StopParticleSystem(ParticleSystem parts){
 		if (parts.isPlaying) {
 			parts.Stop ();
 		}
 	}
 
-	// Recarga el fuel.
+	/// <summary>
+	/// Recarga el combustible
+	/// </summary>
 	public void Refuel(){
 		fuelAmount = maxFuel;
 		fuelBar.value = 100;

@@ -39,11 +39,9 @@ public class GameManager : MonoBehaviour {
 	// Nivel de la escena.
     public int level;
 
-	// 
-	string [] levelTexts;
-
-	// ¿Victoria?
-	public bool vic;
+	// Subtitulos de cada nivel, level es el indice
+	// TODO ESTO NO DEBERIA ESTAR AQUI DEBERIAMOS GUARDAR LOS TEXTOS DE LOS NIVELES APARTE
+	public string [] levelTexts;
 
 	//Variable de suavizado.
 	float lerp;
@@ -54,14 +52,16 @@ public class GameManager : MonoBehaviour {
 	// Modo de disparo.
 	public ShootingMode mode;
 
+
+	//Constantes de posicionamiento de objetos
 	[Tooltip("")] [SerializeField] public Vector3 CAMERA_CANNON_DISTANCE = new Vector3 (0f, -0.8f,0.47f);
 
 	[Tooltip("")] [SerializeField] public Vector3 CAMERA_ASTRONAUT_DISTANCE = new Vector3 (0f,1f,-2.5f);
 
 	[Tooltip("")] [SerializeField] public Vector3 ASTRONAUT_CANNON_DISTANCE = new Vector3 (0f, 1f, 0f);
 
-	//OBJECTS
 
+	//Objetos requeridos de introducir
 	[Tooltip("Barra vacía.")] [SerializeField] Texture2D emptyPowerBar;
 
 	[Tooltip("Barra llena.")] [SerializeField] Texture2D fullPowerBar;
@@ -78,8 +78,8 @@ public class GameManager : MonoBehaviour {
 
 	[Tooltip("Interfaz de derrota.")] [SerializeField] GameObject Lose;
 
-	//PARAMETROS
 
+	//Parámetros
 	[Tooltip("Vidas totales para el nivel.")] [SerializeField] public int lifes = 3;
 
 	[Tooltip("Velocidad inicial del astronauta al dispararse.")] [SerializeField] float startingVelocity = 100f;
@@ -103,7 +103,10 @@ public class GameManager : MonoBehaviour {
 
 	//
 	void Start(){
+		//Cogemos el nivel
 		level = SceneManager.GetActiveScene ().buildIndex;
+		//TODO coger el texto
+
 		//Creamos un astronauta, solo usaremos ese no tenemos que crear mas
 		astronaut = Instantiate (astronautPrefab, Vector3.zero, Quaternion.identity) as GameObject;
 		astronaut.GetComponent<Astronaut>().cannon = cannon;
@@ -115,12 +118,13 @@ public class GameManager : MonoBehaviour {
 	void Update () {
 		switch (mode) {
 		case ShootingMode.Idle:
+			//Si está esperando...
 			if (Input.GetMouseButtonDown (0)) {
 				mode = ShootingMode.Aiming;
 			}
 			break;
 		case ShootingMode.Aiming:
-			//Apuntando
+			//Apuntando...
 			if (Input.GetMouseButtonUp (0)) {
 				cannon.GetComponent<AudioSource> ().Play ();
 				Shoot ();
@@ -132,19 +136,21 @@ public class GameManager : MonoBehaviour {
 			}
 			break;
 		case ShootingMode.Shooting:
-			//Disparando
+			//Ya ha disparado!
 			mainCamera.GetComponent<CameraMovement> ().wantedPosition = astronaut.transform.position + astronautTrueDistance;
 			mainCamera.GetComponent<CameraMovement> ().wantedRotation = astronaut.transform.rotation;
 			break;
 		case ShootingMode.Returning:
-			//Volviendo
+			//Volviendo a la nave
 			mainCamera.GetComponent<CameraMovement> ().wantedPosition = astronaut.transform.position + astronautTrueDistance;
 			mainCamera.GetComponent<CameraMovement> ().wantedRotation = astronaut.transform.rotation;
 			break;
 		}
 	}
-
-	// Representación gráfica de la potencia.
+		
+	/// <summary>
+	/// Representación gráfica de la potencia.
+	/// </summary>
 	void OnGUI() {
 		if (mode == ShootingMode.Aiming) {
 			GUI.DrawTexture(new Rect(Screen.width/4, Screen.height - 100, Screen.width/2, 50), emptyPowerBar);
@@ -156,7 +162,9 @@ public class GameManager : MonoBehaviour {
 
 	#region Public Methods
 
-	// Método para realizar el disparo.
+	/// <summary>
+	/// Método para realizar el disparo.
+	/// </summary>
 	public void Shoot(){
 
 		//Ajustamos la potencia: Un disparo completamente cargado tiene 4 veces más potencia que uno sin cargar
@@ -167,21 +175,26 @@ public class GameManager : MonoBehaviour {
 		astronaut.SetActive (true);
 		astronaut.gameObject.tag = "Player"; //El tag se lo quitamos en el tiro anterior para evitar a los planetas
 		astronaut.gameObject.layer = 0; //Asi podra chocar con los planetas de nuevo
-		astronaut.GetComponent<Astronaut> ().Init (adjustedPowerValue * startingVelocity, /*spaceShip.GetComponent<SpaceShipMovement>().movement*/ Vector3.zero);
+		astronaut.GetComponent<Astronaut> ().Init (adjustedPowerValue * startingVelocity, Vector3.zero);
 		powerValue = 0f;
 
-		//Esto rota la distancia. Es importante que el Quaternion tiene que estar en el LADO IZQUIERDO
+		//Esto rota la distancia. Es importante que el Quaternion tiene que estar en el LADO IZQUIERDO del Vector3 para poder rotarlo
 		astronautTrueDistance =  astronaut.transform.rotation * CAMERA_ASTRONAUT_DISTANCE;
 
 		mode = ShootingMode.Shooting;
 
+		//Ponemos la camara arriba del todo de la jerarquia
 		mainCamera.transform.SetParent(null);
 
+		//Desactivamos la ayuda para disparar
 		cannon.GetChild(0).GetComponentInChildren<ParticleSystem> ().Clear ();
 		cannon.GetChild(0).GetComponentInChildren<ParticleSystem> ().Stop ();
 
 	}
 
+	/// <summary>
+	/// Se ejecuta cuando el astronauta pierde una vida. Le devuelve a la nave.
+	/// </summary>
 	public void LaunchFail(){
 		astronaut.transform.tag = "PlayerLose"; //asi no chocara con planetas ni activara gravedad en su vuelta
 		astronaut.transform.gameObject.layer = 7; //evita que pueda chocar con planetas
@@ -191,7 +204,10 @@ public class GameManager : MonoBehaviour {
 		StartCoroutine ("DieCoroutine");
 	}
 
-	// Método para volver al estado inicial de disparo.
+
+	/// <summary>
+	/// Método para volver al estado inicial de disparo.
+	/// </summary>
 	public void ReturnToIdleMode(){
 		mode = ShootingMode.Idle;
 		mainCamera.transform.SetParent (cannon.GetChild(0));
@@ -200,8 +216,11 @@ public class GameManager : MonoBehaviour {
 		cannon.GetComponentInChildren<ParticleSystem> ().Play ();
 	}
 
-	// Método para completar el nivel.
-    public void CompleteLevel() {
+	/// <summary>
+	/// Método para completar el nivel.
+	/// </summary>
+	/// <param name="vic">Si ganó o perdió el nivel</param>
+	public void CompleteLevel(bool vic) {
 		if (vic) {
 			Victory.SetActive(true);
 			StartCoroutine(LevelCompleted(Victory));
@@ -211,7 +230,9 @@ public class GameManager : MonoBehaviour {
 		}
     }
 		
-	// Método para comenzar el siguiente nivel.
+	/// <summary>
+	/// Método para comenzar el siguiente nivel.
+	/// </summary>
 	public void NextLevel (){
 		Time.timeScale = 1f;
 		SceneManager.LoadScene ("Level " + (level + 1).ToString ());
@@ -221,7 +242,11 @@ public class GameManager : MonoBehaviour {
 
 	#region Coroutines
 
-	// Coroutine para completar el nivel.
+	/// <summary>
+	/// Coroutine para completar el nivel.
+	/// </summary>
+	/// <param name="can">El objeto canvas de la escena.</param>
+	/// <returns>>The coroutine</returns>
 	IEnumerator LevelCompleted (GameObject can){
 		//Guardamos la partida antes que nada
 		SaveGameManager.Save(level);
@@ -236,8 +261,11 @@ public class GameManager : MonoBehaviour {
 			yield return null;
 		}
 	}
-
-	// Coroutine al perder una vida, si se pierden todas comienza pantalla de derrota.
+		
+	/// <summary>
+	/// Coroutine al perder una vida, si se pierden todas comienza pantalla de derrota.
+	/// </summary>
+	/// <returns>The coroutine.</returns>
 	IEnumerator DieCoroutine(){
 		yield return new WaitForSeconds (.5f);
 		astronaut.GetComponent<Rigidbody> ().velocity = new Vector3 ();
@@ -246,8 +274,7 @@ public class GameManager : MonoBehaviour {
 			astronaut.GetComponent<Astronaut> ().StartCoroutine ("ReturnToSpaceShip");
 			astronautTrueDistance =  astronaut.transform.rotation * CAMERA_ASTRONAUT_DISTANCE;
 		} else {
-			vic = false;
-			CompleteLevel ();
+			CompleteLevel (false);
 		}
 	}
 
