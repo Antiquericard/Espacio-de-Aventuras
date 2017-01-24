@@ -78,7 +78,7 @@ public class CameraMovement : MonoBehaviour {
 		if (GameManager._instance.mode == GameManager.ShootingMode.Shooting || GameManager._instance.mode == GameManager.ShootingMode.Returning) {
 			//Si llega hasta aqui es que ha disparado
 			transform.position = Vector3.MoveTowards(transform.position, wantedPosition, Time.deltaTime * positionDamping);
-			if(allowedRotation)
+			if (allowedRotation)
 				transform.rotation = Quaternion.Slerp (transform.rotation, wantedRotation, Time.deltaTime * rotationDamping);
 		} else {
 

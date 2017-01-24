@@ -182,6 +182,15 @@ public class GameManager : MonoBehaviour {
 
 	}
 
+	public void LaunchFail(){
+		astronaut.transform.tag = "PlayerLose"; //asi no chocara con planetas ni activara gravedad en su vuelta
+		astronaut.transform.gameObject.layer = 7; //evita que pueda chocar con planetas
+		mode = ShootingMode.Returning;
+		//En el caso de los planetas, hay que volver a activar la rotacion de la camara
+		Camera.main.GetComponent<CameraMovement> ().allowedRotation = true; 
+		StartCoroutine ("DieCoroutine");
+	}
+
 	// Método para volver al estado inicial de disparo.
 	public void ReturnToIdleMode(){
 		mode = ShootingMode.Idle;
