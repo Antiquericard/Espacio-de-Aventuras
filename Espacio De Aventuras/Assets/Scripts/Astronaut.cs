@@ -30,7 +30,11 @@ public class Astronaut : MonoBehaviour {
 	[Tooltip("Velocidad a la que retorna el personaje a la nave.")] [SerializeField] float moveSpeed = 10f;
 
 	// Tiempo en el cual se mantiene pulsada la pantalla.
-	//float touchTime = 0f;
+	#pragma warning disable 0108
+	float touchTime = 0f;
+	#pragma warning restore 0108
+
+	public bool returned = false;
 
 	#endregion
 
@@ -91,9 +95,7 @@ public class Astronaut : MonoBehaviour {
 
 		if (GameManager._instance.mode == GameManager.ShootingMode.Shooting && control) {
 			control = false;
-			GameManager._instance.mode = GameManager.ShootingMode.Returning;
-			GameManager._instance.StartCoroutine ("DieCoroutine");
-		}
+			GameManager._instance.LaunchFail ();
 	}
 
 	#endregion
@@ -102,6 +104,7 @@ public class Astronaut : MonoBehaviour {
 
 	// Método para comenzar el primer disparo.
 	public void Init(float speed, Vector3 shipSpeed){
+		returned = false;
 		transform.parent = cannon;
 		transform.localPosition = GameManager._instance.ASTRONAUT_CANNON_DISTANCE;
 		transform.rotation = Quaternion.Euler(cannon.GetChild(0).eulerAngles + new Vector3(180f, 0f,0f));
@@ -122,7 +125,7 @@ public class Astronaut : MonoBehaviour {
 		Vector3 targetPos = cannon.position + GameManager._instance.ASTRONAUT_CANNON_DISTANCE;
 		transform.GetComponent<Rigidbody> ().isKinematic = true;
 
-		while (Vector3.Distance(targetPos, transform.position) > 2.5f) {
+		while (!returned) {
 			transform.LookAt (cannon); //por si acaso hay algun problema con los planetas
 			transform.position += transform.forward * moveSpeed * Time.deltaTime;
 			yield return null;

@@ -110,7 +110,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -134,13 +134,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8dd1f2fbc3ef144abb33c3ac3a809f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifes: 3
   level: 0
-  vic: 0
+  levelTexts: []
   mode: 0
   CAMERA_CANNON_DISTANCE: {x: 0, y: -0.8, z: 0.47}
   CAMERA_ASTRONAUT_DISTANCE: {x: 0, y: 1, z: -2.5}
-  ASTRONAUT_CANNON_DISTANCE: {x: 0, y: 0, z: 0}
+  ASTRONAUT_CANNON_DISTANCE: {x: 0, y: 1, z: 0.5}
   emptyPowerBar: {fileID: 2800000, guid: 47664d36896b52c45b738e067e6d7e2b, type: 3}
   fullPowerBar: {fileID: 2800000, guid: 3cd06f8caf01856418f0dc6460daf2cb, type: 3}
   astronautPrefab: {fileID: 1859090067623148, guid: 25bf8efddfd97fb4c9c28e04ae566073,
@@ -150,6 +149,7 @@ MonoBehaviour:
   mainCamera: {fileID: 0}
   Victory: {fileID: 0}
   Lose: {fileID: 0}
+  lifes: 3
   startingVelocity: 100
   powerIncreaseRate: 1
 --- !u!114 &114463316968365324
@@ -179,3 +179,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 0}
   cam: {fileID: 0}
+  deuterio: {fileID: 0}

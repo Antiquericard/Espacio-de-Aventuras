@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour {
 	#region Setting Attributes
 
 	// GameObject astronauta.
+	[SerializeField]
 	GameObject astronaut;
 
 	// Valor de potencia.
@@ -52,13 +53,12 @@ public class GameManager : MonoBehaviour {
 	// Modo de disparo.
 	public ShootingMode mode;
 
-
 	//Constantes de posicionamiento de objetos
 	[Tooltip("")] [SerializeField] public Vector3 CAMERA_CANNON_DISTANCE = new Vector3 (0f, -0.8f,0.47f);
 
 	[Tooltip("")] [SerializeField] public Vector3 CAMERA_ASTRONAUT_DISTANCE = new Vector3 (0f,1f,-2.5f);
 
-	[Tooltip("")] [SerializeField] public Vector3 ASTRONAUT_CANNON_DISTANCE = new Vector3 (0f, 1f, 0f);
+	[Tooltip("")] [SerializeField] public Vector3 ASTRONAUT_CANNON_DISTANCE = new Vector3 (0f, 1f, .5f);
 
 
 	//Objetos requeridos de introducir
@@ -171,10 +171,9 @@ public class GameManager : MonoBehaviour {
 		//Convertimos esta progresión 1-100 a una 25-100
 
 		float adjustedPowerValue = ((powerValue - .01f) * .75f / .99f) + .25f;
-
 		astronaut.SetActive (true);
-		astronaut.gameObject.tag = "Player"; //El tag se lo quitamos en el tiro anterior para evitar a los planetas
-		astronaut.gameObject.layer = 0; //Asi podra chocar con los planetas de nuevo
+		astronaut.tag = "Player"; //El tag se lo quitamos en el tiro anterior para evitar a los planetas
+		astronaut.layer = 0; //Asi podra chocar con los planetas de nuevo
 		astronaut.GetComponent<Astronaut> ().Init (adjustedPowerValue * startingVelocity, Vector3.zero);
 		powerValue = 0f;
 
@@ -196,8 +195,8 @@ public class GameManager : MonoBehaviour {
 	/// Se ejecuta cuando el astronauta pierde una vida. Le devuelve a la nave.
 	/// </summary>
 	public void LaunchFail(){
-		astronaut.transform.tag = "PlayerLose"; //asi no chocara con planetas ni activara gravedad en su vuelta
-		astronaut.transform.gameObject.layer = 7; //evita que pueda chocar con planetas
+		astronaut.tag = "PlayerLose"; //asi no chocara con planetas ni activara gravedad en su vuelta
+		astronaut.layer = 7; //evita que pueda chocar con planetas
 		mode = ShootingMode.Returning;
 		//En el caso de los planetas, hay que volver a activar la rotacion de la camara
 		Camera.main.GetComponent<CameraMovement> ().allowedRotation = true; 
