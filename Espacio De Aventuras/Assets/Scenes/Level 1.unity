@@ -6118,6 +6118,10 @@ Prefab:
       propertyPath: field of view
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 1855738179559566, guid: 89d0fb17fb485416d81b21d1abf260af, type: 2}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 89d0fb17fb485416d81b21d1abf260af, type: 2}
   m_IsPrefabParent: 0
