@@ -26,8 +26,8 @@ public class LevelLimits : MonoBehaviour {
 
 	// Al sobrepasar el límite, retornará a la nave.
 	void OnTriggerExit(Collider other){
-		if (other.CompareTag("Player") && GameManager._instance.mode != GameManager.ShootingMode.Returning) {
-			GameManager._instance.LaunchFail ();
+		if (other.CompareTag("Player") && GameManager.instance.mode != GameManager.ShootingMode.Returning) {
+			GameManager.instance.LaunchFail ();
 		}
 	}
 

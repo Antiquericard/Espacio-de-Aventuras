@@ -28,7 +28,7 @@ public class UINextLevel : MonoBehaviour{
 
 	// Indicamos el nivel siguiente.
 	protected virtual void Start () {
-		this.GetComponent<Text>().text = "To Level " + (GameManager._instance.level+1).ToString();
+		this.GetComponent<Text>().text = "To Level " + (GameManager.instance.level+1).ToString();
 	}
 
 	#endregion

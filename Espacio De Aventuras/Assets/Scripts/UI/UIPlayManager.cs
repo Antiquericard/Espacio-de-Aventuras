@@ -71,7 +71,7 @@ public class UIPlayManager : MonoBehaviour{
 	// Método para pasar al siguiente nivel.
 	public void NextLevel (){
 		Time.timeScale = 1f;
-		SwitchScene._instance.loadAScene ("Level " + (GameManager._instance.level + 1).ToString ());
+		SwitchScene._instance.loadAScene ("Level " + (GameManager.instance.level + 1).ToString ());
 	}
 
 	#endregion
