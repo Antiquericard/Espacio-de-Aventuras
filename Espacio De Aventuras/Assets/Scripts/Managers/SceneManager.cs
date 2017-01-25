@@ -22,9 +22,7 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class SwitchScene: MonoBehaviour {
-
-	public static SwitchScene _instance;
+public class SceneManager: Singleton<SceneManager> {
 
 	#region Setting Attributes
 
@@ -36,19 +34,6 @@ public class SwitchScene: MonoBehaviour {
 
 	// Nombre de la escena a la que ir.
 	string name;
-
-	#endregion
-
-	#region Unity Methods
-
-	void Awake(){
-		if (_instance == null) {
-			_instance = this;
-		} else {
-			Destroy (this.gameObject);
-		}
-
-	}
 
 	#endregion
 
