@@ -27,14 +27,16 @@ public class CameraMovement : MonoBehaviour {
 
 	#region Setting Attributes
 
-	#pragma warning disable 0108
+	AstronautFiring firing;
+
+	#pragma warning disable 0414
 
 	[Tooltip("")] [SerializeField] float scaleRotationX = 1f;
 	[Tooltip("")] [SerializeField] float scaleRotationY = 1f;
 	[Tooltip("")] [SerializeField] float scaleRotationPhoneX = 1f;
 	[Tooltip("")] [SerializeField] float scaleRotationPhoneY = 1f;
 
-	#pragma warning restore 0108
+	#pragma warning restore 0414
 
 	[Tooltip("")] [SerializeField] float positionDamping = 25f;
 
@@ -72,10 +74,14 @@ public class CameraMovement : MonoBehaviour {
 
 	#region Unity Methods
 
+	void Start(){
+		firing = transform.parent.parent.GetComponent<AstronautFiring> ();
+	}
+
 	// Seguimiento de la cámará cuando se encuentra fuera de la nave y el sistema de disparo cuando se encuentre dentro.
 	void LateUpdate () {
 
-		if (GameManager.Instance.mode == GameManager.ShootingMode.Shooting || GameManager.Instance.mode == GameManager.ShootingMode.Returning) {
+		if (firing.mode == AstronautFiring.ShootingMode.Shooting || firing.mode == AstronautFiring.ShootingMode.Returning) {
 			//Si llega hasta aqui es que ha disparado
 			transform.position = Vector3.MoveTowards(transform.position, wantedPosition, Time.deltaTime * positionDamping);
 			if (allowedRotation)

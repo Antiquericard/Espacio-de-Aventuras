@@ -8,7 +8,7 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 
 	private static object _lock = new object();
 
-	public static T Instance
+	public static T instance
 	{
 		get
 		{

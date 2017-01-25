@@ -26,6 +26,7 @@ using UnityEngine.UI;
 /// Ofrece funcionalidad de poder controlar propulsores con combustible al jugador
 /// </summary>
 [RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(Astronaut))]
 public class Propellers : MonoBehaviour {
 
 	#region Setting Attributes
@@ -115,7 +116,7 @@ public class Propellers : MonoBehaviour {
 
 		//Todo este código define el combustible que tenemos y cómo queda, y además los sistemas
 		//de partículas de los propulsores
-		if (horizontal != 0 && fuelAmount > 0f && GameManager.Instance.mode == GameManager.ShootingMode.Shooting) {
+		if (horizontal != 0 && fuelAmount > 0f && GetComponent<Astronaut>().firing.mode == AstronautFiring.ShootingMode.Shooting) {
 			moveSide = horizontal;
 			fuelAmount -= decreaseRate * Time.deltaTime;
 			fuelBar.value = fuelAmount / 5;
@@ -159,7 +160,7 @@ public class Propellers : MonoBehaviour {
 		#endif
 
 		//Ver manejo horizontal, pero esta simplificado porque no hay atrás
-		if (vertical > 0 && fuelAmount > 0f && GameManager.Instance.mode == GameManager.ShootingMode.Shooting) {
+		if (vertical > 0 && fuelAmount > 0f && GetComponent<Astronaut>().firing.mode == AstronautFiring.ShootingMode.Shooting) {
 			moveFront = vertical;
 			fuelAmount -= decreaseRate * 2 * Time.deltaTime;
 			fuelBar.value = fuelAmount / 5;

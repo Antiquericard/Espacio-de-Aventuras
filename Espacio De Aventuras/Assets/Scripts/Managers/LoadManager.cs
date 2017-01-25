@@ -33,7 +33,7 @@ public class LoadManager: Singleton<LoadManager> {
 	[Tooltip("Slider de carga.")] [SerializeField] GameObject loadImage;
 
 	// Nombre de la escena a la que ir.
-	string name;
+	string sceneName;
 
 	#endregion
 
@@ -52,7 +52,7 @@ public class LoadManager: Singleton<LoadManager> {
 	// Coroutine para cargar la siguiente escena.
 	IEnumerator Load () {
 
-		AsyncOperation loadProcess = SceneManager.LoadSceneAsync( name);
+		AsyncOperation loadProcess = SceneManager.LoadSceneAsync(sceneName);
 		loadProcess.allowSceneActivation = false;
 
 		float timer = 0f;
@@ -82,7 +82,7 @@ public class LoadManager: Singleton<LoadManager> {
 	// Método para cargar la escena nameScene.
 	public void loadAScene (string nameScene) {
 		loadImage.SetActive(true);
-		name = nameScene;
+		sceneName = nameScene;
 		StartCoroutine ("Load");
 		//SceneManager.LoadScene (nameScene);
 	}

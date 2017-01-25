@@ -5,8 +5,8 @@ using UnityEngine;
 public class PlanetCollision : MonoBehaviour {
 
 	void OnCollisionEnter(Collision col){
-		if (col.collider.CompareTag ("Player") && GameManager.Instance.mode != GameManager.ShootingMode.Returning) {
-			GameManager.Instance.LaunchFail ();
+		if (col.transform.CompareTag("Player") && col.transform.GetComponent<Astronaut>().firing.mode != AstronautFiring.ShootingMode.Returning) {
+			col.transform.GetComponent<Astronaut> ().firing.LaunchFail ();
 		}
 	}
 }
