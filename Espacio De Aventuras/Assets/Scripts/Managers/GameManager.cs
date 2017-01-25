@@ -27,10 +27,6 @@ public class GameManager : Singleton<GameManager> {
 	// Nivel de la escena.
     public int level;
 
-	// Subtitulos de cada nivel, level es el indice
-	// TODO ESTO NO DEBERIA ESTAR AQUI DEBERIAMOS GUARDAR LOS TEXTOS DE LOS NIVELES APARTE
-	public string [] levelTexts;
-
 	//Variable de suavizado.
 	float lerp;
 
