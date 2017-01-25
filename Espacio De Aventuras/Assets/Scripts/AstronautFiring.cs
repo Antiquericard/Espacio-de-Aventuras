@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// Este script debe estar asociado al Base Cannon. Proporciona funcionalidad completa de disparo, incluidos los controles, e información
@@ -35,12 +36,12 @@ public class AstronautFiring : MonoBehaviour {
 
 
 	//Objetos requeridos de introducir
-	[Tooltip("Barra vacía.")] [SerializeField] Texture2D emptyPowerBar;
 
-	[Tooltip("Barra llena.")] [SerializeField] Texture2D fullPowerBar;
+	[Tooltip("Barra de potencia de disparo.")] [SerializeField] Image PowerBar;
+
+	[Tooltip("Barra padre de potencia de disparo.")] [SerializeField] GameObject powBar;
 
 	[Tooltip("Prefab del astronauta.")] [SerializeField] Object astronautPrefab;
-
 
 	[Tooltip("Velocidad inicial del astronauta al dispararse.")] [SerializeField] float startingVelocity = 100f;
 
@@ -66,16 +67,22 @@ public class AstronautFiring : MonoBehaviour {
 		case ShootingMode.Aiming:
 			//Apuntando...
 			if (Input.GetMouseButtonUp (0)) {
+				powBar.SetActive (false);
 				GetComponent<AudioSource> ().Play ();
 				Shoot ();
 			} else {
+				if (!powBar.activeSelf) {
+					powBar.SetActive (true);
+				}
 				powerValue += powerIncreaseRate * Time.deltaTime;
 				if (powerValue > 1) {
 					powerValue--;
 				}
+				PowerBar.fillAmount = powerValue;
 			}
 			break;
 		case ShootingMode.Shooting:
+			
 			//Ya ha disparado!
 			cameraMovement.wantedPosition = astronaut.transform.position + astronautTrueDistance;
 			cameraMovement.wantedRotation = astronaut.transform.rotation;
@@ -89,7 +96,7 @@ public class AstronautFiring : MonoBehaviour {
 
 	}
 
-
+	/*
 	/// <summary>
 	/// Representación gráfica de la potencia.
 	/// </summary>
@@ -99,7 +106,7 @@ public class AstronautFiring : MonoBehaviour {
 			GUI.DrawTexture(new Rect(Screen.width/4, Screen.height - 100, powerValue * Screen.width/2, 50), fullPowerBar);
 		}
 	}
-
+	*/
 
 	/// <summary>
 	/// Método para realizar el disparo.
@@ -152,7 +159,6 @@ public class AstronautFiring : MonoBehaviour {
 		Camera.main.GetComponent<CameraMovement> ().allowedRotation = true; 
 		StartCoroutine ("DieCoroutine");
 	}
-
 
 	/// <summary>
 	/// Coroutine al perder una vida, si se pierden todas comienza pantalla de derrota.

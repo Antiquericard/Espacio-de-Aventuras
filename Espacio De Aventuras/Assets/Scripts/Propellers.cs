@@ -41,6 +41,8 @@ public class Propellers : MonoBehaviour {
 
 	[Tooltip("Máxima velocidad.")] [SerializeField] float maxSpeed = 45f;
 
+	[Tooltip("AudioSource de los propulsores.")] [SerializeField] AudioSource aud;
+
 	// Cantidad de fuel.
 	float fuelAmount;
 
@@ -181,6 +183,7 @@ public class Propellers : MonoBehaviour {
 	/// <param name="parts">El sistema de partículas</param>
 	void PlayParticleSystem(ParticleSystem parts){
 		if (!parts.isPlaying) {
+			aud.Play ();
 			parts.Play ();
 		}
 	}
