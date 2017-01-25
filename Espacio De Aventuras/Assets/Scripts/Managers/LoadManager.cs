@@ -22,7 +22,7 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class SceneManager: Singleton<SceneManager> {
+public class LoadManager: Singleton<LoadManager> {
 
 	#region Setting Attributes
 

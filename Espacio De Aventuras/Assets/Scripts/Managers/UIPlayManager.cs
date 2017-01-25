@@ -58,20 +58,20 @@ public class UIPlayManager : MonoBehaviour{
 	// Método para reiniciar el nivel.
 	public void ResetLevel () {
 		Time.timeScale = 1f;
-		SwitchScene._instance.loadAScene (SceneManager.GetActiveScene ().name);
+		LoadManager.Instance.loadAScene (SceneManager.GetActiveScene ().name);
 		CancelInvoke ();
 	}
 
 	// Método para volver al menú de inicio.
 	public void ToMainMenu () {
 		Time.timeScale = 1f;
-		SwitchScene._instance.loadAScene ("Main Menu");
+		LoadManager.Instance.loadAScene ("Main Menu");
 	}
 
 	// Método para pasar al siguiente nivel.
 	public void NextLevel (){
 		Time.timeScale = 1f;
-		SwitchScene._instance.loadAScene ("Level " + (GameManager.Instance.level + 1).ToString ());
+		LoadManager.Instance.loadAScene ("Level " + (GameManager.Instance.level + 1).ToString ());
 	}
 
 	#endregion
