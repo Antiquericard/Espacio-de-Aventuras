@@ -6,6 +6,7 @@ TagManager:
   tags:
   - button
   - PlayerLose
+  - Deuterio
   layers:
   - Default
   - TransparentFX
