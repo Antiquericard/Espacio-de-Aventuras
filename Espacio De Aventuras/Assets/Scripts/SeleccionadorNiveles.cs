@@ -37,7 +37,7 @@ public class SeleccionadorNiveles : MonoBehaviour {
 	[Tooltip("Escenas que no son niveles.")] [SerializeField] byte escenasNoLevel;
 
 	// Posición de inicio.
-	private Vector3 startposition = new Vector3 (0f, 130f, 0f);
+	private Vector3 startposition = new Vector3 (0f, 100f, 0f);
 
 	// Niveles completados.
 	int levelsCompleted;
@@ -60,7 +60,7 @@ public class SeleccionadorNiveles : MonoBehaviour {
 		for (int i = 0; i < totalLevels; i++){
 			
 			GameObject but = (GameObject) Instantiate(boton, parent);
-			but.transform.localPosition = new Vector3(startposition.x,startposition.y - 50 * i, startposition.z);
+			but.transform.localPosition = new Vector3(startposition.x,startposition.y - 45 * i, startposition.z);
 			but.GetComponentInChildren<Text> ().text = (i+escenasNoLevel).ToString ();
 			buttons [i] = but;
 
