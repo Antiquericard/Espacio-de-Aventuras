@@ -25,15 +25,21 @@ public class Astronaut : MonoBehaviour {
 
 	#region Setting Attributes
 
-	[Tooltip("Colocar el transform del cañón.")] [SerializeField] public Transform cannon;
-
 	[Tooltip("Velocidad a la que retorna el personaje a la nave.")] [SerializeField] float moveSpeed = 10f;
 
-	// Tiempo en el cual se mantiene pulsada la pantalla.
-	#pragma warning disable 0108
-	float touchTime = 0f;
-	#pragma warning restore 0108
+	public AstronautFiring firing{
+		get{
+			return cannon.GetComponent<AstronautFiring> ();
+		}
+	}
 
+
+	// Tiempo en el cual se mantiene pulsada la pantalla.
+	#pragma warning disable 0414
+	float touchTime = 0f;
+	#pragma warning restore 0414
+
+	public Transform cannon;
 	public bool returned = false;
 
 	#endregion
@@ -93,9 +99,9 @@ public class Astronaut : MonoBehaviour {
 
 		#endif
 
-		if (GameManager.Instance.mode == GameManager.ShootingMode.Shooting && control) {
+		if (firing.mode == AstronautFiring.ShootingMode.Shooting && control) {
 			control = false;
-			GameManager.Instance.LaunchFail ();
+			firing.LaunchFail ();
 		}
 	}
 
@@ -107,7 +113,7 @@ public class Astronaut : MonoBehaviour {
 	public void Init(float speed, Vector3 shipSpeed){
 		returned = false;
 		transform.parent = cannon;
-		transform.localPosition = GameManager.Instance.ASTRONAUT_CANNON_DISTANCE;
+		transform.localPosition = firing.ASTRONAUT_CANNON_DISTANCE;
 		transform.rotation = Quaternion.Euler(cannon.GetChild(0).eulerAngles + new Vector3(180f, 0f,0f));
 		transform.parent = null;
 
@@ -123,7 +129,7 @@ public class Astronaut : MonoBehaviour {
 	public IEnumerator ReturnToSpaceShip (){
 		this.GetComponent<AudioSource> ().Play ();
 		transform.LookAt (cannon);
-		Vector3 targetPos = cannon.position + GameManager.Instance.ASTRONAUT_CANNON_DISTANCE;
+		//Vector3 targetPos = cannon.position + firing.ASTRONAUT_CANNON_DISTANCE;
 		transform.GetComponent<Rigidbody> ().isKinematic = true;
 
 		while (!returned) {
@@ -132,7 +138,7 @@ public class Astronaut : MonoBehaviour {
 			yield return null;
 		}
 		propellers.Refuel ();
-		GameManager.Instance.ReturnToIdleMode();
+		firing.ReturnToIdleMode();
 		transform.GetComponent<Rigidbody> ().isKinematic = false;
 		gameObject.SetActive (false);
 	}

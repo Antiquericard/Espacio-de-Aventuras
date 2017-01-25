@@ -29,7 +29,7 @@ public class CanvasConvert: MonoBehaviour {
 
 	[Tooltip("Elemento gráfico a mostrar.")] [SerializeField] RectTransform UIElement;
 
-	[Tooltip("MainCamera de la escena.")] [SerializeField] Camera camera;
+	[Tooltip("MainCamera de la escena.")] [SerializeField] new Camera camera;
 
 	[Tooltip("Canvas de la escena.")] [SerializeField] Canvas canvas;
 

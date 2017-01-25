@@ -5,8 +5,13 @@ using UnityEngine;
 public class ShipCollision : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other){
-		if (GameManager.Instance.mode == GameManager.ShootingMode.Returning && other.transform.CompareTag("PlayerLose")) {
-			other.transform.GetComponent<Astronaut> ().returned = true;
+
+		if (other.transform.CompareTag ("PlayerLose")) {
+			Astronaut astronaut = other.transform.GetComponent<Astronaut> ();
+			if (astronaut.firing.mode == AstronautFiring.ShootingMode.Returning) {
+				astronaut.returned = true;
+			}
 		}
+
 	}
 }
