@@ -1,0 +1,333 @@
+fileFormatVersion: 2
+guid: 74c069b158b11354fa95cc1737805191
+timeCreated: 1485344225
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: asiento
+    100002: "base_ca\xF1on"
+    100004: base_motor_rotacion
+    100006: base_motor_rotacion001
+    100008: base_nave
+    100010: Bip001
+    100012: Bip001 Footsteps
+    100014: Bip001 Head
+    100016: Bip001 HeadNub
+    100018: Bip001 L Calf
+    100020: Bip001 L Clavicle
+    100022: Bip001 L Finger0
+    100024: Bip001 L Finger01
+    100026: Bip001 L Finger0Nub
+    100028: Bip001 L Finger1
+    100030: Bip001 L Finger11
+    100032: Bip001 L Finger1Nub
+    100034: Bip001 L Finger2
+    100036: Bip001 L Finger21
+    100038: Bip001 L Finger2Nub
+    100040: Bip001 L Finger3
+    100042: Bip001 L Finger31
+    100044: Bip001 L Finger3Nub
+    100046: Bip001 L Finger4
+    100048: Bip001 L Finger41
+    100050: Bip001 L Finger4Nub
+    100052: Bip001 L Foot
+    100054: Bip001 L Forearm
+    100056: Bip001 L Hand
+    100058: Bip001 L Thigh
+    100060: Bip001 L Toe0
+    100062: Bip001 L Toe0Nub
+    100064: Bip001 L UpperArm
+    100066: Bip001 Neck
+    100068: Bip001 Pelvis
+    100070: Bip001 R Calf
+    100072: Bip001 R Clavicle
+    100074: Bip001 R Finger0
+    100076: Bip001 R Finger01
+    100078: Bip001 R Finger0Nub
+    100080: Bip001 R Finger1
+    100082: Bip001 R Finger11
+    100084: Bip001 R Finger1Nub
+    100086: Bip001 R Finger2
+    100088: Bip001 R Finger21
+    100090: Bip001 R Finger2Nub
+    100092: Bip001 R Finger3
+    100094: Bip001 R Finger31
+    100096: Bip001 R Finger3Nub
+    100098: Bip001 R Finger4
+    100100: Bip001 R Finger41
+    100102: Bip001 R Finger4Nub
+    100104: Bip001 R Foot
+    100106: Bip001 R Forearm
+    100108: Bip001 R Hand
+    100110: Bip001 R Thigh
+    100112: Bip001 R Toe0
+    100114: Bip001 R Toe0Nub
+    100116: Bip001 R UpperArm
+    100118: Bip001 Spine
+    100120: Bip001 Spine1
+    100122: Bip001 Spine2
+    100124: Bip001 Spine3
+    100126: boton_002
+    100128: boton_003
+    100130: boton_1
+    100132: brasos
+    100134: cabeza
+    100136: camisa
+    100138: capsula_nave
+    100140: "ca\xF1on_rotacion"
+    100142: CHAQUETA
+    100144: consola_2
+    100146: consola_3
+    100148: elementos_motor
+    100150: elementos_motor001
+    100152: luces
+    100154: mando
+    100156: moto
+    100158: moto001
+    100160: //RootNode
+    100162: oreja
+    100164: pantalon_piernas
+    100166: pelo
+    100168: suelo_nave
+    100170: turbina
+    100172: turbina001
+    100174: volante
+    400000: asiento
+    400002: "base_ca\xF1on"
+    400004: base_motor_rotacion
+    400006: base_motor_rotacion001
+    400008: base_nave
+    400010: Bip001
+    400012: Bip001 Footsteps
+    400014: Bip001 Head
+    400016: Bip001 HeadNub
+    400018: Bip001 L Calf
+    400020: Bip001 L Clavicle
+    400022: Bip001 L Finger0
+    400024: Bip001 L Finger01
+    400026: Bip001 L Finger0Nub
+    400028: Bip001 L Finger1
+    400030: Bip001 L Finger11
+    400032: Bip001 L Finger1Nub
+    400034: Bip001 L Finger2
+    400036: Bip001 L Finger21
+    400038: Bip001 L Finger2Nub
+    400040: Bip001 L Finger3
+    400042: Bip001 L Finger31
+    400044: Bip001 L Finger3Nub
+    400046: Bip001 L Finger4
+    400048: Bip001 L Finger41
+    400050: Bip001 L Finger4Nub
+    400052: Bip001 L Foot
+    400054: Bip001 L Forearm
+    400056: Bip001 L Hand
+    400058: Bip001 L Thigh
+    400060: Bip001 L Toe0
+    400062: Bip001 L Toe0Nub
+    400064: Bip001 L UpperArm
+    400066: Bip001 Neck
+    400068: Bip001 Pelvis
+    400070: Bip001 R Calf
+    400072: Bip001 R Clavicle
+    400074: Bip001 R Finger0
+    400076: Bip001 R Finger01
+    400078: Bip001 R Finger0Nub
+    400080: Bip001 R Finger1
+    400082: Bip001 R Finger11
+    400084: Bip001 R Finger1Nub
+    400086: Bip001 R Finger2
+    400088: Bip001 R Finger21
+    400090: Bip001 R Finger2Nub
+    400092: Bip001 R Finger3
+    400094: Bip001 R Finger31
+    400096: Bip001 R Finger3Nub
+    400098: Bip001 R Finger4
+    400100: Bip001 R Finger41
+    400102: Bip001 R Finger4Nub
+    400104: Bip001 R Foot
+    400106: Bip001 R Forearm
+    400108: Bip001 R Hand
+    400110: Bip001 R Thigh
+    400112: Bip001 R Toe0
+    400114: Bip001 R Toe0Nub
+    400116: Bip001 R UpperArm
+    400118: Bip001 Spine
+    400120: Bip001 Spine1
+    400122: Bip001 Spine2
+    400124: Bip001 Spine3
+    400126: boton_002
+    400128: boton_003
+    400130: boton_1
+    400132: brasos
+    400134: cabeza
+    400136: camisa
+    400138: capsula_nave
+    400140: "ca\xF1on_rotacion"
+    400142: CHAQUETA
+    400144: consola_2
+    400146: consola_3
+    400148: elementos_motor
+    400150: elementos_motor001
+    400152: luces
+    400154: mando
+    400156: moto
+    400158: moto001
+    400160: //RootNode
+    400162: oreja
+    400164: pantalon_piernas
+    400166: pelo
+    400168: suelo_nave
+    400170: turbina
+    400172: turbina001
+    400174: volante
+    2300000: asiento
+    2300002: "base_ca\xF1on"
+    2300004: base_motor_rotacion
+    2300006: base_motor_rotacion001
+    2300008: base_nave
+    2300010: boton_002
+    2300012: boton_003
+    2300014: boton_1
+    2300016: capsula_nave
+    2300018: "ca\xF1on_rotacion"
+    2300020: consola_2
+    2300022: consola_3
+    2300024: elementos_motor
+    2300026: elementos_motor001
+    2300028: luces
+    2300030: mando
+    2300032: moto
+    2300034: moto001
+    2300036: suelo_nave
+    2300038: turbina
+    2300040: turbina001
+    2300042: volante
+    3300000: asiento
+    3300002: "base_ca\xF1on"
+    3300004: base_motor_rotacion
+    3300006: base_motor_rotacion001
+    3300008: base_nave
+    3300010: boton_002
+    3300012: boton_003
+    3300014: boton_1
+    3300016: capsula_nave
+    3300018: "ca\xF1on_rotacion"
+    3300020: consola_2
+    3300022: consola_3
+    3300024: elementos_motor
+    3300026: elementos_motor001
+    3300028: luces
+    3300030: mando
+    3300032: moto
+    3300034: moto001
+    3300036: suelo_nave
+    3300038: turbina
+    3300040: turbina001
+    3300042: volante
+    4300000: base_nave
+    4300002: base_motor_rotacion
+    4300004: luces
+    4300006: asiento
+    4300008: "base_ca\xF1on"
+    4300010: suelo_nave
+    4300012: capsula_nave
+    4300014: base_motor_rotacion001
+    4300016: consola_2
+    4300018: mando
+    4300020: "ca\xF1on_rotacion"
+    4300022: elementos_motor
+    4300024: moto
+    4300026: turbina
+    4300028: elementos_motor001
+    4300030: turbina001
+    4300032: moto001
+    4300034: volante
+    4300036: consola_3
+    4300038: boton_1
+    4300040: boton_002
+    4300042: boton_003
+    4300044: pantalon_piernas
+    4300046: camisa
+    4300048: brasos
+    4300050: cabeza
+    4300052: oreja
+    4300054: pelo
+    4300056: CHAQUETA
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: brasos
+    13700002: cabeza
+    13700004: camisa
+    13700006: CHAQUETA
+    13700008: oreja
+    13700010: pantalon_piernas
+    13700012: pelo
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
