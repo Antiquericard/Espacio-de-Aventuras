@@ -30,9 +30,9 @@ public class GameManager : Singleton<GameManager> {
 	//Variable de suavizado.
 	float lerp;
 
-	[Tooltip("Interfaz de victoria.")] [SerializeField] GameObject victory;
+	[Tooltip("Interfaz de victoria.")] [SerializeField] GameObject Victory;
 
-	[Tooltip("Interfaz de derrota.")] [SerializeField] GameObject lose;
+	[Tooltip("Interfaz de derrota.")] [SerializeField] GameObject Lose;
 
 	//Parámetros
 	[Tooltip("Vidas totales para el nivel.")] [SerializeField] public int lifes = 3;
@@ -45,8 +45,9 @@ public class GameManager : Singleton<GameManager> {
 	//
 	void Start(){
 		//Cogemos el nivel
-		DontDestroyOnLoad(gameObject);
 		level = SceneManager.GetActiveScene ().buildIndex;
+		//TODO coger el texto
+
 	}
 		
 	#endregion
@@ -54,26 +55,16 @@ public class GameManager : Singleton<GameManager> {
 	#region Public Methods
 
 	/// <summary>
-	/// Este método es necesario para recargar todas las variables de cada Manager al empezar un nivel
-	/// </summary>
-	public void ReloadVariables(){
-		this.GetComponent<UIPlayManager>().ReloadVariables ();
-		this.victory = GameObject.Find ("Victory");
-		this.lose = GameObject.Find ("Lose");
-		lifes = 3;
-	}
-
-	/// <summary>
 	/// Método para completar el nivel.
 	/// </summary>
 	/// <param name="vic">Si ganó o perdió el nivel</param>
 	public void CompleteLevel(bool vic) {
 		if (vic) {
-			victory.SetActive(true);
-			StartCoroutine(LevelCompleted(victory));
+			Victory.SetActive(true);
+			StartCoroutine(LevelCompleted(Victory));
 		} else {
-			lose.SetActive(true);
-			StartCoroutine(LevelCompleted(lose));
+			Lose.SetActive(true);
+			StartCoroutine(LevelCompleted(Lose));
 		}
     }
 		

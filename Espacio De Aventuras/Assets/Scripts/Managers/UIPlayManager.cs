@@ -28,17 +28,13 @@ public class UIPlayManager : MonoBehaviour{
 
 	[Tooltip("Canvas de la escena")] [SerializeField] GameObject canvas;
 
-	[Tooltip("GameObject a recoger en la escena")] [SerializeField] GameObject deuterio;
+	[Tooltip("MainCamera de la escena")] [SerializeField] GameObject cam;
 
-	Camera mainCamera;
+	[Tooltip("GameObject a recoger en la escena")] [SerializeField] GameObject deuterio;
 
 	#endregion
 
 	#region Unity Methods
-
-	void Start(){
-		mainCamera = Camera.main;
-	}
 
 	//Si pulsamos la tecla Esc, entraremos en el menú de pausa.
 	protected virtual void Update () {
@@ -55,7 +51,7 @@ public class UIPlayManager : MonoBehaviour{
 	public void PauseOrResume () {
 		Time.timeScale = (Time.timeScale == 1) ? 0 : 1;
 		canvas.SetActive (!canvas.activeSelf);
-		mainCamera.GetComponent<CameraMovement>().enabled = (!mainCamera.GetComponent<CameraMovement>().isActiveAndEnabled);
+		cam.GetComponent<CameraMovement>().enabled = (!cam.GetComponent<CameraMovement>().isActiveAndEnabled);
 		this.GetComponent<GameManager> ().enabled = (!this.GetComponent<GameManager> ().isActiveAndEnabled);
 	}
 
@@ -76,11 +72,6 @@ public class UIPlayManager : MonoBehaviour{
 	public void NextLevel (){
 		Time.timeScale = 1f;
 		LoadManager.instance.loadAScene ("Level " + (GameManager.instance.level + 1).ToString ());
-	}
-
-	public void ReloadVariables(){
-		canvas = GameObject.Find ("Canvas");
-		deuterio = GameObject.FindGameObjectWithTag ("Deuterio");
 	}
 
 	#endregion
