@@ -83,7 +83,7 @@ public class LoadManager: Singleton<LoadManager> {
 			RefreshUI (loadProcess.progress);
 			yield return null;
 		}
-		//GameManager.instance.ReloadVariables ();
+		GameManager.instance.ReloadVariables ();
 		loadProcess.allowSceneActivation = true;
 		canvas.SetActive (false);
 	}

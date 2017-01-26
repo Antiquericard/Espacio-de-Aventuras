@@ -56,6 +56,8 @@ public class GameManager : Singleton<GameManager> {
 	/// <summary>
 	/// Este método es necesario para recargar todas las variables de cada Manager al empezar un nivel
 	/// </summary>
+	/// 
+	[ContextMenu("Carga")]
 	public void ReloadVariables(){
 		this.GetComponent<UIPlayManager>().ReloadVariables ();
 		this.victory = GameObject.Find ("Victory");
