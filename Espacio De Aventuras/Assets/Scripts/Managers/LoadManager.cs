@@ -26,15 +26,26 @@ public class LoadManager: Singleton<LoadManager> {
 
 	#region Setting Attributes
 
-	[Tooltip("Fondo de carga.")] [SerializeField] Image im;
+	[Tooltip("Canvas con una imagen de carga, texto y un slider bien colocados")][SerializeField] Object canvasPrefab;
 
-	[Tooltip("Porcentage cargado.")] [SerializeField] Text percentageText;
-
-	[Tooltip("Slider de carga.")] [SerializeField] GameObject loadImage;
+	GameObject canvas;
+	Image loadImage;
+	Text percentageText;
+	GameObject loadSlider;
 
 	// Nombre de la escena a la que ir.
 	string sceneName;
 
+	#endregion
+
+	#region Unity Methods
+	void Awake(){
+		canvas = Instantiate (canvasPrefab) as GameObject;
+		loadSlider = canvas.transform.GetChild (0).gameObject;
+		loadImage = loadSlider.transform.GetChild (0).GetComponent<Image> ();
+		percentageText = loadImage.transform.GetChild (0).GetComponent<Text> ();
+		canvas.SetActive (false);
+	}
 	#endregion
 
 	#region Private Methods
@@ -42,7 +53,7 @@ public class LoadManager: Singleton<LoadManager> {
 	// Regresco de la interfaz de usuario.
 	void RefreshUI (float percentage) {
 		percentageText.text = percentage.ToString ("##0 %");
-		im.fillAmount = percentage;
+		loadImage.fillAmount = percentage;
 	}
 
 	#endregion
@@ -72,7 +83,9 @@ public class LoadManager: Singleton<LoadManager> {
 			RefreshUI (loadProcess.progress);
 			yield return null;
 		}
+		//GameManager.instance.ReloadVariables ();
 		loadProcess.allowSceneActivation = true;
+		canvas.SetActive (false);
 	}
 
 	#endregion
@@ -81,10 +94,10 @@ public class LoadManager: Singleton<LoadManager> {
 
 	// Método para cargar la escena nameScene.
 	public void loadAScene (string nameScene) {
-		loadImage.SetActive(true);
+		loadSlider.SetActive (true);
+		canvas.SetActive (true);
 		sceneName = nameScene;
 		StartCoroutine ("Load");
-		//SceneManager.LoadScene (nameScene);
 	}
 
 	#endregion
