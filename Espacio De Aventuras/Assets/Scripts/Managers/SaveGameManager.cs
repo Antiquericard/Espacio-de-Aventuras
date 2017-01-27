@@ -28,6 +28,10 @@ public static class SaveGameManager {
 	#region Public Methods
 
 	// Guardado de la partida.
+	/// <summary>
+	/// Guardado de la partida.
+	/// </summary>
+	/// <returns>.</returns>
 	public static void Save (int level) {
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Open(Application.persistentDataPath + "/levelSave.dat",FileMode.OpenOrCreate);

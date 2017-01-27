@@ -23,6 +23,11 @@ using UnityEngine.SceneManagement;
 
 public class LevelLimits : MonoBehaviour {
 
+	#region Unity Methods
+
+	void Start () {
+		GameManager.instance.ReloadVariables (3);
+	}
 
 	// Al sobrepasar el límite, retornará a la nave.
 	void OnTriggerExit(Collider other){
@@ -31,5 +36,6 @@ public class LevelLimits : MonoBehaviour {
 		}
 	}
 
+	#endregion
 
 }

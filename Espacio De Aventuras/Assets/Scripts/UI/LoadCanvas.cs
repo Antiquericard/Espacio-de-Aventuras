@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LoadCanvas : MonoBehaviour {
 
-	void Awake(){
+	void Start(){
 		DontDestroyOnLoad (this.gameObject);
 	}
 }

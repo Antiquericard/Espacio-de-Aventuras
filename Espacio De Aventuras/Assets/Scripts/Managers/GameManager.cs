@@ -34,7 +34,6 @@ public class GameManager : Singleton<GameManager> {
 
 	[Tooltip("Interfaz de derrota.")] [SerializeField] GameObject lose;
 
-	//Parámetros
 	[Tooltip("Vidas totales para el nivel.")] [SerializeField] public int lifes = 3;
 
 
@@ -56,12 +55,10 @@ public class GameManager : Singleton<GameManager> {
 	/// <summary>
 	/// Este método es necesario para recargar todas las variables de cada Manager al empezar un nivel
 	/// </summary>
-	/// 
+	/// <param name="lif">vidas de la siguiente escena a cargar.</param>
 	[ContextMenu("Carga")]
-	public void ReloadVariables(){
+	public void ReloadVariables(int lif){
 		this.GetComponent<UIPlayManager>().ReloadVariables ();
-		this.victory = GameObject.Find ("Victory");
-		this.lose = GameObject.Find ("Lose");
 		lifes = 3;
 	}
 

@@ -93,8 +93,8 @@ public class CameraMovement : MonoBehaviour {
 
 			// Para la versión de escritorio simplemente cogemos la entrada de ratón
 			#if UNITY_STANDALONE
-			xValue = scaleRotationX * Input.GetAxis("Mouse X");
-			yValue = -scaleRotationY * Input.GetAxis("Mouse Y");
+			yValue = scaleRotationX * Input.GetAxis("Mouse X");
+			xValue = -scaleRotationY * Input.GetAxis("Mouse Y");
 			#endif
 
 			// Para la versión de móvil cogemos el movimiento táctil, pero lo capeamos un poco para que la velocidad alta no importe tanto
@@ -145,8 +145,8 @@ public class CameraMovement : MonoBehaviour {
 
 			#endif
 
-			//Aquí aplicamos el movimiento. Como se puede ver, se da por hecho que el cañon es el abuelo de la camaraa
-			transform.parent.parent.Rotate (yValue, xValue, 0f);
+			//Aquí aplicamos el movimiento. Como se puede ver, se da por hecho que el cañon es el abuelo de la camara
+			transform.parent.parent.Rotate (xValue, 0f, yValue);
 		}
 
 	}

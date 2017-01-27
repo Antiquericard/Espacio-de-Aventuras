@@ -33,7 +33,8 @@ public class SpaceShipMovement : MonoBehaviour {
 	#region Unity Methods
 
 	void Start () {
-		StartCoroutine ("Movement");
+		if (!(speed == 0f))
+			StartCoroutine ("Movement");
 	}
 
 	#endregion

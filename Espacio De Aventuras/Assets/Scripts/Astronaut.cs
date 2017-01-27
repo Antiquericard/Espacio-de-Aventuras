@@ -114,7 +114,7 @@ public class Astronaut : MonoBehaviour {
 		returned = false;
 		transform.parent = cannon;
 		transform.localPosition = firing.ASTRONAUT_CANNON_DISTANCE;
-		transform.rotation = Quaternion.Euler(cannon.GetChild(0).eulerAngles + new Vector3(180f, 0f,0f));
+		transform.rotation = Quaternion.Euler(cannon.GetChild(0).eulerAngles + firing.ASTRONAUT_ROTATE);
 		transform.parent = null;
 
 		GetComponent<Rigidbody> ().AddForce (shipSpeed, ForceMode.VelocityChange);

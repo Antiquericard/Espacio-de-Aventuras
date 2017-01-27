@@ -45,12 +45,16 @@ public class LoadManager: Singleton<LoadManager> {
 		loadImage = loadSlider.transform.GetChild (0).GetComponent<Image> ();
 		percentageText = loadImage.transform.GetChild (0).GetComponent<Text> ();
 		canvas.SetActive (false);
+		DontDestroyOnLoad (canvasPrefab);
 	}
 	#endregion
 
 	#region Private Methods
 
-	// Regresco de la interfaz de usuario.
+	/// <summary>
+	/// Regresco de la interfaz de usuario.
+	/// </summary>
+	/// <param name="percentage">Porcentaje de carga de la siguiente escena.</param>
 	void RefreshUI (float percentage) {
 		percentageText.text = percentage.ToString ("##0 %");
 		loadImage.fillAmount = percentage;
@@ -62,6 +66,8 @@ public class LoadManager: Singleton<LoadManager> {
 
 	// Coroutine para cargar la siguiente escena.
 	IEnumerator Load () {
+
+		// Están puestas las esperas queriendo que se muestre la barra de carga, sino ni se aprecia.
 
 		AsyncOperation loadProcess = SceneManager.LoadSceneAsync(sceneName);
 		loadProcess.allowSceneActivation = false;
@@ -83,7 +89,6 @@ public class LoadManager: Singleton<LoadManager> {
 			RefreshUI (loadProcess.progress);
 			yield return null;
 		}
-		GameManager.instance.ReloadVariables ();
 		loadProcess.allowSceneActivation = true;
 		canvas.SetActive (false);
 	}
@@ -92,7 +97,10 @@ public class LoadManager: Singleton<LoadManager> {
 
 	#region Public Methods
 
-	// Método para cargar la escena nameScene.
+	/// <summary>
+	/// Método para cargar la escena nameScene.
+	/// </summary>
+	/// <param name="nameScene">Nombre de la escena</param>
 	public void loadAScene (string nameScene) {
 		loadSlider.SetActive (true);
 		canvas.SetActive (true);

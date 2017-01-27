@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ShipCollision : MonoBehaviour {
 
+	#region Unity Methods
+
 	void OnTriggerEnter(Collider other){
 
 		if (other.transform.CompareTag ("PlayerLose")) {
@@ -14,4 +16,7 @@ public class ShipCollision : MonoBehaviour {
 		}
 
 	}
+
+	#endregion
+
 }
