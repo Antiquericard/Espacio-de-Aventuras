@@ -1816,6 +1816,8 @@ MonoBehaviour:
   CAMERA_CANNON_DISTANCE: {x: 0, y: -0.8, z: 0.47}
   CAMERA_ASTRONAUT_DISTANCE: {x: 0, y: 1, z: -2.5}
   ASTRONAUT_CANNON_DISTANCE: {x: 0, y: 1, z: 0.5}
+  ASTRONAUT_ROTATE: {x: 80, y: 180, z: -90}
+  CAMERA_ROTATE: {x: -180, y: -80, z: -90}
   PowerBar: {fileID: 0}
   powBar: {fileID: 0}
   astronautPrefab: {fileID: 1859090067623148, guid: 25bf8efddfd97fb4c9c28e04ae566073,
