@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.16469821, g: 0.108395465, b: 0.2239674, a: 1}
+  m_IndirectSpecularColor: {r: 0.16468379, g: 0.10836672, b: 0.22398072, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -9623,7 +9623,7 @@ MonoBehaviour:
   mode: 0
   CAMERA_CANNON_DISTANCE: {x: 0, y: -0.8, z: 0.47}
   CAMERA_ASTRONAUT_DISTANCE: {x: 0, y: 1, z: -2}
-  ASTRONAUT_CANNON_DISTANCE: {x: 0, y: 0, z: 0.5}
+  ASTRONAUT_CANNON_DISTANCE: {x: 0, y: -3, z: 0}
   ASTRONAUT_ROTATE: {x: 90, y: 90, z: 0}
   CAMERA_ROTATE: {x: -180, y: -78.63, z: -90}
   PowerBar: {fileID: 866061678}

@@ -53,7 +53,7 @@ public class AstronautFiring : MonoBehaviour {
 
 	[Tooltip("Distancia de la cámara al astronauta.")] [SerializeField] public Vector3 CAMERA_ASTRONAUT_DISTANCE = new Vector3 (0f, 1f, -2.5f);
 
-	[Tooltip("Distancia del astronauta al cannon.")] [SerializeField] public Vector3 ASTRONAUT_CANNON_DISTANCE = new Vector3 (0f, 1f, .5f);
+	[Tooltip("Distancia del astronauta al cannon.")] [SerializeField] public Vector3 ASTRONAUT_CANNON_DISTANCE = new Vector3 (0f, 1f, -3f);
 
 	[Tooltip("Rotación por defecto del astronauta.")] [SerializeField] public Vector3 ASTRONAUT_ROTATE = new Vector3(80f, 180f, -90f);
 
