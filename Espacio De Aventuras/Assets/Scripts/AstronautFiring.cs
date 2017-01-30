@@ -161,6 +161,7 @@ public class AstronautFiring : MonoBehaviour {
 	/// </summary>
 	public void ReturnToIdleMode(){
 		mode = ShootingMode.Idle;
+		cameraMovement.UpdateFOV (0);
 		cameraMovement.transform.SetParent (transform.GetChild(0));
 		cameraMovement.transform.localPosition = CAMERA_CANNON_DISTANCE;
 		cameraMovement.transform.localRotation = Quaternion.Euler(CAMERA_ROTATE);

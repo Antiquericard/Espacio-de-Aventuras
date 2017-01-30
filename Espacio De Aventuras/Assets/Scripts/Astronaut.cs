@@ -122,9 +122,9 @@ public class Astronaut : MonoBehaviour {
 		GameManager.instance.markPosition = transform.position;
 
 		//GetComponent<Rigidbody> ().AddForce (shipSpeed, ForceMode.VelocityChange);
-
-		Debug.Log ("Rotación del astronauta es:" + transform.rotation.eulerAngles.ToString ());
 		GetComponent<Rigidbody> ().AddForce (transform.forward * speed, ForceMode.Impulse);
+
+		Camera.main.GetComponent<CameraMovement> ().UpdateFOV (speed * speed);
 	}
 
 	#endregion
@@ -141,6 +141,7 @@ public class Astronaut : MonoBehaviour {
 		while (!returned) {
 			transform.LookAt (cannon); //por si acaso hay algun problema con los planetas
 			transform.position += transform.forward * moveSpeed * Time.deltaTime;
+			Camera.main.GetComponent<CameraMovement> ().UpdateFOV (moveSpeed * moveSpeed);
 			yield return null;
 		}
 		propellers.Refuel ();
