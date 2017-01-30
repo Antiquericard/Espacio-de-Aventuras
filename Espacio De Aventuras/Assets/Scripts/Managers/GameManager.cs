@@ -36,10 +36,21 @@ public class GameManager : Singleton<GameManager> {
 
 	[Tooltip("Vidas totales para el nivel.")] [SerializeField] public int lifes = 3;
 
+	public Vector3 markPosition;
+
 
 	#endregion
 
 	#region Unity Methods
+
+	/// <summary>
+	/// Usamos esta función para marcar objetos con motivos de debug.
+	/// </summary>
+	void OnDrawGizmos(){
+		if (markPosition != null) {
+			Gizmos.DrawSphere (markPosition, .5f);
+		}
+	}
 
 	//
 	void Start(){

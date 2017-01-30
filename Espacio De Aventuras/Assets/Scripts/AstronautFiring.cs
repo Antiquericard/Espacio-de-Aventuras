@@ -53,9 +53,7 @@ public class AstronautFiring : MonoBehaviour {
 
 	[Tooltip("Distancia de la cámara al astronauta.")] [SerializeField] public Vector3 CAMERA_ASTRONAUT_DISTANCE = new Vector3 (0f, 1f, -2.5f);
 
-	[Tooltip("Distancia del astronauta al cannon.")] [SerializeField] public Vector3 ASTRONAUT_CANNON_DISTANCE = new Vector3 (0f, 1f, .5f);
-
-	[Tooltip("Rotación por defecto del astronauta.")] [SerializeField] public Vector3 ASTRONAUT_ROTATE = new Vector3(80f, 180f, -90f);
+	[Tooltip("Distancia del astronauta al cannon.")] [SerializeField] public Vector3 ASTRONAUT_CANNON_DISTANCE = new Vector3 (0f, 1f, -3f);
 
 	[Tooltip("Rotación por defecto de la cámara.")] [SerializeField] public Vector3 CAMERA_ROTATE = new Vector3(-180f, -80f, -90f);
 
@@ -141,7 +139,7 @@ public class AstronautFiring : MonoBehaviour {
 		astronaut.SetActive (true);
 		astronaut.tag = "Player"; //El tag se lo quitamos en el tiro anterior para evitar a los planetas
 		astronaut.layer = 0; //Asi podra chocar con los planetas de nuevo
-		astronaut.GetComponent<Astronaut> ().Init (adjustedPowerValue * startingVelocity, Vector3.zero);
+		astronaut.GetComponent<Astronaut> ().Init (adjustedPowerValue * startingVelocity);
 		powerValue = 0f;
 
 		// Esto rota la distancia. Es importante que el Quaternion esté en el LADO IZQUIERDO del Vector3 para poder rotarlo

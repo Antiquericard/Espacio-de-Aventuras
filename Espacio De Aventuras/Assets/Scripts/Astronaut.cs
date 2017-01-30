@@ -56,6 +56,7 @@ public class Astronaut : MonoBehaviour {
 
 	#region Unity Methods
 
+
 	// Cuando se mantiene pulsada la pantalla mas de touchTime se activa el retorno a la nave.
 	void Update () {
 		bool control;
@@ -110,14 +111,19 @@ public class Astronaut : MonoBehaviour {
 	#region Public Methods
 
 	// Método para comenzar el primer disparo.
-	public void Init(float speed, Vector3 shipSpeed){
+	public void Init(float speed/*, Vector3 shipSpeed*/){
 		returned = false;
 		transform.parent = cannon;
 		transform.localPosition = firing.ASTRONAUT_CANNON_DISTANCE;
-		transform.rotation = Quaternion.Euler(cannon.GetChild(0).eulerAngles + firing.ASTRONAUT_ROTATE);
+		Vector3 rotation = -cannon.eulerAngles;
+		transform.localRotation = Quaternion.Euler(rotation);
 		transform.parent = null;
 
-		GetComponent<Rigidbody> ().AddForce (shipSpeed, ForceMode.VelocityChange);
+		GameManager.instance.markPosition = transform.position;
+
+		//GetComponent<Rigidbody> ().AddForce (shipSpeed, ForceMode.VelocityChange);
+
+		Debug.Log ("Rotación del astronauta es:" + transform.rotation.eulerAngles.ToString ());
 		GetComponent<Rigidbody> ().AddForce (transform.forward * speed, ForceMode.Impulse);
 	}
 
