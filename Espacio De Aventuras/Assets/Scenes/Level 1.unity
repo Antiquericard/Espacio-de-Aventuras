@@ -3323,7 +3323,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 761004313}
   m_LocalRotation: {x: 0.50000006, y: 0.5, z: 0.50000006, w: 0.5}
-  m_LocalPosition: {x: 0, y: -0.09, z: -0.19}
+  m_LocalPosition: {x: -0, y: 0, z: -0.41}
   m_LocalScale: {x: 1.3379912, y: 1.337992, z: 1.337992}
   m_Children: []
   m_Father: {fileID: 642349443}
@@ -3385,7 +3385,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 683208029
+  randomSeed: -1328653112
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -9624,7 +9624,7 @@ MonoBehaviour:
   CAMERA_CANNON_DISTANCE: {x: 0, y: -0.8, z: 0.47}
   CAMERA_ASTRONAUT_DISTANCE: {x: 0, y: 1, z: -2}
   ASTRONAUT_CANNON_DISTANCE: {x: 0, y: -3, z: 0}
-  ASTRONAUT_ROTATE: {x: 90, y: 90, z: 0}
+  ASTRONAUT_ROTATE: {x: 90, y: 0, z: -90}
   CAMERA_ROTATE: {x: -180, y: -78.63, z: -90}
   PowerBar: {fileID: 866061678}
   powBar: {fileID: 240096242}
