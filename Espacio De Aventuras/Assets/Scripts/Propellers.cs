@@ -97,6 +97,9 @@ public class Propellers : MonoBehaviour {
 			Vector3 localForward = transform.worldToLocalMatrix.MultiplyVector (transform.forward);
 			rigid.AddForce (localForward * moveFront * frontPower, ForceMode.Impulse);
 		}
+
+		//Le decimos a la cámara que la velocidad ha cambiado
+		Camera.main.GetComponent<CameraMovement> ().UpdateFOV(rigid.velocity.sqrMagnitude);
 	}
 
 	void Update(){
@@ -189,7 +192,7 @@ public class Propellers : MonoBehaviour {
 	}
 
 	/// <summary>
-	/// Detiende el sistema de partículas, pero sólo si no estaba ya detenido.
+	/// Detiene el sistema de partículas, pero sólo si no estaba ya detenido.
 	/// </summary>
 	/// <param name="parts">El sistema de partículas</param>
 	void StopParticleSystem(ParticleSystem parts){

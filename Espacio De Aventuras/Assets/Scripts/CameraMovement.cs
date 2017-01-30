@@ -44,6 +44,7 @@ public class CameraMovement : MonoBehaviour {
 
 	bool _allowedRotation = true;
 
+
 	#endregion
 
 	#region Getters & Setters
@@ -76,6 +77,14 @@ public class CameraMovement : MonoBehaviour {
 
 	void Start(){
 		firing = transform.parent.parent.GetComponent<AstronautFiring> ();
+	}
+
+
+	/// <summary>
+	/// Control del campo de visión de la cámara en función de la velocidad. El mínimo es 100, el máximo es 140 (a una maxSpeed de 45)
+	/// </summary>
+	public void UpdateFOV(float sqrAstronautSpeed){
+		this.GetComponent<Camera> ().fieldOfView = 100 + sqrAstronautSpeed * 0.02f;
 	}
 
 	// Seguimiento de la cámará cuando se encuentra fuera de la nave y el sistema de disparo cuando se encuentre dentro.

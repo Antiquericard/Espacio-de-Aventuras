@@ -36,7 +36,7 @@ public class GameManager : Singleton<GameManager> {
 
 	[Tooltip("Vidas totales para el nivel.")] [SerializeField] public int lifes = 3;
 
-	public Vector3 markPosition;
+	public Vector3 markPosition = Vector3.zero;
 
 
 	#endregion
@@ -47,7 +47,7 @@ public class GameManager : Singleton<GameManager> {
 	/// Usamos esta función para marcar objetos con motivos de debug.
 	/// </summary>
 	void OnDrawGizmos(){
-		if (markPosition != null) {
+		if (markPosition != Vector3.zero) {
 			Gizmos.DrawSphere (markPosition, .5f);
 		}
 	}
