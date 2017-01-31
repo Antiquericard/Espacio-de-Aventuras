@@ -119,6 +119,10 @@ public class Astronaut : MonoBehaviour {
 		transform.localRotation = Quaternion.Euler(rotation);
 		transform.parent = null;
 
+		Debug.Log ("Rotación del astronauta: " + transform.rotation.eulerAngles);
+		Debug.Log ("Rotación local del astronauta: " + transform.localRotation.eulerAngles);
+
+
 		GameManager.instance.markPosition = transform.position;
 
 		//GetComponent<Rigidbody> ().AddForce (shipSpeed, ForceMode.VelocityChange);

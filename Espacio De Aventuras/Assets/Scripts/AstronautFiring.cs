@@ -163,10 +163,12 @@ public class AstronautFiring : MonoBehaviour {
 		mode = ShootingMode.Idle;
 		cameraMovement.UpdateFOV (0);
 		cameraMovement.transform.SetParent (transform.GetChild(0));
+		GetComponentInChildren<ParticleSystem> ().Play ();
 		cameraMovement.transform.localPosition = CAMERA_CANNON_DISTANCE;
 		cameraMovement.transform.localRotation = Quaternion.Euler(CAMERA_ROTATE);
-		GetComponentInChildren<ParticleSystem> ().Play ();
+
 	}
+
 
 	/// <summary>
 	/// Se ejecuta cuando el astronauta pierde una vida. Le devuelve a la nave.
