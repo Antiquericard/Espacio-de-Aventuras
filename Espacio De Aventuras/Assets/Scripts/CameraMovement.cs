@@ -155,7 +155,19 @@ public class CameraMovement : MonoBehaviour {
 			#endif
 
 			//Aquí aplicamos el movimiento. Como se puede ver, se da por hecho que el cañon es el abuelo de la camara
-			transform.parent.parent.Rotate (xValue, 0f, yValue);
+
+			//TODO AQUI LE DECIMOS QUE ROTE EN X Y EN Z, PERO NO EN Y. SIN EMBARGO, ROTA EN Y Y ESO CHAFA EL DISPARO Y LA VISTA.
+			//ABAJO HAY CODIGO CHAPUZA PARA FORZARLO EN Y, PERO ACTIVARLO PROVOCA COMPORTAMIENTOS EXTRAÑOS
+			//ME DA LA IMPRESION DE QUE ES ALGO RELACIONADO CON EL COMPORTAMIENTO DE UN QUATERNION PERO NO DARIA UNA PIERNA POR ELLO
+			transform.parent.parent.Rotate (new Vector3(xValue, 0f, yValue));
+
+
+			/*if (transform.parent.parent.rotation.eulerAngles.y != 0) {
+				Vector3 rotation = transform.parent.parent.rotation.eulerAngles;
+				rotation.y = 0;
+				transform.parent.parent.eulerAngles = rotation;
+			}*/
+
 		}
 
 	}
