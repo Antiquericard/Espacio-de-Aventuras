@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.16469821, g: 0.108395465, b: 0.2239674, a: 1}
+  m_IndirectSpecularColor: {r: 0.16468379, g: 0.10836672, b: 0.22398072, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -962,7 +962,7 @@ RectTransform:
   m_Children:
   - {fileID: 167847962}
   m_Father: {fileID: 2032753333}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2134,7 +2134,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2032753333}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -3148,7 +3148,7 @@ GameObject:
   - component: {fileID: 757983695}
   - component: {fileID: 757983694}
   m_Layer: 0
-  m_Name: Canvas
+  m_Name: MarkerArrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11866,7 +11866,7 @@ RectTransform:
   - {fileID: 1941366448}
   - {fileID: 1422898674}
   m_Father: {fileID: 2032753333}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -12860,7 +12860,7 @@ RectTransform:
   m_Children:
   - {fileID: 687818673}
   m_Father: {fileID: 2032753333}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -13158,7 +13158,7 @@ RectTransform:
   m_Children:
   - {fileID: 1116307685}
   m_Father: {fileID: 2032753333}
-  m_RootOrder: 3
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -13574,7 +13574,7 @@ GameObject:
   - component: {fileID: 2032753336}
   - component: {fileID: 2032753335}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: HUD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13594,11 +13594,11 @@ RectTransform:
   - {fileID: 1067389859}
   - {fileID: 164247730}
   - {fileID: 48536502}
-  - {fileID: 1928784705}
   - {fileID: 1801473154}
   - {fileID: 1504846810}
   - {fileID: 240096245}
   - {fileID: 579156299}
+  - {fileID: 1928784705}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

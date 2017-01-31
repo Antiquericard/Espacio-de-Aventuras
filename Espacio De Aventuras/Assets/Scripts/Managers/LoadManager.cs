@@ -26,7 +26,7 @@ public class LoadManager: Singleton<LoadManager> {
 
 	#region Setting Attributes
 
-	[Tooltip("Canvas con una imagen de carga, texto y un slider bien colocados")][SerializeField] Object canvasPrefab;
+	[Tooltip("Canvas con una imagen de carga, texto y un slider")][SerializeField] Object canvasPrefab;
 
 	GameObject canvas;
 	Image loadImage;

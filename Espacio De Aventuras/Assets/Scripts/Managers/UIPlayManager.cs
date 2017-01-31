@@ -30,19 +30,13 @@ public class UIPlayManager : MonoBehaviour{
 
 	[Tooltip("GameObject a recoger en la escena")] [SerializeField] GameObject deuterio;
 
-	Camera mainCamera;
-
 	#endregion
 
 	#region Unity Methods
 
-	void Start(){
-		mainCamera = Camera.main;
-	}
-
 	//Si pulsamos la tecla Esc, entraremos en el menú de pausa.
 	protected virtual void Update () {
-		if (Input.GetButtonDown("Cancel")){
+		if (Input.GetButtonDown("Cancel") && SceneManager.GetActiveScene().buildIndex != 0){
 			PauseOrResume ();
 		}
 	}
@@ -54,8 +48,10 @@ public class UIPlayManager : MonoBehaviour{
 	// Método para entrar en el menú de pausa.
 	public void PauseOrResume () {
 		Time.timeScale = (Time.timeScale == 1) ? 0 : 1;
-		canvas.SetActive (!canvas.activeSelf);
-		mainCamera.GetComponent<CameraMovement>().enabled = (!mainCamera.GetComponent<CameraMovement>().isActiveAndEnabled);
+		GameManager.instance.firing.enabled = !GameManager.instance.firing.enabled;
+		GameObject pause = canvas.transform.FindChild ("PauseMenu").gameObject;
+		pause.SetActive (!pause.activeSelf);
+		Camera.main.GetComponent<CameraMovement>().enabled = (!Camera.main.GetComponent<CameraMovement>().isActiveAndEnabled);
 		this.GetComponent<GameManager> ().enabled = (!this.GetComponent<GameManager> ().isActiveAndEnabled);
 	}
 
@@ -79,7 +75,7 @@ public class UIPlayManager : MonoBehaviour{
 	}
 
 	public void ReloadVariables(){
-		canvas = GameObject.Find ("Canvas");
+		canvas = GameObject.Find ("HUD");
 		deuterio = GameObject.FindGameObjectWithTag ("Deuterio");
 	}
 

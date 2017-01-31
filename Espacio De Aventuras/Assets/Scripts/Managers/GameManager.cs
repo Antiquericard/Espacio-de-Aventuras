@@ -38,6 +38,10 @@ public class GameManager : Singleton<GameManager> {
 
 	[Tooltip("Texto especial")] [SerializeField] GameObject specialText;
 
+	[Tooltip("Nave")] [SerializeField] public GameObject spaceShip;
+
+	public AstronautFiring firing;
+
 	public Vector3 markPosition = Vector3.zero;
 
 	string[] chetos = new string[] { "i", "d", "k", "f", "a" };
@@ -74,7 +78,7 @@ public class GameManager : Singleton<GameManager> {
 			}
 		}
 
-		if (indexChetos == chetos.Length - 1 && !hacker) {
+		if (indexChetos == chetos.Length && !hacker) {
 			hacker = true;
 			specialText.SetActive (true);
 		}
@@ -91,6 +95,8 @@ public class GameManager : Singleton<GameManager> {
 	[ContextMenu("Carga")]
 	public void ReloadVariables(int lif){
 		this.GetComponent<UIPlayManager>().ReloadVariables ();
+		spaceShip = GameObject.Find ("SpaceShip");
+		firing = GameManager.instance.spaceShip.transform.FindChild ("PivotCannon").GetComponent<AstronautFiring> ();
 		lifes = 3;
 	}
 
