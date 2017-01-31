@@ -191,7 +191,11 @@ public class AstronautFiring : MonoBehaviour {
 	IEnumerator DieCoroutine(){
 		yield return new WaitForSeconds (.5f);
 		astronaut.GetComponent<Rigidbody> ().velocity = new Vector3 ();
-		//particles.Play ();
+
+		//Just cheater things
+		if(GameManager.instance.hacker)
+			GameManager.instance.lifes++;
+
 		if (--GameManager.instance.lifes > 0) {
 			astronaut.GetComponent<Astronaut> ().StartCoroutine ("ReturnToSpaceShip");
 			astronautTrueDistance =  astronaut.transform.rotation * CAMERA_ASTRONAUT_DISTANCE;

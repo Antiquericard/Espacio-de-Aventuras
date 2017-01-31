@@ -10,7 +10,6 @@ public class LevelTextFadeOut : MonoBehaviour {
 	void Start () {
 		StartCoroutine ("FadeOut");
 	}
-	
 
 	IEnumerator FadeOut () {
 		yield return new WaitForSecondsRealtime (5f);

@@ -115,7 +115,7 @@ public class Astronaut : MonoBehaviour {
 		returned = false;
 		transform.parent = cannon;
 		transform.localPosition = firing.ASTRONAUT_CANNON_DISTANCE;
-		Vector3 rotation = -cannon.eulerAngles;
+		Vector3 rotation = -cannon.eulerAngles; //la rotación correcta parece ser la inversa del propio cañon
 		transform.localRotation = Quaternion.Euler(rotation);
 		transform.parent = null;
 

@@ -36,8 +36,13 @@ public class GameManager : Singleton<GameManager> {
 
 	[Tooltip("Vidas totales para el nivel.")] [SerializeField] public int lifes = 3;
 
+	[Tooltip("Texto especial")] [SerializeField] GameObject specialText;
+
 	public Vector3 markPosition = Vector3.zero;
 
+	string[] chetos = new string[] { "i", "d", "k", "f", "a" };
+	public bool hacker = false;
+	int indexChetos = 0;
 
 	#endregion
 
@@ -57,6 +62,22 @@ public class GameManager : Singleton<GameManager> {
 		//Cogemos el nivel
 		DontDestroyOnLoad(gameObject);
 		level = SceneManager.GetActiveScene ().buildIndex;
+	}
+
+	void Update(){
+		//UYYYY ERES UN HACKER CON EL CHETO DE VIDA INFINITA
+		if (Input.anyKeyDown) {
+			if (Input.GetKeyDown (chetos [indexChetos])) {
+				indexChetos++;
+			} else {
+				indexChetos = 0;
+			}
+		}
+
+		if (indexChetos == chetos.Length - 1 && !hacker) {
+			hacker = true;
+			specialText.SetActive (true);
+		}
 	}
 
 	#endregion
