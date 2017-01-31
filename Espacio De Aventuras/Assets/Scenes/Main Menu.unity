@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -260,6 +260,8 @@ MonoBehaviour:
   lose: {fileID: 1595444340}
   lifes: 3
   specialText: {fileID: 1295978531}
+  spaceShip: {fileID: 0}
+  firing: {fileID: 0}
   markPosition: {x: 0, y: 0, z: 0}
   hacker: 0
 --- !u!114 &383325340
@@ -729,11 +731,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &482022549 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1931348574272276, guid: f4fcd4e49ca114ac294673dc2950d9b4,
-    type: 2}
-  m_PrefabInternal: {fileID: 1465509855}
 --- !u!1001 &534302269
 Prefab:
   m_ObjectHideFlags: 0
@@ -2034,7 +2031,7 @@ Prefab:
         type: 2}
       propertyPath: loadImage
       value: 
-      objectReference: {fileID: 482022549}
+      objectReference: {fileID: 0}
     - target: {fileID: 1052698305387768, guid: 2575e4e205aab41748e4251e949ce6d4, type: 2}
       propertyPath: m_Name
       value: GameManager
@@ -2042,6 +2039,11 @@ Prefab:
     - target: {fileID: 114059042051020866, guid: 2575e4e205aab41748e4251e949ce6d4,
         type: 2}
       propertyPath: canvasPrefab
+      value: 
+      objectReference: {fileID: 457526648}
+    - target: {fileID: 114059042051020866, guid: 2575e4e205aab41748e4251e949ce6d4,
+        type: 2}
+      propertyPath: canvas
       value: 
       objectReference: {fileID: 457526648}
     m_RemovedComponents: []

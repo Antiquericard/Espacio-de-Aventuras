@@ -100,6 +100,7 @@ public class GameManager : Singleton<GameManager> {
 		lifes = 3;
 	}
 
+
 	/// <summary>
 	/// Método para completar el nivel.
 	/// </summary>
