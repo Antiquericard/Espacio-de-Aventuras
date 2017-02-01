@@ -160,7 +160,7 @@ public class CameraMovement : MonoBehaviour {
 			//ABAJO HAY CODIGO CHAPUZA PARA FORZARLO EN Y, PERO ACTIVARLO PROVOCA COMPORTAMIENTOS EXTRAÑOS
 			//ME DA LA IMPRESION DE QUE ES ALGO RELACIONADO CON EL COMPORTAMIENTO DE UN QUATERNION PERO NO DARIA UNA PIERNA POR ELLO
 			transform.parent.parent.Rotate (new Vector3(xValue, 0f, yValue));
-
+			//transform.parent.parent.Rotate (new Vector3(xValue, yValue, 0f), Space.World);
 
 			/*if (transform.parent.parent.rotation.eulerAngles.y != 0) {
 				Vector3 rotation = transform.parent.parent.rotation.eulerAngles;
@@ -169,7 +169,6 @@ public class CameraMovement : MonoBehaviour {
 			}*/
 
 		}
-
 	}
 
 	#endregion
