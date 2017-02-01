@@ -90,6 +90,12 @@ public class LoadManager: Singleton<LoadManager> {
 		}
 		loadProcess.allowSceneActivation = true;
 		loadSlider.SetActive (false);
+		GameManager.instance.victory.SetActive (false);
+		GameManager.instance.lose.SetActive (false);
+		UIPlayManager.instance.pause.SetActive (false);
+		if (Time.timeScale < 1f) {
+			Time.timeScale = 1f;
+		}
 	}
 
 	#endregion

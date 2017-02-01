@@ -26,7 +26,7 @@ public class UIPlayManager : Singleton<UIPlayManager>{
 
 	#region Setting Attributes
 
-	[Tooltip("PauseMenu.")] [SerializeField] GameObject pause;
+	[Tooltip("PauseMenu.")] [SerializeField] public GameObject pause;
 
 	[Tooltip("GameObject a recoger en la escena.")] [SerializeField] GameObject deuterio;
 
@@ -47,7 +47,7 @@ public class UIPlayManager : Singleton<UIPlayManager>{
 
 	// Método para entrar en el menú de pausa.
 	public void PauseOrResume () {
-		Debug.Log (canvas.ToString ());
+		//Debug.Log (canvas.ToString ());
 		Time.timeScale = (Time.timeScale == 1) ? 0 : 1;
 		GameManager.instance.firing.enabled = !GameManager.instance.firing.enabled;
 		pause.SetActive (!pause.activeSelf);

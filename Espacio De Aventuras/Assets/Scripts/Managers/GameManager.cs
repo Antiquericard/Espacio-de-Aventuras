@@ -30,9 +30,9 @@ public class GameManager : Singleton<GameManager> {
 	//Variable de suavizado.
 	float lerp;
 
-	[Tooltip("Interfaz de victoria.")] [SerializeField] GameObject victory;
+	[Tooltip("Interfaz de victoria.")] [SerializeField] public GameObject victory;
 
-	[Tooltip("Interfaz de derrota.")] [SerializeField] GameObject lose;
+	[Tooltip("Interfaz de derrota.")] [SerializeField] public GameObject lose;
 
 	[Tooltip("Vidas totales para el nivel.")] [SerializeField] public int lifes = 3;
 
@@ -118,10 +118,9 @@ public class GameManager : Singleton<GameManager> {
 	/// <summary>
 	/// Método para comenzar el siguiente nivel.
 	/// </summary>
-	public void NextLevel (){
-		Time.timeScale = 1f;
+	/*public void NextLevel (){
 		SceneManager.LoadScene ("Level " + (level + 1).ToString ());
-	}
+	}*/
 
 	#endregion
 
