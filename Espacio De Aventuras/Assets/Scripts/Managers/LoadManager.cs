@@ -74,17 +74,17 @@ public class LoadManager: Singleton<LoadManager> {
 		float timer = 0f;
 
 		while (timer <= 1f) {
-			timer += Time.deltaTime;
+			timer += Time.unscaledDeltaTime;
 			RefreshUI (.25f);
 			yield return null;
 		}
-		while (timer - Time.deltaTime <= 1.5f) {
-			timer += Time.deltaTime;
+		while (timer - Time.unscaledDeltaTime <= 1.5f) {
+			timer += Time.unscaledDeltaTime;
 			RefreshUI (.5f);
 			yield return null;
 		}
-		while (loadProcess.progress < .9f || timer - Time.deltaTime <= 2f) {
-			timer += Time.deltaTime;
+		while (loadProcess.progress < .9f || timer - Time.unscaledDeltaTime <= 2f) {
+			timer += Time.unscaledDeltaTime;
 			RefreshUI (loadProcess.progress);
 			yield return null;
 		}

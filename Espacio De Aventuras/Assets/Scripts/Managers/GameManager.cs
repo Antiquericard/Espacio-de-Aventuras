@@ -98,6 +98,7 @@ public class GameManager : Singleton<GameManager> {
 		spaceShip = GameObject.Find ("SpaceShip");
 		firing = spaceShip.GetComponentInChildren<AstronautFiring> ();
 		lifes = lif;
+		level = SceneManager.GetActiveScene ().buildIndex;
 	}
 
 

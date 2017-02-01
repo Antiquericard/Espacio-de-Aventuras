@@ -57,20 +57,17 @@ public class UIPlayManager : Singleton<UIPlayManager>{
 
 	// Método para reiniciar el nivel.
 	public void ResetLevel () {
-		Time.timeScale = 1f;
 		LoadManager.instance.loadAScene (SceneManager.GetActiveScene ().name);
 		CancelInvoke ();
 	}
 
 	// Método para volver al menú de inicio.
 	public void ToMainMenu () {
-		Time.timeScale = 1f;
 		LoadManager.instance.loadAScene ("Main Menu");
 	}
 
 	// Método para pasar al siguiente nivel.
 	public void NextLevel (){
-		Time.timeScale = 1f;
 		LoadManager.instance.loadAScene ("Level " + (GameManager.instance.level + 1).ToString ());
 	}
 
