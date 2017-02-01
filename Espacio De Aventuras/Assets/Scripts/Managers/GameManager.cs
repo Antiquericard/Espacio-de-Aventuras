@@ -96,8 +96,8 @@ public class GameManager : Singleton<GameManager> {
 	public void ReloadVariables(int lif){
 		this.GetComponent<UIPlayManager>().ReloadVariables ();
 		spaceShip = GameObject.Find ("SpaceShip");
-		firing = GameManager.instance.spaceShip.transform.FindChild ("PivotCannon").GetComponent<AstronautFiring> ();
-		lifes = 3;
+		firing = spaceShip.GetComponentInChildren<AstronautFiring> ();
+		lifes = lif;
 	}
 
 	/// <summary>

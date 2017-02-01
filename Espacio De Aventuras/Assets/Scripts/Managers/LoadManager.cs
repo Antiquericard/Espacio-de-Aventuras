@@ -26,12 +26,13 @@ public class LoadManager: Singleton<LoadManager> {
 
 	#region Setting Attributes
 
-	[Tooltip("Canvas con una imagen de carga, texto y un slider")][SerializeField] Object canvasPrefab;
+	[Tooltip("Canvas con una imagen de carga, texto y un slider")][SerializeField] GameObject loadSlider;
 
-	GameObject canvas;
+	[Tooltip("")] [SerializeField] GameObject canvasUI;
+
+
 	Image loadImage;
 	Text percentageText;
-	GameObject loadSlider;
 
 	// Nombre de la escena a la que ir.
 	string sceneName;
@@ -40,12 +41,10 @@ public class LoadManager: Singleton<LoadManager> {
 
 	#region Unity Methods
 	void Awake(){
-		canvas = Instantiate (canvasPrefab) as GameObject;
-		loadSlider = canvas.transform.GetChild (0).gameObject;
 		loadImage = loadSlider.transform.GetChild (0).GetComponent<Image> ();
 		percentageText = loadImage.transform.GetChild (0).GetComponent<Text> ();
-		canvas.SetActive (false);
-		DontDestroyOnLoad (canvasPrefab);
+		loadSlider.SetActive (false);
+		DontDestroyOnLoad (canvasUI);
 	}
 	#endregion
 
@@ -90,7 +89,7 @@ public class LoadManager: Singleton<LoadManager> {
 			yield return null;
 		}
 		loadProcess.allowSceneActivation = true;
-		canvas.SetActive (false);
+		loadSlider.SetActive (false);
 	}
 
 	#endregion
@@ -103,7 +102,7 @@ public class LoadManager: Singleton<LoadManager> {
 	/// <param name="nameScene">Nombre de la escena</param>
 	public void loadAScene (string nameScene) {
 		loadSlider.SetActive (true);
-		canvas.SetActive (true);
+		loadSlider.SetActive (true);
 		sceneName = nameScene;
 		StartCoroutine ("Load");
 	}

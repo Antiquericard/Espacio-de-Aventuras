@@ -26,9 +26,9 @@ public class UIPlayManager : MonoBehaviour{
 
 	#region Setting Attributes
 
-	[Tooltip("Canvas de la escena")] [SerializeField] GameObject canvas;
+	[Tooltip("PauseMenu.")] [SerializeField] GameObject pause;
 
-	[Tooltip("GameObject a recoger en la escena")] [SerializeField] GameObject deuterio;
+	[Tooltip("GameObject a recoger en la escena.")] [SerializeField] GameObject deuterio;
 
 	#endregion
 
@@ -49,7 +49,6 @@ public class UIPlayManager : MonoBehaviour{
 	public void PauseOrResume () {
 		Time.timeScale = (Time.timeScale == 1) ? 0 : 1;
 		GameManager.instance.firing.enabled = !GameManager.instance.firing.enabled;
-		GameObject pause = canvas.transform.FindChild ("PauseMenu").gameObject;
 		pause.SetActive (!pause.activeSelf);
 		Camera.main.GetComponent<CameraMovement>().enabled = (!Camera.main.GetComponent<CameraMovement>().isActiveAndEnabled);
 		this.GetComponent<GameManager> ().enabled = (!this.GetComponent<GameManager> ().isActiveAndEnabled);
@@ -75,7 +74,6 @@ public class UIPlayManager : MonoBehaviour{
 	}
 
 	public void ReloadVariables(){
-		canvas = GameObject.Find ("HUD");
 		deuterio = GameObject.FindGameObjectWithTag ("Deuterio");
 	}
 

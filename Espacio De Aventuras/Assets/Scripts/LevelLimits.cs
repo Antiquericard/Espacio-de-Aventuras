@@ -25,6 +25,10 @@ public class LevelLimits : MonoBehaviour {
 
 	#region Unity Methods
 
+	/// <summary>
+	/// Como levelLimits es un GameObject que siempre va a estar en la escena de cualquier nivel,
+	/// lo usaremos para recargar las variables de la escena en el GameManager.
+	/// </summary>
 	void Start () {
 		GameManager.instance.ReloadVariables (3);
 	}
