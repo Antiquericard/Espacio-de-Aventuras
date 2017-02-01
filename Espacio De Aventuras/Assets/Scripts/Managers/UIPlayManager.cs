@@ -22,7 +22,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class UIPlayManager : MonoBehaviour{
+public class UIPlayManager : Singleton<UIPlayManager>{
 
 	#region Setting Attributes
 
@@ -35,7 +35,7 @@ public class UIPlayManager : MonoBehaviour{
 	#region Unity Methods
 
 	//Si pulsamos la tecla Esc, entraremos en el menú de pausa.
-	protected virtual void Update () {
+	void Update () {
 		if (Input.GetButtonDown("Cancel") && SceneManager.GetActiveScene().buildIndex != 0){
 			PauseOrResume ();
 		}
@@ -47,6 +47,7 @@ public class UIPlayManager : MonoBehaviour{
 
 	// Método para entrar en el menú de pausa.
 	public void PauseOrResume () {
+		Debug.Log (canvas.ToString ());
 		Time.timeScale = (Time.timeScale == 1) ? 0 : 1;
 		GameManager.instance.firing.enabled = !GameManager.instance.firing.enabled;
 		pause.SetActive (!pause.activeSelf);
