@@ -28,7 +28,7 @@ public class UIPlayManager : Singleton<UIPlayManager>{
 
 	[Tooltip("PauseMenu.")] [SerializeField] public GameObject pause;
 
-	[Tooltip("GameObject a recoger en la escena.")] [SerializeField] GameObject deuterio;
+	//[Tooltip("GameObject a recoger en la escena.")] [SerializeField] GameObject deuterio;
 
 	#endregion
 
@@ -71,9 +71,6 @@ public class UIPlayManager : Singleton<UIPlayManager>{
 		LoadManager.instance.loadAScene ("Level " + (GameManager.instance.level + 1).ToString ());
 	}
 
-	public void ReloadVariables(){
-		deuterio = GameObject.FindGameObjectWithTag ("Deuterio");
-	}
 
 	#endregion
 }
