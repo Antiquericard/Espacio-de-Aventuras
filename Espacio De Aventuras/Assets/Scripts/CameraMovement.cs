@@ -102,8 +102,8 @@ public class CameraMovement : MonoBehaviour {
 
 			// Para la versión de escritorio simplemente cogemos la entrada de ratón
 			#if UNITY_STANDALONE
-			yValue = scaleRotationX * Input.GetAxis("Mouse X");
-			xValue = -scaleRotationY * Input.GetAxis("Mouse Y");
+			yValue = scaleRotationX * Input.GetAxis("Mouse X") * Time.deltaTime;
+			xValue = -scaleRotationY * Input.GetAxis("Mouse Y") * Time.deltaTime;
 			#endif
 
 			// Para la versión de móvil cogemos el movimiento táctil, pero lo capeamos un poco para que la velocidad alta no importe tanto
@@ -124,8 +124,8 @@ public class CameraMovement : MonoBehaviour {
 					delta.y = -1f;
 				}
 
-				xValue = scaleRotationPhoneX * delta.x;
-				yValue = -scaleRotationPhoneY * delta.y;
+				xValue = scaleRotationPhoneX * delta.x * Time.deltaTime;
+				yValue = -scaleRotationPhoneY * delta.y * Time.deltaTime;
 			}
 
 			#endif
@@ -148,18 +148,25 @@ public class CameraMovement : MonoBehaviour {
 					delta.y = -1f;
 				}
 
-				xValue = scaleRotationPhoneX * delta.x;
-				yValue = -scaleRotationPhoneY * delta.y;
+				xValue = scaleRotationPhoneX * delta.x * Time.deltaTime;
+				yValue = -scaleRotationPhoneY * delta.y * Time.deltaTime;
 			}
 
 			#endif
+
+			Transform pivotCannon = transform.parent.parent;
+			Quaternion xAxis = Quaternion.AngleAxis (xValue, Vector3.right);
+			Quaternion yAxis = Quaternion.AngleAxis (yValue, Vector3.up);
+
+			pivotCannon.rotation = xAxis * yAxis * pivotCannon.rotation;
+
 
 			//Aquí aplicamos el movimiento. Como se puede ver, se da por hecho que el cañon es el abuelo de la camara
 
 			//TODO AQUI LE DECIMOS QUE ROTE EN X Y EN Z, PERO NO EN Y. SIN EMBARGO, ROTA EN Y Y ESO CHAFA EL DISPARO Y LA VISTA.
 			//ABAJO HAY CODIGO CHAPUZA PARA FORZARLO EN Y, PERO ACTIVARLO PROVOCA COMPORTAMIENTOS EXTRAÑOS
 			//ME DA LA IMPRESION DE QUE ES ALGO RELACIONADO CON EL COMPORTAMIENTO DE UN QUATERNION PERO NO DARIA UNA PIERNA POR ELLO
-			transform.parent.parent.Rotate (new Vector3(xValue, 0f, yValue));
+			//transform.parent.parent.Rotate (new Vector3(xValue, 0f, yValue));
 			//transform.parent.parent.Rotate (new Vector3(xValue, yValue, 0f), Space.World);
 
 			/*if (transform.parent.parent.rotation.eulerAngles.y != 0) {

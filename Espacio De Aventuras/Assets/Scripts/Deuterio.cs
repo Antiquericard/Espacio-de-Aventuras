@@ -20,8 +20,9 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public class Recoger : MonoBehaviour {
+public class Deuterio : MonoBehaviour {
 
 	#region Unity Methods
 
@@ -36,4 +37,10 @@ public class Recoger : MonoBehaviour {
 	}
 
 	#endregion
+
+	public void SetArrowAlpha(float percentage){
+		Image image = this.transform.FindChild ("MarkerArrow").GetChild (0).GetComponent<Image> ();
+		Color tmpColor = new Color (image.color.r, image.color.g, image.color.b, percentage);
+		image.color = tmpColor;
+	}
 }

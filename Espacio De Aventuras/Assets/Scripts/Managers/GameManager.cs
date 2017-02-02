@@ -42,6 +42,8 @@ public class GameManager : Singleton<GameManager> {
 
 	public AstronautFiring firing;
 
+	public GameObject[] deuterios;
+
 	public Vector3 markPosition = Vector3.zero;
 
 	string[] chetos = new string[] { "i", "d", "k", "f", "a" };
@@ -94,11 +96,11 @@ public class GameManager : Singleton<GameManager> {
 	/// <param name="lif">vidas de la siguiente escena a cargar.</param>
 	[ContextMenu("Carga")]
 	public void ReloadVariables(int lif){
-		this.GetComponent<UIPlayManager>().ReloadVariables ();
 		spaceShip = GameObject.Find ("SpaceShip");
 		firing = spaceShip.GetComponentInChildren<AstronautFiring> ();
 		lifes = lif;
 		level = SceneManager.GetActiveScene ().buildIndex;
+		deuterios = GameObject.FindGameObjectsWithTag ("Deuterio");
 	}
 
 

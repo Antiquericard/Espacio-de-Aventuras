@@ -26,6 +26,8 @@ public class Astronaut : MonoBehaviour {
 	#region Setting Attributes
 
 	[Tooltip("Velocidad a la que retorna el personaje a la nave.")] [SerializeField] float moveSpeed = 10f;
+	[Tooltip("Distancia a la que la flecha del deuterio empieza a difuminarse")] [SerializeField] float distanceThreshhold = 50f;
+	float sqrDistanceThreshhold;
 
 	public AstronautFiring firing{
 		get{
@@ -56,9 +58,13 @@ public class Astronaut : MonoBehaviour {
 
 	#region Unity Methods
 
+	void Awake(){
+		sqrDistanceThreshhold = distanceThreshhold * distanceThreshhold;
+	}
 
-	// Cuando se mantiene pulsada la pantalla mas de touchTime se activa el retorno a la nave.
 	void Update () {
+
+		// Cuando se mantiene pulsada la pantalla mas de touchTime se activa el retorno a la nave.
 		bool control;
 		#if UNITY_STANDALONE
 
@@ -103,6 +109,18 @@ public class Astronaut : MonoBehaviour {
 		if (firing.mode == AstronautFiring.ShootingMode.Shooting && control) {
 			control = false;
 			firing.LaunchFail ();
+		}
+
+		//Comprobando distance con respecto al deuterio para cambiar el alfa de la flechita
+		if (firing.mode == AstronautFiring.ShootingMode.Shooting) {
+			foreach(GameObject deuterio in GameManager.instance.deuterios){
+				float sqrDistance = (transform.position - deuterio.transform.position).sqrMagnitude;
+				if (sqrDistance < sqrDistanceThreshhold) {
+					float percentage = sqrDistance / sqrDistanceThreshhold;
+					deuterio.GetComponent<Deuterio> ().SetArrowAlpha (percentage);
+				}
+			}
+
 		}
 	}
 
