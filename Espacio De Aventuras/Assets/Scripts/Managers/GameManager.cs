@@ -64,8 +64,12 @@ public class GameManager : Singleton<GameManager> {
 	}
 
 	//
-	void Start(){
+	void Awake(){
 		//Cogemos el nivel
+		/*if (GameManager.instance.gameObject != gameObject) {
+			Destroy (this);
+		}*/
+
 		DontDestroyOnLoad(gameObject);
 		level = SceneManager.GetActiveScene ().buildIndex;
 	}

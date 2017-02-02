@@ -28,7 +28,7 @@ public class LoadManager: Singleton<LoadManager> {
 
 	[Tooltip("Canvas con una imagen de carga, texto y un slider")][SerializeField] GameObject loadSlider;
 
-	[Tooltip("")] [SerializeField] GameObject canvasUI;
+	[Tooltip("Objeto interfaz de usuario de los menús")] [SerializeField] GameObject canvasUI;
 
 
 	Image loadImage;
@@ -41,6 +41,7 @@ public class LoadManager: Singleton<LoadManager> {
 
 	#region Unity Methods
 	void Awake(){
+		
 		loadImage = loadSlider.transform.GetChild (0).GetComponent<Image> ();
 		percentageText = loadImage.transform.GetChild (0).GetComponent<Text> ();
 		loadSlider.SetActive (false);
@@ -51,7 +52,8 @@ public class LoadManager: Singleton<LoadManager> {
 	#region Private Methods
 
 	/// <summary>
-	/// Regresco de la interfaz de usuario.
+	/// Refresco de la interfaz de usuario de carga del nivel
+	/// .
 	/// </summary>
 	/// <param name="percentage">Porcentaje de carga de la siguiente escena.</param>
 	void RefreshUI (float percentage) {

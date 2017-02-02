@@ -2278,7 +2278,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
-  distanceThreshhold: 20
+  distanceThreshhold: 50
   cannon: {fileID: 0}
   returned: 0
 --- !u!136 &136383902507441360

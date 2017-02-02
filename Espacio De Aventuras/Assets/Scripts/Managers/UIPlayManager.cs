@@ -36,7 +36,7 @@ public class UIPlayManager : Singleton<UIPlayManager>{
 
 	//Si pulsamos la tecla Esc, entraremos en el menú de pausa.
 	void Update () {
-		if (Input.GetButtonDown("Cancel") && SceneManager.GetActiveScene().buildIndex != 0){
+		if (Input.GetButtonDown("Cancel") && SceneManager.GetActiveScene().name != "Main Menu"){
 			PauseOrResume ();
 		}
 	}
@@ -52,7 +52,7 @@ public class UIPlayManager : Singleton<UIPlayManager>{
 		GameManager.instance.firing.enabled = !GameManager.instance.firing.enabled;
 		pause.SetActive (!pause.activeSelf);
 		Camera.main.GetComponent<CameraMovement>().enabled = (!Camera.main.GetComponent<CameraMovement>().isActiveAndEnabled);
-		this.GetComponent<GameManager> ().enabled = (!this.GetComponent<GameManager> ().isActiveAndEnabled);
+		//this.GetComponent<GameManager> ().enabled = (!this.GetComponent<GameManager> ().isActiveAndEnabled); //Probando así
 	}
 
 	// Método para reiniciar el nivel.
@@ -63,6 +63,7 @@ public class UIPlayManager : Singleton<UIPlayManager>{
 
 	// Método para volver al menú de inicio.
 	public void ToMainMenu () {
+		
 		LoadManager.instance.loadAScene ("Main Menu");
 	}
 
