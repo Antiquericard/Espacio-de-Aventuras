@@ -1,0 +1,202 @@
+fileFormatVersion: 2
+guid: b44aef603b887f145b9a3fcf814245a8
+timeCreated: 1485567803
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: asiento
+    100002: "base_ca\xF1on"
+    100004: base_motor_rotacion
+    100006: base_motor_rotacion001
+    100008: base_nave 1
+    100010: base_nave 2
+    100012: boton_002
+    100014: boton_003
+    100016: boton_1
+    100018: capsula_nave
+    100020: "ca\xF1on_rotacion"
+    100022: consola_2
+    100024: consola_3
+    100026: elementos_motor
+    100028: elementos_motor001
+    100030: luces
+    100032: monitor
+    100034: monitor02
+    100036: moto
+    100038: moto001
+    100040: pivot_capsula
+    100042: "pivot_ca\xF1on"
+    100044: pivot_volante
+    100046: //RootNode
+    100048: suelo_nave
+    100050: turbina
+    100052: turbina001
+    100054: volante
+    400000: asiento
+    400002: "base_ca\xF1on"
+    400004: base_motor_rotacion
+    400006: base_motor_rotacion001
+    400008: base_nave 1
+    400010: base_nave 2
+    400012: boton_002
+    400014: boton_003
+    400016: boton_1
+    400018: capsula_nave
+    400020: "ca\xF1on_rotacion"
+    400022: consola_2
+    400024: consola_3
+    400026: elementos_motor
+    400028: elementos_motor001
+    400030: luces
+    400032: monitor
+    400034: monitor02
+    400036: moto
+    400038: moto001
+    400040: pivot_capsula
+    400042: "pivot_ca\xF1on"
+    400044: pivot_volante
+    400046: //RootNode
+    400048: suelo_nave
+    400050: turbina
+    400052: turbina001
+    400054: volante
+    2300000: asiento
+    2300002: "base_ca\xF1on"
+    2300004: base_motor_rotacion
+    2300006: base_motor_rotacion001
+    2300008: base_nave 2
+    2300010: boton_002
+    2300012: boton_003
+    2300014: boton_1
+    2300016: capsula_nave
+    2300018: "ca\xF1on_rotacion"
+    2300020: consola_2
+    2300022: consola_3
+    2300024: elementos_motor
+    2300026: elementos_motor001
+    2300028: luces
+    2300030: monitor
+    2300032: monitor02
+    2300034: moto
+    2300036: moto001
+    2300038: suelo_nave
+    2300040: turbina
+    2300042: turbina001
+    2300044: volante
+    3300000: asiento
+    3300002: "base_ca\xF1on"
+    3300004: base_motor_rotacion
+    3300006: base_motor_rotacion001
+    3300008: base_nave 2
+    3300010: boton_002
+    3300012: boton_003
+    3300014: boton_1
+    3300016: capsula_nave
+    3300018: "ca\xF1on_rotacion"
+    3300020: consola_2
+    3300022: consola_3
+    3300024: elementos_motor
+    3300026: elementos_motor001
+    3300028: luces
+    3300030: monitor
+    3300032: monitor02
+    3300034: moto
+    3300036: moto001
+    3300038: suelo_nave
+    3300040: turbina
+    3300042: turbina001
+    3300044: volante
+    4300000: asiento
+    4300002: "base_ca\xF1on"
+    4300004: base_motor_rotacion
+    4300006: base_motor_rotacion001
+    4300008: base_nave
+    4300010: boton_1
+    4300012: boton_002
+    4300014: boton_003
+    4300016: consola_2
+    4300018: consola_3
+    4300020: elementos_motor
+    4300022: elementos_motor001
+    4300024: luces
+    4300026: monitor
+    4300028: monitor02
+    4300030: moto
+    4300032: moto001
+    4300034: suelo_nave
+    4300036: turbina
+    4300038: turbina001
+    4300040: volante
+    4300042: capsula_nave
+    4300044: "ca\xF1on_rotacion"
+    7400000: Take 001
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
