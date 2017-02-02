@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: base_nave
-  m_Shader: {fileID: 4800000, guid: 7ffdd7b3bdd4ec54fbfa139e1f55274c, type: 3}
+  m_Shader: {fileID: 4800000, guid: 9ce107479d11178d11005b9844295342, type: 3}
   m_ShaderKeywords: _ASYM_ON _COLOR_ON _DS_ON _EMISSION _ENABLEOUTLINE_ON _LIGHTMODE_LEVELS
     _NORMALMAP _OUTL_ON _TEX_ON _USE_M_TEX _USE_NORMAL_MAP _VCOLOR_ON
   m_LightmapFlags: 1
