@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: "base_can\u0303on"
+  m_Name: "base_ca\xF1on"
   m_Shader: {fileID: 4800000, guid: 9ce107479d11178d11005b9844295342, type: 3}
   m_ShaderKeywords: _EMISSION _LIGHTMODE_LEVELS _NORMALMAP _USE_M_TEX _USE_NORMAL_MAP
   m_LightmapFlags: 1

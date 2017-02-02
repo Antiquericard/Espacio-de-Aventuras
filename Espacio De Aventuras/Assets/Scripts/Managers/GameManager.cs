@@ -18,6 +18,7 @@
 
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -42,7 +43,7 @@ public class GameManager : Singleton<GameManager> {
 
 	public AstronautFiring firing;
 
-	public GameObject[] deuterios;
+	public List<GameObject> deuterios;
 
 	public Vector3 markPosition = Vector3.zero;
 
@@ -104,7 +105,8 @@ public class GameManager : Singleton<GameManager> {
 		firing = spaceShip.GetComponentInChildren<AstronautFiring> ();
 		lifes = lif;
 		level = SceneManager.GetActiveScene ().buildIndex;
-		deuterios = GameObject.FindGameObjectsWithTag ("Deuterio");
+		deuterios = new List<GameObject> ();
+		deuterios.AddRange (GameObject.FindGameObjectsWithTag ("Deuterio"));
 	}
 
 
@@ -119,6 +121,17 @@ public class GameManager : Singleton<GameManager> {
 		} else {
 			lose.SetActive(true);
 			StartCoroutine(LevelCompleted(lose));
+		}
+	}
+
+	/// <summary>
+	/// Este método marca un deuterio como recogido. Si no quedan deuterios por recoger, entonces manda a completar el nivel
+	/// </summary>
+	/// <param name="deuterium">Deuterium.</param>
+	public void RemoveDeuterium(GameObject deuterium){
+		deuterios.Remove (deuterium);
+		if (deuterios.Count == 0) {
+			CompleteLevel (true);
 		}
 	}
 
